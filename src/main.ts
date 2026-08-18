@@ -93,7 +93,7 @@ async function bootstrap() {
 
   if (!isProd) {
     const swaggerConfig = new DocumentBuilder()
-      .setTitle('Chinoz Kutubxona Markazi API')
+      .setTitle('Surxondaryo Maktabi sayti API')
       .setDescription('Backend API hujjati')
       .setVersion('1.0')
       .addServer(`http://localhost:${port}`, 'Local')

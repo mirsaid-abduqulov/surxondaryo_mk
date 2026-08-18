@@ -130,164 +130,171 @@ exports.Prisma.UserScalarFieldEnum = {
   refresh_token_jti: 'refresh_token_jti',
   role: 'role',
   is_login: 'is_login',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.GenreScalarFieldEnum = {
-  id: 'id',
-  name_latin: 'name_latin',
-  name_cyril: 'name_cyril',
-  name_ru: 'name_ru'
-};
-
-exports.Prisma.AuthorScalarFieldEnum = {
-  id: 'id',
-  full_name_latin: 'full_name_latin',
-  full_name_cyril: 'full_name_cyril',
-  full_name_ru: 'full_name_ru',
-  biography_latin: 'biography_latin',
-  biography_cyril: 'biography_cyril',
-  biography_ru: 'biography_ru',
-  nationality_latin: 'nationality_latin',
-  nationality_cyril: 'nationality_cyril',
-  nationality_ru: 'nationality_ru',
-  birth_date: 'birth_date',
-  death_date: 'death_date',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
 
-exports.Prisma.AuthorImageScalarFieldEnum = {
+exports.Prisma.StaffMemberScalarFieldEnum = {
   id: 'id',
-  author_id: 'author_id',
-  url: 'url',
-  is_main: 'is_main',
+  full_name_latin: 'full_name_latin',
+  full_name_cyril: 'full_name_cyril',
+  full_name_ru: 'full_name_ru',
+  category: 'category',
+  position_latin: 'position_latin',
+  position_cyril: 'position_cyril',
+  position_ru: 'position_ru',
+  subject_latin: 'subject_latin',
+  subject_cyril: 'subject_cyril',
+  subject_ru: 'subject_ru',
+  bio_latin: 'bio_latin',
+  bio_cyril: 'bio_cyril',
+  bio_ru: 'bio_ru',
+  photo_url: 'photo_url',
+  phone: 'phone',
+  email: 'email',
+  reception_days: 'reception_days',
+  degree_latin: 'degree_latin',
+  degree_cyril: 'degree_cyril',
+  degree_ru: 'degree_ru',
   order: 'order',
-  created_at: 'created_at'
+  is_active: 'is_active',
+  creator_id: 'creator_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 };
 
-exports.Prisma.BookScalarFieldEnum = {
+exports.Prisma.ClubScalarFieldEnum = {
   id: 'id',
   name_latin: 'name_latin',
   name_cyril: 'name_cyril',
   name_ru: 'name_ru',
+  category: 'category',
   description_latin: 'description_latin',
   description_cyril: 'description_cyril',
   description_ru: 'description_ru',
-  author_id: 'author_id',
-  published_date: 'published_date',
-  grade_level: 'grade_level',
-  creator_id: 'creator_id',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  download_count: 'download_count',
-  rating_score: 'rating_score',
-  weekly_trend_score: 'weekly_trend_score',
-  score_updated_at: 'score_updated_at'
-};
-
-exports.Prisma.BookImageScalarFieldEnum = {
-  id: 'id',
-  book_id: 'book_id',
-  url: 'url',
-  is_main: 'is_main',
-  order: 'order',
-  created_at: 'created_at'
-};
-
-exports.Prisma.BookFileScalarFieldEnum = {
-  id: 'id',
-  book_id: 'book_id',
-  url: 'url',
-  file_type: 'file_type',
-  file_name: 'file_name',
-  file_size: 'file_size',
-  order: 'order',
-  created_at: 'created_at'
-};
-
-exports.Prisma.GenreBookScalarFieldEnum = {
-  id: 'id',
-  bookId: 'bookId',
-  genreId: 'genreId'
-};
-
-exports.Prisma.BannerScalarFieldEnum = {
-  id: 'id',
-  title_latin: 'title_latin',
-  title_cyril: 'title_cyril',
-  title_ru: 'title_ru',
-  image_url: 'image_url',
-  link_url: 'link_url',
-  order: 'order',
-  is_active: 'is_active',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.AnnouncementScalarFieldEnum = {
-  id: 'id',
-  title_latin: 'title_latin',
-  title_cyril: 'title_cyril',
-  title_ru: 'title_ru',
-  content_latin: 'content_latin',
-  content_cyril: 'content_cyril',
-  content_ru: 'content_ru',
+  supervisor_name: 'supervisor_name',
+  age_group: 'age_group',
+  schedule_latin: 'schedule_latin',
+  schedule_cyril: 'schedule_cyril',
+  schedule_ru: 'schedule_ru',
+  location: 'location',
   cover_image: 'cover_image',
-  is_public: 'is_public',
-  published_at: 'published_at',
+  is_active: 'is_active',
   creator_id: 'creator_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
 
-exports.Prisma.UsefulLinkScalarFieldEnum = {
+exports.Prisma.ClassScheduleScalarFieldEnum = {
+  id: 'id',
+  grade: 'grade',
+  day: 'day',
+  lesson_number: 'lesson_number',
+  subject_latin: 'subject_latin',
+  subject_cyril: 'subject_cyril',
+  subject_ru: 'subject_ru',
+  teacher_name: 'teacher_name',
+  room: 'room',
+  start_time: 'start_time',
+  end_time: 'end_time',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.BellScheduleScalarFieldEnum = {
+  id: 'id',
+  lesson_number: 'lesson_number',
+  start_time: 'start_time',
+  end_time: 'end_time',
+  break_minutes: 'break_minutes',
+  shift: 'shift',
+  is_active: 'is_active'
+};
+
+exports.Prisma.HolidayScheduleScalarFieldEnum = {
   id: 'id',
   title_latin: 'title_latin',
   title_cyril: 'title_cyril',
   title_ru: 'title_ru',
-  url: 'url',
-  icon: 'icon',
+  start_date: 'start_date',
+  end_date: 'end_date',
+  description_latin: 'description_latin',
+  description_cyril: 'description_cyril',
+  description_ru: 'description_ru',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.CanteenMenuScalarFieldEnum = {
+  id: 'id',
+  start_date: 'start_date',
+  end_date: 'end_date',
+  is_active: 'is_active',
+  monday: 'monday',
+  tuesday: 'tuesday',
+  wednesday: 'wednesday',
+  thursday: 'thursday',
+  friday: 'friday',
+  saturday: 'saturday',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.ParentTeacherMeetingScalarFieldEnum = {
+  id: 'id',
+  title_latin: 'title_latin',
+  title_cyril: 'title_cyril',
+  title_ru: 'title_ru',
+  description_latin: 'description_latin',
+  description_cyril: 'description_cyril',
+  description_ru: 'description_ru',
+  grade: 'grade',
+  meeting_date: 'meeting_date',
+  location: 'location',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.AdmissionApplicationScalarFieldEnum = {
+  id: 'id',
+  student_full_name: 'student_full_name',
+  birth_date: 'birth_date',
+  grade_applying: 'grade_applying',
+  parent_full_name: 'parent_full_name',
+  parent_phone: 'parent_phone',
+  parent_email: 'parent_email',
+  address: 'address',
+  previous_school: 'previous_school',
+  message: 'message',
+  status: 'status',
+  admin_comment: 'admin_comment',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.RequiredDocumentScalarFieldEnum = {
+  id: 'id',
+  title_latin: 'title_latin',
+  title_cyril: 'title_cyril',
+  title_ru: 'title_ru',
+  description_latin: 'description_latin',
+  description_cyril: 'description_cyril',
+  description_ru: 'description_ru',
   order: 'order',
   is_active: 'is_active'
 };
 
-exports.Prisma.BookDownloadLogScalarFieldEnum = {
+exports.Prisma.DirectorAppealScalarFieldEnum = {
   id: 'id',
-  book_id: 'book_id',
-  downloaded_at: 'downloaded_at'
-};
-
-exports.Prisma.PageScalarFieldEnum = {
-  id: 'id',
-  slug: 'slug',
-  title_latin: 'title_latin',
-  title_cyril: 'title_cyril',
-  title_ru: 'title_ru',
-  content_latin: 'content_latin',
-  content_cyril: 'content_cyril',
-  content_ru: 'content_ru',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.DepartmentMemberScalarFieldEnum = {
-  id: 'id',
-  full_name_latin: 'full_name_latin',
-  full_name_cyril: 'full_name_cyril',
-  full_name_ru: 'full_name_ru',
-  position_latin: 'position_latin',
-  position_cyril: 'position_cyril',
-  position_ru: 'position_ru',
+  full_name: 'full_name',
   phone: 'phone',
   email: 'email',
-  fax: 'fax',
-  reception_days: 'reception_days',
-  position_order: 'position_order',
-  is_active: 'is_active',
+  subject: 'subject',
+  message: 'message',
+  answer: 'answer',
+  status: 'status',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  answered_at: 'answered_at'
 };
 
 exports.Prisma.NewsScalarFieldEnum = {
@@ -318,8 +325,25 @@ exports.Prisma.EventScalarFieldEnum = {
   location_cyril: 'location_cyril',
   location_ru: 'location_ru',
   cover_image: 'cover_image',
+  type: 'type',
   event_date: 'event_date',
   is_public: 'is_public',
+  creator_id: 'creator_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.AnnouncementScalarFieldEnum = {
+  id: 'id',
+  title_latin: 'title_latin',
+  title_cyril: 'title_cyril',
+  title_ru: 'title_ru',
+  content_latin: 'content_latin',
+  content_cyril: 'content_cyril',
+  content_ru: 'content_ru',
+  cover_image: 'cover_image',
+  is_public: 'is_public',
+  published_at: 'published_at',
   creator_id: 'creator_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
@@ -335,8 +359,8 @@ exports.Prisma.DocumentScalarFieldEnum = {
   file_name: 'file_name',
   file_size: 'file_size',
   published_at: 'published_at',
-  creator_id: 'creator_id',
   is_public: 'is_public',
+  creator_id: 'creator_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -365,18 +389,56 @@ exports.Prisma.MediaItemScalarFieldEnum = {
   created_at: 'created_at'
 };
 
-exports.Prisma.OnlineRequestScalarFieldEnum = {
+exports.Prisma.NewspaperScalarFieldEnum = {
   id: 'id',
-  type: 'type',
-  full_name: 'full_name',
-  phone: 'phone',
-  email: 'email',
-  book_id: 'book_id',
-  message: 'message',
-  answer: 'answer',
-  status: 'status',
+  title_latin: 'title_latin',
+  title_cyril: 'title_cyril',
+  title_ru: 'title_ru',
+  issue_number: 'issue_number',
+  cover_image: 'cover_image',
+  file_url: 'file_url',
+  file_size: 'file_size',
+  published_at: 'published_at',
+  creator_id: 'creator_id',
   created_at: 'created_at',
-  answered_at: 'answered_at'
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.PageScalarFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  title_latin: 'title_latin',
+  title_cyril: 'title_cyril',
+  title_ru: 'title_ru',
+  content_latin: 'content_latin',
+  content_cyril: 'content_cyril',
+  content_ru: 'content_ru',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.BannerScalarFieldEnum = {
+  id: 'id',
+  title_latin: 'title_latin',
+  title_cyril: 'title_cyril',
+  title_ru: 'title_ru',
+  image_url: 'image_url',
+  link_url: 'link_url',
+  order: 'order',
+  is_active: 'is_active',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.UsefulLinkScalarFieldEnum = {
+  id: 'id',
+  title_latin: 'title_latin',
+  title_cyril: 'title_cyril',
+  title_ru: 'title_ru',
+  url: 'url',
+  icon: 'icon',
+  order: 'order',
+  is_active: 'is_active'
 };
 
 exports.Prisma.ContactInfoScalarFieldEnum = {
@@ -428,33 +490,65 @@ exports.Prisma.JsonNullValueFilter = {
   AnyNull: Prisma.AnyNull
 };
 exports.UserRole = exports.$Enums.UserRole = {
-  ADMIN: 'ADMIN',
   SUPER_ADMIN: 'SUPER_ADMIN',
-  LIBRARIAN: 'LIBRARIAN'
+  ADMIN: 'ADMIN',
+  EDITOR: 'EDITOR'
 };
 
-exports.FileType = exports.$Enums.FileType = {
-  PDF: 'PDF',
-  EXCEL: 'EXCEL',
-  WORD: 'WORD',
-  IMAGE: 'IMAGE',
+exports.StaffCategory = exports.$Enums.StaffCategory = {
+  DIRECTOR: 'DIRECTOR',
+  DEPUTY_DIRECTOR: 'DEPUTY_DIRECTOR',
+  TEACHER: 'TEACHER',
+  ADMINISTRATION: 'ADMINISTRATION',
   OTHER: 'OTHER'
 };
 
-exports.PageSlug = exports.$Enums.PageSlug = {
-  ABOUT: 'ABOUT',
-  PRIVACY_POLICY: 'PRIVACY_POLICY',
-  TERMS_OF_SERVICE: 'TERMS_OF_SERVICE',
-  FAQ: 'FAQ',
-  RULES: 'RULES',
-  CONTACTS: 'CONTACTS'
+exports.ClubCategory = exports.$Enums.ClubCategory = {
+  SPORT: 'SPORT',
+  SCIENCE: 'SCIENCE',
+  ART: 'ART',
+  LANGUAGE: 'LANGUAGE',
+  TECHNOLOGY: 'TECHNOLOGY',
+  MUSIC: 'MUSIC',
+  OTHER: 'OTHER'
+};
+
+exports.WeekDay = exports.$Enums.WeekDay = {
+  MONDAY: 'MONDAY',
+  TUESDAY: 'TUESDAY',
+  WEDNESDAY: 'WEDNESDAY',
+  THURSDAY: 'THURSDAY',
+  FRIDAY: 'FRIDAY',
+  SATURDAY: 'SATURDAY'
+};
+
+exports.ApplicationStatus = exports.$Enums.ApplicationStatus = {
+  NEW: 'NEW',
+  IN_PROGRESS: 'IN_PROGRESS',
+  ACCEPTED: 'ACCEPTED',
+  REJECTED: 'REJECTED'
+};
+
+exports.AppealStatus = exports.$Enums.AppealStatus = {
+  NEW: 'NEW',
+  IN_PROGRESS: 'IN_PROGRESS',
+  ANSWERED: 'ANSWERED'
+};
+
+exports.EventType = exports.$Enums.EventType = {
+  SCHOOL_EVENT: 'SCHOOL_EVENT',
+  HOLIDAY: 'HOLIDAY',
+  COMPETITION: 'COMPETITION',
+  OTHER: 'OTHER'
 };
 
 exports.DocumentCategory = exports.$Enums.DocumentCategory = {
-  LAW: 'LAW',
-  DECISION: 'DECISION',
+  CHARTER: 'CHARTER',
+  LICENSE: 'LICENSE',
+  SELF_ASSESSMENT: 'SELF_ASSESSMENT',
   ORDER: 'ORDER',
-  REPORT: 'REPORT'
+  REPORT: 'REPORT',
+  OTHER: 'OTHER'
 };
 
 exports.MediaType = exports.$Enums.MediaType = {
@@ -463,41 +557,38 @@ exports.MediaType = exports.$Enums.MediaType = {
   PRESENTATION: 'PRESENTATION'
 };
 
-exports.OnlineRequestType = exports.$Enums.OnlineRequestType = {
-  BOOK_ORDER: 'BOOK_ORDER',
-  INQUIRY: 'INQUIRY',
-  QUESTION_ANSWER: 'QUESTION_ANSWER',
-  VIRTUAL_REFERENCE: 'VIRTUAL_REFERENCE'
-};
-
-exports.RequestStatus = exports.$Enums.RequestStatus = {
-  NEW: 'NEW',
-  IN_PROGRESS: 'IN_PROGRESS',
-  ANSWERED: 'ANSWERED',
-  DONE: 'DONE'
+exports.PageSlug = exports.$Enums.PageSlug = {
+  ABOUT: 'ABOUT',
+  ADMISSION_REQUIREMENTS: 'ADMISSION_REQUIREMENTS',
+  PRIVACY_POLICY: 'PRIVACY_POLICY',
+  TERMS_OF_SERVICE: 'TERMS_OF_SERVICE',
+  FAQ: 'FAQ',
+  RULES: 'RULES',
+  CONTACTS: 'CONTACTS'
 };
 
 exports.Prisma.ModelName = {
   User: 'User',
-  Genre: 'Genre',
-  Author: 'Author',
-  AuthorImage: 'AuthorImage',
-  Book: 'Book',
-  BookImage: 'BookImage',
-  BookFile: 'BookFile',
-  GenreBook: 'GenreBook',
-  Banner: 'Banner',
-  Announcement: 'Announcement',
-  UsefulLink: 'UsefulLink',
-  BookDownloadLog: 'BookDownloadLog',
-  Page: 'Page',
-  DepartmentMember: 'DepartmentMember',
+  StaffMember: 'StaffMember',
+  Club: 'Club',
+  ClassSchedule: 'ClassSchedule',
+  BellSchedule: 'BellSchedule',
+  HolidaySchedule: 'HolidaySchedule',
+  CanteenMenu: 'CanteenMenu',
+  ParentTeacherMeeting: 'ParentTeacherMeeting',
+  AdmissionApplication: 'AdmissionApplication',
+  RequiredDocument: 'RequiredDocument',
+  DirectorAppeal: 'DirectorAppeal',
   News: 'News',
   Event: 'Event',
+  Announcement: 'Announcement',
   Document: 'Document',
   MediaAlbum: 'MediaAlbum',
   MediaItem: 'MediaItem',
-  OnlineRequest: 'OnlineRequest',
+  Newspaper: 'Newspaper',
+  Page: 'Page',
+  Banner: 'Banner',
+  UsefulLink: 'UsefulLink',
   ContactInfo: 'ContactInfo',
   ContactMessage: 'ContactMessage'
 };

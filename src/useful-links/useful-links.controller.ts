@@ -17,7 +17,7 @@ export class UsefulLinksController {
   @Post()
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard,RolesGuard)
-  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN, UserRole.LIBRARIAN)
+  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN, UserRole.EDITOR)
   @ApiOperation({ summary: 'Create a new useful link' })
   create(@Body() createUsefulLinkDto: CreateUsefulLinkDto) {
     return this.usefulLinksService.create(createUsefulLinkDto);
@@ -32,7 +32,7 @@ export class UsefulLinksController {
   @Get('all')
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard,RolesGuard)
-  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN, UserRole.LIBRARIAN)
+  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN, UserRole.EDITOR)
   @ApiOperation({ summary: 'Get all useful links (Admin only)' })
   findAll(@Query() query: BaseQueryDto) {
     return this.usefulLinksService.findAll(query);
@@ -47,7 +47,7 @@ export class UsefulLinksController {
   @Patch(':id')
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard,RolesGuard)
-  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN, UserRole.LIBRARIAN)
+  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN, UserRole.EDITOR)
   @ApiOperation({ summary: 'Update a useful link' })
   update(@Param('id') id: string, @Body() updateUsefulLinkDto: UpdateUsefulLinkDto) {
     return this.usefulLinksService.update(id, updateUsefulLinkDto);

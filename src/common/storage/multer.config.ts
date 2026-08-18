@@ -1,5 +1,4 @@
 import { BadRequestException } from '@nestjs/common';
-import { FileType } from '../../core/database/generated';
 import { memoryStorage } from 'multer';
 
 // Use memoryStorage because we want to stream it in saveFile
@@ -19,6 +18,13 @@ export const documentFileFilter = (req: any, file: any, cb: any) => {
   cb(null, true);
 };
 
+export const pdfFileFilter = (req: any, file: any, cb: any) => {
+  if (!file.originalname.match(/\.(pdf)$/i)) {
+    return cb(new BadRequestException('Only PDF files are allowed!'), false);
+  }
+  cb(null, true);
+};
+
 export const imageLimits = {
   fileSize: 5 * 1024 * 1024, // 5MB
 };
@@ -27,26 +33,8 @@ export const documentLimits = {
   fileSize: 50 * 1024 * 1024, // 50MB
 };
 
-export function detectFileType(mimetype: string, filename: string): FileType {
-  const ext = filename.split('.').pop()?.toLowerCase();
-
-  if (mimetype.startsWith('image/') || ['jpg', 'jpeg', 'png', 'webp'].includes(ext as string)) {
-    return FileType.IMAGE;
-  }
-  if (ext === 'pdf' || mimetype === 'application/pdf') {
-    return FileType.PDF;
-  }
-  if (mimetype.includes('excel') || mimetype.includes('spreadsheet') || ['xls', 'xlsx'].includes(ext as string)) {
-    return FileType.EXCEL;
-  }
-  if (mimetype.includes('word') || ['doc', 'docx'].includes(ext as string)) {
-    return FileType.WORD;
-  }
-  return FileType.OTHER;
-}
-
-export const bookLimits = {
-  fileSize: 100 * 1024 * 1024, // 100MB
+export const pdfLimits = {
+  fileSize: 20 * 1024 * 1024, // 20MB
 };
 
 export const mediaItemLimits = {

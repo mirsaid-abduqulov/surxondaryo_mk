@@ -1,5 +1,4 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { FileType } from '../../core/database/generated';
 import { join } from 'path';
 import { createWriteStream, unlink } from 'fs';
 import { promisify } from 'util';
@@ -8,10 +7,7 @@ import * as fs from 'fs';
 
 const unlinkAsync = promisify(unlink);
 
-export type StorageFolder = 
-  | 'books'
-  | 'book_images'
-  | 'author_images'
+export type StorageFolder =
   | 'announcements'
   | 'banners'
   | 'news'
@@ -19,7 +15,11 @@ export type StorageFolder =
   | 'documents'
   | 'media_albums'
   | 'media_items'
-  | 'social_icons';
+  | 'social_icons'
+  | 'staff_photos'
+  | 'clubs'
+  | 'newspapers'
+  | 'canteen-menu';
 
 @Injectable()
 export class StorageService {
@@ -32,9 +32,6 @@ export class StorageService {
 
   private ensureDirectories() {
     const folders: StorageFolder[] = [
-      'books',
-      'book_images',
-      'author_images',
       'announcements',
       'banners',
       'news',
@@ -43,6 +40,10 @@ export class StorageService {
       'media_albums',
       'media_items',
       'social_icons',
+      'staff_photos',
+      'clubs',
+      'newspapers',
+      'canteen-menu',
     ];
     for (const folder of folders) {
       const path = join(this.mediaBasePath, folder);
@@ -106,8 +107,6 @@ export class StorageService {
     const newFileInfo = await this.saveFile(newFile, folder);
 
     if (oldUrl) {
-      // Don't await deletion to not block the response, or await it if preferred.
-      // Here we await it to ensure cleanup.
       await this.deleteFile(oldUrl);
     }
 

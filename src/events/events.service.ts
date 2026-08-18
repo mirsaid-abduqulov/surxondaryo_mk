@@ -51,6 +51,9 @@ export class EventsService {
         where.event_date = { gte: new Date() };
       }
     }
+    if (query.type) {
+      where.type = query.type;
+    }
     
     
     if (query.search) {

@@ -7,225 +7,315 @@ datasource db {
   provider = "postgresql"
 }
 
+// ==========================================================
+// FOYDALANUVCHI (ADMIN PANEL)
+// ==========================================================
+
 enum UserRole {
-  ADMIN
   SUPER_ADMIN
-  LIBRARIAN
+  ADMIN
+  EDITOR
 }
 
 model User {
-  id                   String         @id @default(uuid())
-  phone_number         String         @unique
-  email                String?        @unique
+  id                   String   @id @default(uuid())
+  phone_number         String   @unique
+  email                String?  @unique
   full_name            String
   hashed_password      String
   hashed_refresh_token String?
   refresh_token_jti    String?
-  role                 UserRole       @default(LIBRARIAN)
-  is_login             Boolean        @default(true)
-  createdAt            DateTime       @default(now())
-  updatedAt            DateTime       @updatedAt
-  books                Book[]
-  announcements        Announcement[]
-  news                 News[]
-  events               Event[]
-  documents            Document[]
-  media_albums         MediaAlbum[]
+  role                 UserRole @default(EDITOR)
+  is_login             Boolean  @default(true)
+  created_at           DateTime @default(now())
+  updated_at           DateTime @updatedAt
+
+  announcements Announcement[]
+  news          News[]
+  events        Event[]
+  documents     Document[]
+  media_albums  MediaAlbum[]
+  staff_members StaffMember[]
+  clubs         Club[]
+  newspapers    Newspaper[]
 }
 
-model Genre {
-  id         String      @id @default(uuid())
-  name_latin String      @unique
-  name_cyril String      @unique
-  name_ru    String      @unique
-  books      GenreBook[]
-}
+// ==========================================================
+// MAKTAB TASHRIF QOG'OZI / RAHBARIYAT VA O'QITUVCHILAR
+// ==========================================================
 
-model Author {
-  id                String        @id @default(uuid())
-  full_name_latin   String
-  full_name_cyril   String
-  full_name_ru      String
-  biography_latin   String?
-  biography_cyril   String?
-  biography_ru      String?
-  nationality_latin String?
-  nationality_cyril String?
-  nationality_ru    String?
-  birth_date        String?
-  death_date        String?
-  books             Book[]
-  images            AuthorImage[]
-  created_at        DateTime      @default(now())
-  updated_at        DateTime      @updatedAt
-}
-
-model AuthorImage {
-  id         String   @id @default(uuid())
-  author_id  String
-  author     Author   @relation(fields: [author_id], references: [id], onDelete: Cascade)
-  url        String
-  is_main    Boolean  @default(false)
-  order      Int      @default(0)
-  created_at DateTime @default(now())
-}
-
-model Book {
-  id                 String            @id @default(uuid())
-  name_latin         String
-  name_cyril         String
-  name_ru            String
-  description_latin  String?
-  description_cyril  String?
-  description_ru     String?
-  author_id          String
-  published_date     DateTime?
-  grade_level        Int?
-  creator_id         String
-  created_at         DateTime          @default(now())
-  updated_at         DateTime          @updatedAt
-  genres             GenreBook[]
-  creator            User?             @relation(fields: [creator_id], references: [id])
-  author             Author?           @relation(fields: [author_id], references: [id])
-  images             BookImage[]
-  files              BookFile[]
-  download_count     Int               @default(0)
-  rating_score       Float             @default(0)
-  weekly_trend_score Float             @default(0)
-  score_updated_at   DateTime?
-  download_logs      BookDownloadLog[]
-  online_requests    OnlineRequest[]
-}
-
-model BookImage {
-  id         String   @id @default(uuid())
-  book_id    String
-  book       Book     @relation(fields: [book_id], references: [id], onDelete: Cascade)
-  url        String
-  is_main    Boolean  @default(false)
-  order      Int      @default(0)
-  created_at DateTime @default(now())
-}
-
-model BookFile {
-  id         String   @id @default(uuid())
-  book_id    String
-  book       Book     @relation(fields: [book_id], references: [id], onDelete: Cascade)
-  url        String
-  file_type  FileType
-  file_name  String
-  file_size  Int?
-  order      Int      @default(0)
-  created_at DateTime @default(now())
-}
-
-enum FileType {
-  PDF
-  EXCEL
-  WORD
-  IMAGE
+enum StaffCategory {
+  DIRECTOR // direktor
+  DEPUTY_DIRECTOR // direktor o'rinbosari
+  TEACHER // o'qituvchi
+  ADMINISTRATION // ma'muriyat xodimi
   OTHER
 }
 
-model GenreBook {
-  id      String @id @default(uuid())
-  book    Book   @relation(fields: [bookId], references: [id])
-  genre   Genre  @relation(fields: [genreId], references: [id])
-  bookId  String
-  genreId String
-
-  @@unique([bookId, genreId])
-}
-
-model Banner {
-  id          String   @id @default(uuid())
-  title_latin String?
-  title_cyril String?
-  title_ru    String?
-  image_url   String
-  link_url    String?
-  order       Int      @default(0)
-  is_active   Boolean  @default(true)
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
-}
-
-model Announcement {
-  id            String   @id @default(uuid())
-  title_latin   String
-  title_cyril   String
-  title_ru      String
-  content_latin String
-  content_cyril String
-  content_ru    String
-  cover_image   String?
-  is_public     Boolean  @default(true)
-  published_at  DateTime @default(now())
-  creator_id    String
-  creator       User     @relation(fields: [creator_id], references: [id])
-  created_at    DateTime @default(now())
-  updated_at    DateTime @updatedAt
-}
-
-model UsefulLink {
-  id          String  @id @default(uuid())
-  title_latin String
-  title_cyril String
-  title_ru    String
-  url         String
-  icon        String?
-  order       Int     @default(0)
-  is_active   Boolean @default(true)
-}
-
-model BookDownloadLog {
-  id            String   @id @default(uuid())
-  book_id       String
-  book          Book     @relation(fields: [book_id], references: [id], onDelete: Cascade)
-  downloaded_at DateTime @default(now())
-
-  @@index([book_id, downloaded_at])
-}
-
-enum PageSlug {
-  ABOUT
-  PRIVACY_POLICY
-  TERMS_OF_SERVICE
-  FAQ
-  RULES
-  CONTACTS
-}
-
-model Page {
-  id            String   @id @default(uuid())
-  slug          PageSlug @unique
-  title_latin   String
-  title_cyril   String
-  title_ru      String
-  content_latin String // @db.Text (uzun matn uchun)
-  content_cyril String // @db.Text
-  content_ru    String // @db.Text
-  created_at    DateTime @default(now())
-  updated_at    DateTime @updatedAt
-}
-
-model DepartmentMember {
-  id              String   @id @default(uuid())
+model StaffMember {
+  id              String        @id @default(uuid())
   full_name_latin String
   full_name_cyril String
   full_name_ru    String
-  position_latin  String?
-  position_cyril  String?
-  position_ru     String?
-  phone           String?  @unique
-  email           String?  @unique
-  fax             String?  @unique
-  reception_days  String?
-  position_order  Int      @default(0)
-  is_active       Boolean  @default(true)
-  created_at      DateTime @default(now())
-  updated_at      DateTime @updatedAt
+  category        StaffCategory
+
+  position_latin String
+  position_cyril String
+  position_ru    String
+
+  // o'qituvchilar uchun fan yo'nalishi
+  subject_latin String?
+  subject_cyril String?
+  subject_ru    String?
+
+  bio_latin String?
+  bio_cyril String?
+  bio_ru    String?
+
+  photo_url String?
+  phone     String?
+  email     String?
+
+  // direktor qabulxonasi uchun: qabul kunlari/soatlari
+  reception_days String?
+
+  degree_latin String? // ilmiy daraja / toifa
+  degree_cyril String?
+  degree_ru    String?
+
+  order     Int     @default(0)
+  is_active Boolean @default(true)
+
+  creator_id String
+  creator    User   @relation(fields: [creator_id], references: [id])
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
+
+// ==========================================================
+// TO'GARAKLAR VA SEKTSIYALAR
+// ==========================================================
+
+enum ClubCategory {
+  SPORT
+  SCIENCE
+  ART
+  LANGUAGE
+  TECHNOLOGY
+  MUSIC
+  OTHER
+}
+
+model Club {
+  id         String       @id @default(uuid())
+  name_latin String
+  name_cyril String
+  name_ru    String
+  category   ClubCategory
+
+  description_latin String?
+  description_cyril String?
+  description_ru    String?
+
+  supervisor_name String? // rahbar / murabbiy ismi
+  age_group       String? // masalan "5-7-sinflar"
+
+  schedule_latin String? // "Dush, Chor, Juma 15:00-16:30"
+  schedule_cyril String?
+  schedule_ru    String?
+
+  location    String?
+  cover_image String?
+  is_active   Boolean @default(true)
+
+  creator_id String
+  creator    User   @relation(fields: [creator_id], references: [id])
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+// ==========================================================
+// DARS VA QO'NG'IROQ JADVALLARI
+// ==========================================================
+
+enum WeekDay {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+}
+
+model ClassSchedule {
+  id            String  @id @default(uuid())
+  grade         String // masalan "5-A", "9-B"
+  day           WeekDay
+  lesson_number Int
+
+  subject_latin String
+  subject_cyril String
+  subject_ru    String
+
+  teacher_name String?
+  room         String?
+  start_time   String // "08:30"
+  end_time     String // "09:15"
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@index([grade, day])
+}
+
+model BellSchedule {
+  id            String  @id @default(uuid())
+  lesson_number Int
+  start_time    String
+  end_time      String
+  break_minutes Int?
+  shift         Int     @default(1) // 1-smena / 2-smena
+  is_active     Boolean @default(true)
+
+  @@unique([lesson_number, shift])
+}
+
+// ==========================================================
+// BAYRAM / TA'TIL JADVALI
+// ==========================================================
+
+model HolidaySchedule {
+  id                String   @id @default(uuid())
+  title_latin       String
+  title_cyril       String
+  title_ru          String
+  start_date        DateTime
+  end_date          DateTime
+  description_latin String?
+  description_cyril String?
+  description_ru    String?
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
+}
+
+// ==========================================================
+// OSHXONA MENYUSI
+// ==========================================================
+
+model CanteenMenu {
+  id String @id @default(uuid())
+
+  start_date DateTime
+  end_date   DateTime?
+  is_active  Boolean   @default(false)
+
+  monday    Json?
+  tuesday   Json?
+  wednesday Json?
+  thursday  Json?
+  friday    Json?
+  saturday  Json?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+// ==========================================================
+// OTA-ONA - O'QITUVCHI UCHRASHUVLARI
+// ==========================================================
+
+model ParentTeacherMeeting {
+  id          String @id @default(uuid())
+  title_latin String
+  title_cyril String
+  title_ru    String
+
+  description_latin String?
+  description_cyril String?
+  description_ru    String?
+
+  grade        String? // bo'sh bo'lsa - umumiy uchrashuv
+  meeting_date DateTime
+  location     String?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+// ==========================================================
+// ONLAYN QABUL ARIZASI
+// ==========================================================
+
+enum ApplicationStatus {
+  NEW
+  IN_PROGRESS
+  ACCEPTED
+  REJECTED
+}
+
+model AdmissionApplication {
+  id                String   @id @default(uuid())
+  student_full_name String
+  birth_date        DateTime
+  grade_applying    String // qabul qilinayotgan sinf
+
+  parent_full_name String
+  parent_phone     String
+  parent_email     String?
+  address          String?
+  previous_school  String?
+  message          String?
+
+  status        ApplicationStatus @default(NEW)
+  admin_comment String?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+// qabul uchun talab qilinadigan hujjatlar ro'yxati (matn ko'rinishida)
+model RequiredDocument {
+  id                String  @id @default(uuid())
+  title_latin       String
+  title_cyril       String
+  title_ru          String
+  description_latin String?
+  description_cyril String?
+  description_ru    String?
+  order             Int     @default(0)
+  is_active         Boolean @default(true)
+}
+
+// ==========================================================
+// DIREKTOR QABULXONASIGA ELEKTRON MUROJAAT
+// ==========================================================
+
+enum AppealStatus {
+  NEW
+  IN_PROGRESS
+  ANSWERED
+}
+
+model DirectorAppeal {
+  id        String  @id @default(uuid())
+  full_name String
+  phone     String
+  email     String?
+  subject   String?
+  message   String
+
+  answer String?
+  status AppealStatus @default(NEW)
+
+  created_at  DateTime  @default(now())
+  answered_at DateTime?
+}
+
+// ==========================================================
+// YANGILIKLAR VA TADBIRLAR
+// ==========================================================
 
 model News {
   id            String   @id @default(uuid())
@@ -238,14 +328,23 @@ model News {
   cover_image   String?
   is_public     Boolean  @default(true)
   published_at  DateTime @default(now())
-  creator_id    String
-  creator       User     @relation(fields: [creator_id], references: [id])
-  created_at    DateTime @default(now())
-  updated_at    DateTime @updatedAt
+
+  creator_id String
+  creator    User   @relation(fields: [creator_id], references: [id])
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+enum EventType {
+  SCHOOL_EVENT // maktab tadbiri
+  HOLIDAY // bayram
+  COMPETITION // musobaqa/olimpiada
+  OTHER
 }
 
 model Event {
-  id                String   @id @default(uuid())
+  id                String    @id @default(uuid())
   title_latin       String
   title_cyril       String
   title_ru          String
@@ -256,19 +355,48 @@ model Event {
   location_cyril    String?
   location_ru       String?
   cover_image       String?
+  type              EventType @default(SCHOOL_EVENT)
   event_date        DateTime
-  is_public         Boolean  @default(true)
-  creator_id        String
-  creator           User     @relation(fields: [creator_id], references: [id])
-  created_at        DateTime @default(now())
-  updated_at        DateTime @updatedAt
+  is_public         Boolean   @default(true)
+
+  creator_id String
+  creator    User   @relation(fields: [creator_id], references: [id])
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
 
+// e'lonlar (talabalar uchun: to'garak, sektsiya, tadbir haqida qisqa e'lon)
+model Announcement {
+  id            String   @id @default(uuid())
+  title_latin   String
+  title_cyril   String
+  title_ru      String
+  content_latin String
+  content_cyril String
+  content_ru    String
+  cover_image   String?
+  is_public     Boolean  @default(true)
+  published_at  DateTime @default(now())
+
+  creator_id String
+  creator    User   @relation(fields: [creator_id], references: [id])
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+// ==========================================================
+// HUJJATLAR BO'LIMI (davlat idoralari uchun majburiy)
+// ==========================================================
+
 enum DocumentCategory {
-  LAW
-  DECISION
-  ORDER
-  REPORT
+  CHARTER // nizom
+  LICENSE // litsenziya
+  SELF_ASSESSMENT // o'z-o'zini baholash hisoboti
+  ORDER // buyruq
+  REPORT // hisobot
+  OTHER
 }
 
 model Document {
@@ -281,12 +409,18 @@ model Document {
   file_name    String
   file_size    Int?
   published_at DateTime         @default(now())
-  creator_id   String
-  is_public    Boolean          @default(false)
-  creator      User             @relation(fields: [creator_id], references: [id])
-  created_at   DateTime         @default(now())
-  updated_at   DateTime         @default(now()) @updatedAt
+  is_public    Boolean          @default(true)
+
+  creator_id String
+  creator    User   @relation(fields: [creator_id], references: [id])
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
+
+// ==========================================================
+// MEDIA ZONASI: FOTO/VIDEO GALEREYA
+// ==========================================================
 
 enum MediaType {
   PHOTO
@@ -295,18 +429,21 @@ enum MediaType {
 }
 
 model MediaAlbum {
-  id          String      @id @default(uuid())
+  id          String    @id @default(uuid())
   title_latin String
   title_cyril String
   title_ru    String
   type        MediaType
   cover_image String?
-  items       MediaItem[]
-  is_public   Boolean     @default(true)
-  creator_id  String
-  creator     User        @relation(fields: [creator_id], references: [id])
-  created_at  DateTime    @default(now())
-  updated_at  DateTime    @updatedAt
+  is_public   Boolean   @default(true)
+
+  creator_id String
+  creator    User   @relation(fields: [creator_id], references: [id])
+
+  items MediaItem[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
 
 model MediaItem {
@@ -321,34 +458,84 @@ model MediaItem {
   created_at DateTime   @default(now())
 }
 
-enum OnlineRequestType {
-  BOOK_ORDER
-  INQUIRY
-  QUESTION_ANSWER
-  VIRTUAL_REFERENCE
+// maktab gazetasi (davriy PDF nashrlar)
+model Newspaper {
+  id           String   @id @default(uuid())
+  title_latin  String
+  title_cyril  String
+  title_ru     String
+  issue_number Int?
+  cover_image  String?
+  file_url     String
+  file_size    Int?
+  published_at DateTime @default(now())
+
+  creator_id String
+  creator    User   @relation(fields: [creator_id], references: [id])
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
 
-enum RequestStatus {
-  NEW
-  IN_PROGRESS
-  ANSWERED
-  DONE
+// ==========================================================
+// STATIK SAHIFALAR
+// ==========================================================
+
+enum PageSlug {
+  ABOUT // maktab tarixi, yutuqlari
+  ADMISSION_REQUIREMENTS // qabul talablari
+  PRIVACY_POLICY
+  TERMS_OF_SERVICE
+  FAQ
+  RULES
+  CONTACTS
 }
 
-model OnlineRequest {
-  id          String            @id @default(uuid())
-  type        OnlineRequestType
-  full_name   String
-  phone       String?
-  email       String?
-  book_id     String?
-  book        Book?             @relation(fields: [book_id], references: [id])
-  message     String
-  answer      String?
-  status      RequestStatus     @default(NEW)
-  created_at  DateTime          @default(now())
-  answered_at DateTime?
+model Page {
+  id            String   @id @default(uuid())
+  slug          PageSlug @unique
+  title_latin   String
+  title_cyril   String
+  title_ru      String
+  content_latin String
+  content_cyril String
+  content_ru    String
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
 }
+
+// ==========================================================
+// BOSH SAHIFA BANNER
+// ==========================================================
+
+model Banner {
+  id          String   @id @default(uuid())
+  title_latin String?
+  title_cyril String?
+  title_ru    String?
+  image_url   String
+  link_url    String?
+  order       Int      @default(0)
+  is_active   Boolean  @default(true)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}
+
+// foydali havolalar (masalan: davlat ta'lim portallari)
+model UsefulLink {
+  id          String  @id @default(uuid())
+  title_latin String
+  title_cyril String
+  title_ru    String
+  url         String
+  icon        String?
+  order       Int     @default(0)
+  is_active   Boolean @default(true)
+}
+
+// ==========================================================
+// ALOQA (OTA-ONALAR / MA'MURIYAT BILAN BOG'LANISH)
+// ==========================================================
 
 model ContactInfo {
   id            String   @id @default(uuid())

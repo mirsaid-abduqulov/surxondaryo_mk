@@ -3,7 +3,6 @@ import { CreateAnnouncementDto } from './dto/create-announcement.dto';
 import { UpdateAnnouncementDto } from './dto/update-announcement.dto';
 import { PrismaService } from '../core/database/prisma.service';
 import { StorageService } from '../common/storage/storage.service';
-import { BaseQueryDto } from '../common/dto/base-query.dto';
 import { buildPaginationParams, buildPaginatedResponse } from '../common/helpers/pagination.helper';
 import { normalizeName } from 'src/common/helpers/normalize-name.helper';
 import { FindAllQueryDto } from './dto/findAllQuerry.dto';
@@ -66,25 +65,32 @@ export class AnnouncementsService {
     }
   }
 
-  async findAllPublished(query: FindAllQueryDto) {
+  async findAllPublished(query: FindAllQueryDto, is_public?: boolean) {
     const { skip, take } = buildPaginationParams(query);
+    const where: any = {}
 
-    const where: any = {is_public:query.is_public}
-      if(query.search){
-        where.OR=[{
-          title_latin: {contains:query.search}
-        },{
-          title_cyril: {contains:query.search}
-        },{
-          title_ru: {contains:query.search}
-        },{
-          content_latin: {contains:query.search}
-        },{
-          content_cyril: {contains:query.search}
-        },{
-          content_ru: {contains:query.search}
-        }]
-      }
+    if (is_public === true) {
+      where.is_public = true;
+    }
+    if (is_public === false) {
+      where.is_public = false;
+    }
+
+    if (query.search) {
+      where.OR = [{
+        title_latin: { contains: query.search }
+      }, {
+        title_cyril: { contains: query.search }
+      }, {
+        title_ru: { contains: query.search }
+      }, {
+        content_latin: { contains: query.search }
+      }, {
+        content_cyril: { contains: query.search }
+      }, {
+        content_ru: { contains: query.search }
+      }]
+    }
     const [data, total] = await Promise.all([
       this.prisma.announcement.findMany({
         where,
@@ -103,9 +109,17 @@ export class AnnouncementsService {
     return buildPaginatedResponse(data, total, query.page!, query.limit!);
   }
 
-  async findOne(id: string) {
+  async findOne(id: string, is_public?: boolean) {
+    const where: any = { id }
+
+    if (is_public === true) {
+      where.is_public = true;
+    }
+    if (is_public === false) {
+      where.is_public = false;
+    }
     const announcement = await this.prisma.announcement.findUnique({
-      where: { id },
+      where,
       include: {
         creator: {
           select: { id: true, full_name: true }
@@ -113,7 +127,7 @@ export class AnnouncementsService {
       }
     });
 
-    if (!announcement) throw new NotFoundException('Announcement not found');
+    if (!announcement) throw new NotFoundException('E\'lon topilmadi');
     return announcement;
   }
 
@@ -192,7 +206,7 @@ export class AnnouncementsService {
 
   async remove(id: string) {
     const announcement = await this.prisma.announcement.findUnique({ where: { id } });
-    if (!announcement) throw new NotFoundException('Announcement not found');
+    if (!announcement) throw new NotFoundException('E\'lon topilmadi');
 
     if (announcement.cover_image) {
       await this.storageService.deleteFile(announcement.cover_image);
@@ -205,7 +219,7 @@ export class AnnouncementsService {
 
   async updateIsPublish(id: string, dto: IsPublishedDto) {
     const announcement = await this.prisma.announcement.findUnique({ where: { id } });
-    if (!announcement) throw new NotFoundException('Announcement not found');
+    if (!announcement) throw new NotFoundException('E\'lon topilmadi');
 
     const updated = await this.prisma.announcement.update({
       where: { id },

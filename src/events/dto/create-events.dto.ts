@@ -1,6 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsBoolean, IsNotEmpty, IsOptional, IsString, IsEnum, IsDateString } from 'class-validator';
 import { Transform, Type } from 'class-transformer';
+import { EventType } from '../../core/database/generated';
 
 export class CreateEventsDto {
   @ApiProperty()
@@ -79,5 +80,9 @@ export class CreateEventsDto {
   @Transform(({ value }) => value === 'true' || value === true)
   @IsBoolean()
   is_public?: boolean;
-  
+
+  @ApiPropertyOptional({ enum: EventType, default: EventType.SCHOOL_EVENT })
+  @IsEnum(EventType)
+  @IsOptional()
+  type?: EventType;
 }

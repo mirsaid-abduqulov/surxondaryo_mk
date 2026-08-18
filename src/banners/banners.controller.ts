@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards, Us
 import { BannersService } from './banners.service';
 import { CreateBannerDto } from './dto/create-banner.dto';
 import { UpdateBannerDto } from './dto/update-banner.dto';
-import { ApiBearerAuth, ApiTags, ApiOperation, ApiConsumes } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags, ApiOperation, ApiConsumes, ApiQuery } from '@nestjs/swagger';
 import { RolesGuard } from '../common/guards/roles.guard';
 import { Roles } from '../common/decorators/roles-auth-decorator';
 import { UserRole } from '../core/database/generated';
@@ -16,11 +16,11 @@ import { QueryBannerDto } from './dto/get-all-querry.dto';
 @ApiTags('Banners(Bannerlar)')
 @Controller('banners')
 export class BannersController {
-  constructor(private readonly bannersService: BannersService) {}
+  constructor(private readonly bannersService: BannersService) { }
 
   @Post()
   @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard,RolesGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
   @ApiOperation({ summary: 'Create a new banner (Admin only)' })
   @ApiConsumes('multipart/form-data')
@@ -36,24 +36,40 @@ export class BannersController {
     return this.bannersService.create(createBannerDto, image);
   }
 
-  @Get()
+  @Get("public")
   @ApiOperation({ summary: 'Get all active banners (Active only)' })
-  findAllActive(@Query() query: BaseQueryDto) {
-    return this.bannersService.findAll(query);
+  findAllPublic(@Query() query: BaseQueryDto) {
+    return this.bannersService.findAll(query, true);
   }
 
-  @Get('all')
+  @Get('public/:id')
+  @ApiOperation({ summary: 'Get a banner by ID (Admin/SuperAdmin only)' })
+  findOnePublic(@Param('id') id: string) {
+    return this.bannersService.findOne(id, true);
+  }
+
+  @Get()
   @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard,RolesGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
-  @ApiOperation({ summary: 'Get all banners including inactive (Admin only)' })
-  findAll(@Query() query: QueryBannerDto) {
-    return this.bannersService.findAll(query);
+  @ApiQuery({ name: 'is_active', required: false, type: Boolean })
+  @ApiOperation({ summary: 'Get all banners (Admin/SuperAdmin only)' })
+  findAll(@Query() query: QueryBannerDto, @Query() is_active?: boolean) {
+    return this.bannersService.findAll(query, is_active);
+  }
+
+  @Get(':id')
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
+  @ApiOperation({ summary: 'Get a banner by ID (Admin/SuperAdmin only)' })
+  findOne(@Param('id') id: string) {
+    return this.bannersService.findOne(id);
   }
 
   @Patch(':id')
   @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard,RolesGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
   @ApiOperation({ summary: 'Update a banner (Admin only)' })
   @ApiConsumes('multipart/form-data')
@@ -71,7 +87,7 @@ export class BannersController {
 
   @Delete(':id')
   @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard,RolesGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
   @ApiOperation({ summary: 'Delete a banner (Admin only)' })
   remove(@Param('id') id: string) {
@@ -80,7 +96,7 @@ export class BannersController {
 
   @Patch(':id/active')
   @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard,RolesGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
   @ApiOperation({ summary: 'Update banner active status (Admin only)' })
   updateIsActive(@Param('id') id: string, @Body() dto: IsActiveDto) {

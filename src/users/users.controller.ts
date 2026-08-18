@@ -9,7 +9,7 @@ import { Roles } from '../common/decorators/roles-auth-decorator';
 import { UserRole } from 'src/core/database/generated';
 import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
 
-@ApiTags('Users(Foydalanuvchilar va Hodimlar)')
+@ApiTags('Users')
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard,RolesGuard)
 @Controller('users')

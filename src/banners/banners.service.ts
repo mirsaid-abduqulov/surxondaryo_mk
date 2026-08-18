@@ -7,6 +7,7 @@ import { StorageService } from 'src/common/storage/storage.service';
 import { buildPaginationParams, buildPaginatedResponse } from 'src/common/helpers/pagination.helper';
 import { QueryBannerDto } from './dto/get-all-querry.dto';
 import { IsActiveDto } from './dto/is_active.dto';
+import { query } from 'axios';
 
 @Injectable()
 export class BannersService {
@@ -47,12 +48,15 @@ export class BannersService {
     }
   }
 
-  async findAll(query: QueryBannerDto) {
+  async findAll(query: QueryBannerDto, is_active?: boolean) {
     const { skip, take, page, limit } = buildPaginationParams(query);
 
     const where: any = {};
-    if (query.is_active !== undefined) {
-      where.is_active = query.is_active;
+    if (is_active === true) {
+      where.is_active = true;
+    }
+    if (is_active === false) {
+      where.is_active = false;
     }
 
     if (query.search) {
@@ -76,9 +80,18 @@ export class BannersService {
     return buildPaginatedResponse(banners, total, page, limit);
   }
 
-  async findOne(id: string) {
+  async findOne(id: string, is_active?: boolean) {
+
+    const where: any = { id };
+    if (is_active === true) {
+      where.is_active = true;
+    }
+    if (is_active === false) {
+      where.is_active = false;
+    }
+
     const banner = await this.prisma.banner.findUnique({
-      where: { id },
+      where,
     });
     if (!banner) throw new NotFoundException('Banner topilmadi');
     return banner;

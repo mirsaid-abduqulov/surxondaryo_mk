@@ -36,16 +36,17 @@ export class NewsService {
 
   }
 
-  async findAll(query: QueryNewsDto) {
+  async findAll(query: QueryNewsDto, is_public?: boolean) {
     const { page, limit, skip } = buildPaginationParams(query);
 
     const where: any = {};
 
 
-    if (query.is_public !== undefined) {
-      where.is_public = query.is_public;
-    } else {
+    if (is_public === true) {
       where.is_public = true;
+    }
+    if (is_public === false) {
+      where.is_public = false;
     }
 
 
@@ -68,9 +69,18 @@ export class NewsService {
     return buildPaginatedResponse(items, total, page, limit);
   }
 
-  async findOne(id: string) {
+  async findOne(id: string, is_public?: boolean) {
+    const where: any = { id };
+
+
+    if (is_public === true) {
+      where.is_public = true;
+    }
+    if (is_public === false) {
+      where.is_public = false;
+    }
     const item = await this.prisma.news.findUnique({
-      where: { id },
+      where,
       include: { creator: { select: { id: true, full_name: true } } },
     });
     if (!item) throw new NotFoundException('Yangilik topilmadi');
