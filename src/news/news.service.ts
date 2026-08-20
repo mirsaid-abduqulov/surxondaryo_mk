@@ -15,7 +15,113 @@ export class NewsService {
     private readonly storageService: StorageService,
   ) { }
 
-  async create(creatorId: string, createDto: CreateNewsDto, file?: Express.Multer.File) {
+  // async create(creatorId: string, createDto: CreateNewsDto, file?: Express.Multer.File) {
+  //   let fileInfo: any = null;
+  //   if (file) {
+  //     fileInfo = await this.storageService.saveFile(file, 'news');
+  //   }
+
+  //   const title_latin = createDto.title_latin ? normalizeName(createDto.title_latin) : undefined;
+  //   const title_cyril = createDto.title_cyril ? normalizeName(createDto.title_cyril) : undefined;
+  //   const title_ru = createDto.title_ru ? normalizeName(createDto.title_ru) : undefined;
+
+
+  //   const data = {
+  //     ...createDto,
+  //     title_latin, title_cyril, title_ru,
+  //     creator_id: creatorId,
+  //     ...(fileInfo && { cover_image: fileInfo.url }),
+  //   };
+  //   return this.prisma.news.create({ data });
+
+  // }
+
+  // async findAll(query: QueryNewsDto, is_public?: boolean) {
+  //   const { page, limit, skip } = buildPaginationParams(query);
+
+  //   const where: any = {};
+
+
+  //   if (is_public === true) {
+  //     where.is_public = true;
+  //   }
+  //   if (is_public === false) {
+  //     where.is_public = false;
+  //   }
+
+
+  //   if (query.search) {
+  //     const searchWhere = buildMultilangSearchWhere(query.search, 'title');
+  //     Object.assign(where, searchWhere);
+  //   }
+
+  //   const [items, total] = await this.prisma.$transaction([
+  //     this.prisma.news.findMany({
+  //       where,
+  //       skip,
+  //       take: limit,
+  //       orderBy: query.sortBy ? { [query.sortBy]: query.sortOrder } : { 'published_at': 'desc' },
+  //       include: { creator: { select: { id: true, full_name: true } } },
+  //     }),
+  //     this.prisma.news.count({ where })
+  //   ]);
+
+  //   return buildPaginatedResponse(items, total, page, limit);
+  // }
+
+  // async findOne(id: string, is_public?: boolean) {
+  //   const where: any = { id };
+
+
+  //   if (is_public === true) {
+  //     where.is_public = true;
+  //   }
+  //   if (is_public === false) {
+  //     where.is_public = false;
+  //   }
+  //   const item = await this.prisma.news.findUnique({
+  //     where,
+  //     include: { creator: { select: { id: true, full_name: true } } },
+  //   });
+  //   if (!item) throw new NotFoundException('Yangilik topilmadi');
+
+  //   return item;
+  // }
+
+  // async update(id: string, updateDto: UpdateNewsDto, file?: Express.Multer.File) {
+  //   const existing = await this.findOne(id);
+
+  //   let fileUpdateData: any = {};
+  //   if (file) {
+
+  //     const fileInfo = existing.cover_image
+  //       ? await this.storageService.replaceFile(existing.cover_image, file, 'news')
+  //       : await this.storageService.saveFile(file, 'news');
+  //     fileUpdateData = { cover_image: fileInfo.url };
+
+  //   }
+
+  //   const title_latin = (updateDto.title_latin && updateDto.title_latin?.trim()?.length > 0) ? normalizeName(updateDto.title_latin) : undefined;
+  //   const title_cyril = (updateDto.title_cyril && updateDto.title_cyril?.trim()?.length > 0) ? normalizeName(updateDto.title_cyril) : undefined;
+  //   const title_ru = (updateDto.title_ru && updateDto.title_ru?.trim()?.length > 0) ? normalizeName(updateDto.title_ru) : undefined;
+
+  //   return this.prisma.news.update({
+  //     where: { id },
+  //     data: { ...updateDto, ...fileUpdateData, ...(title_latin && { title_latin }), ...(title_cyril && { title_cyril }), ...(title_ru && { title_ru }) },
+  //   });
+  // }
+
+  // async remove(id: string) {
+  //   const existing = await this.findOne(id);
+
+  //   if (existing.cover_image) {
+  //     await this.storageService.deleteFile(existing.cover_image);
+  //   }
+
+  //   return this.prisma.news.delete({ where: { id } });
+  // }
+
+async create(creatorId: string, createDto: CreateNewsDto, file?: Express.Multer.File) {
     let fileInfo: any = null;
     if (file) {
       fileInfo = await this.storageService.saveFile(file, 'news');
@@ -41,7 +147,6 @@ export class NewsService {
 
     const where: any = {};
 
-
     if (is_public === true) {
       where.is_public = true;
     }
@@ -49,10 +154,11 @@ export class NewsService {
       where.is_public = false;
     }
 
-
     if (query.search) {
-      const searchWhere = buildMultilangSearchWhere(query.search, 'title');
-      Object.assign(where, searchWhere);
+      const title = normalizeName(query.search);
+      const contentSearchWhere = buildMultilangSearchWhere(query.search, 'content');
+      const searchWhere = buildMultilangSearchWhere(title, 'title');
+      where.OR = [...(contentSearchWhere?.OR || []), ...(searchWhere?.OR || [])];
     }
 
     const [items, total] = await this.prisma.$transaction([
@@ -71,7 +177,6 @@ export class NewsService {
 
   async findOne(id: string, is_public?: boolean) {
     const where: any = { id };
-
 
     if (is_public === true) {
       where.is_public = true;
@@ -120,6 +225,4 @@ export class NewsService {
 
     return this.prisma.news.delete({ where: { id } });
   }
-
-
 }

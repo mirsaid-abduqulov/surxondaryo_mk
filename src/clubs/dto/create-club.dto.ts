@@ -1,91 +1,98 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsBoolean, IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { Transform } from 'class-transformer';
+import { ApiProperty } from '@nestjs/swagger';
+import { Transform, Type } from 'class-transformer';
+import { IsBoolean, IsDateString, IsEnum, IsNotEmpty, IsOptional, IsString, ValidateNested } from 'class-validator';
 import { ClubCategory } from '../../core/database/generated';
+import { ClubScheduleDto } from './schedule.dto';
+import { BadRequestException } from '@nestjs/common';
 
 export class CreateClubDto {
-  @ApiProperty()
+  @ApiProperty({ description: "To'garak nomi (Lotin)" })
   @IsString()
   @IsNotEmpty()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
   name_latin: string;
 
-  @ApiProperty()
+  @ApiProperty({ description: "To'garak nomi (Kirill)" })
   @IsString()
   @IsNotEmpty()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
   name_cyril: string;
 
-  @ApiProperty()
+  @ApiProperty({ description: "To'garak nomi (Rus)" })
   @IsString()
   @IsNotEmpty()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
   name_ru: string;
 
-  @ApiProperty({ enum: ClubCategory })
+  @ApiProperty({ enum: ClubCategory, description: 'To\'garak kategoriyasi' })
   @IsEnum(ClubCategory)
   category: ClubCategory;
 
-  @ApiPropertyOptional()
-  @IsString()
+  @ApiProperty({ required: false, description: "Boshlanish sanasi (YYYY-MM-DD)" })
   @IsOptional()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(({ value }) => value === '' ? undefined : value)
+  @IsDateString()
+  start_date?: string;
+
+  @ApiProperty({ required: false, description: "Tugash sanasi (YYYY-MM-DD)" })
+  @IsOptional()
+  @Transform(({ value }) => value === '' ? undefined : value)
+  @IsDateString()
+  end_date?: string;
+
+  @ApiProperty({ required: false, description: "Tavsif (Lotin)" })
+  @IsOptional()
+  @Transform(({ value }) => value === '' ? undefined : value)
+  @IsString()
   description_latin?: string;
 
-  @ApiPropertyOptional()
-  @IsString()
+  @ApiProperty({ required: false, description: "Tavsif (Kirill)" })
   @IsOptional()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(({ value }) => value === '' ? undefined : value)
+  @IsString()
   description_cyril?: string;
 
-  @ApiPropertyOptional()
-  @IsString()
+  @ApiProperty({ required: false, description: "Tavsif (Rus)" })
   @IsOptional()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(({ value }) => value === '' ? undefined : value)
+  @IsString()
   description_ru?: string;
 
-  @ApiPropertyOptional()
-  @IsString()
+  @ApiProperty({ required: false, description: "Murabbiy yoki rahbar ismi" })
   @IsOptional()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(({ value }) => value === '' ? undefined : value)
+  @IsString()
   supervisor_name?: string;
 
-  @ApiPropertyOptional({ description: 'masalan "5-7-sinflar"' })
-  @IsString()
+  @ApiProperty({ required: false, description: "Yosh toifasi (Masalan: 5-7-sinflar)" })
   @IsOptional()
+  @Transform(({ value }) => value === '' ? undefined : value)
+  @IsString()
   age_group?: string;
 
-  @ApiPropertyOptional({ description: 'masalan "Dush, Chor, Juma 15:00-16:30"' })
-  @IsString()
+  @ApiProperty({ required: false, description: "Manzil yoki o'tkazilish joyi" })
   @IsOptional()
-  schedule_latin?: string;
-
-  @ApiPropertyOptional()
+  @Transform(({ value }) => value === '' ? undefined : value)
   @IsString()
-  @IsOptional()
-  schedule_cyril?: string;
-
-  @ApiPropertyOptional()
-  @IsString()
-  @IsOptional()
-  schedule_ru?: string;
-
-  @ApiPropertyOptional()
-  @IsString()
-  @IsOptional()
   location?: string;
 
-  @ApiPropertyOptional({ default: true })
-  @IsBoolean()
+  @ApiProperty({ required: false, description: "Faollik holati (Public da ko'rinishi)" })
   @IsOptional()
-  @Transform(({ value }) => value === 'true' || value === true)
+  @Transform(({ value }) => value === 'true' ? true : value === 'false' ? false : value)
+  @IsBoolean()
   is_active?: boolean;
 
-  @ApiPropertyOptional({
-    type: 'string',
-    format: 'binary',
-    description: "To'garak muqovasi (JPEG, PNG, WebP, max 5MB)",
-  })
+  @ApiProperty({ required: false, type: () => ClubScheduleDto, description: "Jadval (JSON string sifatida yuboriladi)" })
   @IsOptional()
-  cover_image?: Express.Multer.File;
+  @Transform(({ value }) => {
+    if (value === '') return undefined;
+    if (typeof value === 'string') {
+      try {
+        return JSON.parse(value);
+      } catch (error) {
+        throw new BadRequestException("schedule format noto'g'ri (JSON bo'lishi kerak)");
+      }
+    }
+    return value;
+  })
+  @ValidateNested()
+  @Type(() => ClubScheduleDto)
+  schedule?: ClubScheduleDto;
 }

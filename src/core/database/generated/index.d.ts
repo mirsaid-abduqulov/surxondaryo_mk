@@ -5908,14 +5908,13 @@ export namespace Prisma {
     name_cyril: string | null
     name_ru: string | null
     category: $Enums.ClubCategory | null
+    start_date: Date | null
+    end_date: Date | null
     description_latin: string | null
     description_cyril: string | null
     description_ru: string | null
     supervisor_name: string | null
     age_group: string | null
-    schedule_latin: string | null
-    schedule_cyril: string | null
-    schedule_ru: string | null
     location: string | null
     cover_image: string | null
     is_active: boolean | null
@@ -5930,14 +5929,13 @@ export namespace Prisma {
     name_cyril: string | null
     name_ru: string | null
     category: $Enums.ClubCategory | null
+    start_date: Date | null
+    end_date: Date | null
     description_latin: string | null
     description_cyril: string | null
     description_ru: string | null
     supervisor_name: string | null
     age_group: string | null
-    schedule_latin: string | null
-    schedule_cyril: string | null
-    schedule_ru: string | null
     location: string | null
     cover_image: string | null
     is_active: boolean | null
@@ -5952,14 +5950,14 @@ export namespace Prisma {
     name_cyril: number
     name_ru: number
     category: number
+    start_date: number
+    end_date: number
     description_latin: number
     description_cyril: number
     description_ru: number
     supervisor_name: number
     age_group: number
-    schedule_latin: number
-    schedule_cyril: number
-    schedule_ru: number
+    schedule: number
     location: number
     cover_image: number
     is_active: number
@@ -5976,14 +5974,13 @@ export namespace Prisma {
     name_cyril?: true
     name_ru?: true
     category?: true
+    start_date?: true
+    end_date?: true
     description_latin?: true
     description_cyril?: true
     description_ru?: true
     supervisor_name?: true
     age_group?: true
-    schedule_latin?: true
-    schedule_cyril?: true
-    schedule_ru?: true
     location?: true
     cover_image?: true
     is_active?: true
@@ -5998,14 +5995,13 @@ export namespace Prisma {
     name_cyril?: true
     name_ru?: true
     category?: true
+    start_date?: true
+    end_date?: true
     description_latin?: true
     description_cyril?: true
     description_ru?: true
     supervisor_name?: true
     age_group?: true
-    schedule_latin?: true
-    schedule_cyril?: true
-    schedule_ru?: true
     location?: true
     cover_image?: true
     is_active?: true
@@ -6020,14 +6016,14 @@ export namespace Prisma {
     name_cyril?: true
     name_ru?: true
     category?: true
+    start_date?: true
+    end_date?: true
     description_latin?: true
     description_cyril?: true
     description_ru?: true
     supervisor_name?: true
     age_group?: true
-    schedule_latin?: true
-    schedule_cyril?: true
-    schedule_ru?: true
+    schedule?: true
     location?: true
     cover_image?: true
     is_active?: true
@@ -6115,14 +6111,14 @@ export namespace Prisma {
     name_cyril: string
     name_ru: string
     category: $Enums.ClubCategory
+    start_date: Date | null
+    end_date: Date | null
     description_latin: string | null
     description_cyril: string | null
     description_ru: string | null
     supervisor_name: string | null
     age_group: string | null
-    schedule_latin: string | null
-    schedule_cyril: string | null
-    schedule_ru: string | null
+    schedule: JsonValue | null
     location: string | null
     cover_image: string | null
     is_active: boolean
@@ -6154,14 +6150,14 @@ export namespace Prisma {
     name_cyril?: boolean
     name_ru?: boolean
     category?: boolean
+    start_date?: boolean
+    end_date?: boolean
     description_latin?: boolean
     description_cyril?: boolean
     description_ru?: boolean
     supervisor_name?: boolean
     age_group?: boolean
-    schedule_latin?: boolean
-    schedule_cyril?: boolean
-    schedule_ru?: boolean
+    schedule?: boolean
     location?: boolean
     cover_image?: boolean
     is_active?: boolean
@@ -6177,14 +6173,14 @@ export namespace Prisma {
     name_cyril?: boolean
     name_ru?: boolean
     category?: boolean
+    start_date?: boolean
+    end_date?: boolean
     description_latin?: boolean
     description_cyril?: boolean
     description_ru?: boolean
     supervisor_name?: boolean
     age_group?: boolean
-    schedule_latin?: boolean
-    schedule_cyril?: boolean
-    schedule_ru?: boolean
+    schedule?: boolean
     location?: boolean
     cover_image?: boolean
     is_active?: boolean
@@ -6200,14 +6196,14 @@ export namespace Prisma {
     name_cyril?: boolean
     name_ru?: boolean
     category?: boolean
+    start_date?: boolean
+    end_date?: boolean
     description_latin?: boolean
     description_cyril?: boolean
     description_ru?: boolean
     supervisor_name?: boolean
     age_group?: boolean
-    schedule_latin?: boolean
-    schedule_cyril?: boolean
-    schedule_ru?: boolean
+    schedule?: boolean
     location?: boolean
     cover_image?: boolean
     is_active?: boolean
@@ -6223,14 +6219,14 @@ export namespace Prisma {
     name_cyril?: boolean
     name_ru?: boolean
     category?: boolean
+    start_date?: boolean
+    end_date?: boolean
     description_latin?: boolean
     description_cyril?: boolean
     description_ru?: boolean
     supervisor_name?: boolean
     age_group?: boolean
-    schedule_latin?: boolean
-    schedule_cyril?: boolean
-    schedule_ru?: boolean
+    schedule?: boolean
     location?: boolean
     cover_image?: boolean
     is_active?: boolean
@@ -6239,7 +6235,7 @@ export namespace Prisma {
     updated_at?: boolean
   }
 
-  export type ClubOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name_latin" | "name_cyril" | "name_ru" | "category" | "description_latin" | "description_cyril" | "description_ru" | "supervisor_name" | "age_group" | "schedule_latin" | "schedule_cyril" | "schedule_ru" | "location" | "cover_image" | "is_active" | "creator_id" | "created_at" | "updated_at", ExtArgs["result"]["club"]>
+  export type ClubOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name_latin" | "name_cyril" | "name_ru" | "category" | "start_date" | "end_date" | "description_latin" | "description_cyril" | "description_ru" | "supervisor_name" | "age_group" | "schedule" | "location" | "cover_image" | "is_active" | "creator_id" | "created_at" | "updated_at", ExtArgs["result"]["club"]>
   export type ClubInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     creator?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -6261,14 +6257,14 @@ export namespace Prisma {
       name_cyril: string
       name_ru: string
       category: $Enums.ClubCategory
+      start_date: Date | null
+      end_date: Date | null
       description_latin: string | null
       description_cyril: string | null
       description_ru: string | null
       supervisor_name: string | null
       age_group: string | null
-      schedule_latin: string | null
-      schedule_cyril: string | null
-      schedule_ru: string | null
+      schedule: Prisma.JsonValue | null
       location: string | null
       cover_image: string | null
       is_active: boolean
@@ -6704,14 +6700,14 @@ export namespace Prisma {
     readonly name_cyril: FieldRef<"Club", 'String'>
     readonly name_ru: FieldRef<"Club", 'String'>
     readonly category: FieldRef<"Club", 'ClubCategory'>
+    readonly start_date: FieldRef<"Club", 'DateTime'>
+    readonly end_date: FieldRef<"Club", 'DateTime'>
     readonly description_latin: FieldRef<"Club", 'String'>
     readonly description_cyril: FieldRef<"Club", 'String'>
     readonly description_ru: FieldRef<"Club", 'String'>
     readonly supervisor_name: FieldRef<"Club", 'String'>
     readonly age_group: FieldRef<"Club", 'String'>
-    readonly schedule_latin: FieldRef<"Club", 'String'>
-    readonly schedule_cyril: FieldRef<"Club", 'String'>
-    readonly schedule_ru: FieldRef<"Club", 'String'>
+    readonly schedule: FieldRef<"Club", 'Json'>
     readonly location: FieldRef<"Club", 'String'>
     readonly cover_image: FieldRef<"Club", 'String'>
     readonly is_active: FieldRef<"Club", 'Boolean'>
@@ -29522,14 +29518,14 @@ export namespace Prisma {
     name_cyril: 'name_cyril',
     name_ru: 'name_ru',
     category: 'category',
+    start_date: 'start_date',
+    end_date: 'end_date',
     description_latin: 'description_latin',
     description_cyril: 'description_cyril',
     description_ru: 'description_ru',
     supervisor_name: 'supervisor_name',
     age_group: 'age_group',
-    schedule_latin: 'schedule_latin',
-    schedule_cyril: 'schedule_cyril',
-    schedule_ru: 'schedule_ru',
+    schedule: 'schedule',
     location: 'location',
     cover_image: 'cover_image',
     is_active: 'is_active',
@@ -30018,20 +30014,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'WeekDay'
-   */
-  export type EnumWeekDayFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WeekDay'>
-    
-
-
-  /**
-   * Reference to a field of type 'WeekDay[]'
-   */
-  export type ListEnumWeekDayFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WeekDay[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Json'
    */
   export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
@@ -30042,6 +30024,20 @@ export namespace Prisma {
    * Reference to a field of type 'QueryMode'
    */
   export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
+   * Reference to a field of type 'WeekDay'
+   */
+  export type EnumWeekDayFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WeekDay'>
+    
+
+
+  /**
+   * Reference to a field of type 'WeekDay[]'
+   */
+  export type ListEnumWeekDayFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WeekDay[]'>
     
 
 
@@ -30423,14 +30419,14 @@ export namespace Prisma {
     name_cyril?: StringFilter<"Club"> | string
     name_ru?: StringFilter<"Club"> | string
     category?: EnumClubCategoryFilter<"Club"> | $Enums.ClubCategory
+    start_date?: DateTimeNullableFilter<"Club"> | Date | string | null
+    end_date?: DateTimeNullableFilter<"Club"> | Date | string | null
     description_latin?: StringNullableFilter<"Club"> | string | null
     description_cyril?: StringNullableFilter<"Club"> | string | null
     description_ru?: StringNullableFilter<"Club"> | string | null
     supervisor_name?: StringNullableFilter<"Club"> | string | null
     age_group?: StringNullableFilter<"Club"> | string | null
-    schedule_latin?: StringNullableFilter<"Club"> | string | null
-    schedule_cyril?: StringNullableFilter<"Club"> | string | null
-    schedule_ru?: StringNullableFilter<"Club"> | string | null
+    schedule?: JsonNullableFilter<"Club">
     location?: StringNullableFilter<"Club"> | string | null
     cover_image?: StringNullableFilter<"Club"> | string | null
     is_active?: BoolFilter<"Club"> | boolean
@@ -30446,14 +30442,14 @@ export namespace Prisma {
     name_cyril?: SortOrder
     name_ru?: SortOrder
     category?: SortOrder
+    start_date?: SortOrderInput | SortOrder
+    end_date?: SortOrderInput | SortOrder
     description_latin?: SortOrderInput | SortOrder
     description_cyril?: SortOrderInput | SortOrder
     description_ru?: SortOrderInput | SortOrder
     supervisor_name?: SortOrderInput | SortOrder
     age_group?: SortOrderInput | SortOrder
-    schedule_latin?: SortOrderInput | SortOrder
-    schedule_cyril?: SortOrderInput | SortOrder
-    schedule_ru?: SortOrderInput | SortOrder
+    schedule?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
     cover_image?: SortOrderInput | SortOrder
     is_active?: SortOrder
@@ -30472,14 +30468,14 @@ export namespace Prisma {
     name_cyril?: StringFilter<"Club"> | string
     name_ru?: StringFilter<"Club"> | string
     category?: EnumClubCategoryFilter<"Club"> | $Enums.ClubCategory
+    start_date?: DateTimeNullableFilter<"Club"> | Date | string | null
+    end_date?: DateTimeNullableFilter<"Club"> | Date | string | null
     description_latin?: StringNullableFilter<"Club"> | string | null
     description_cyril?: StringNullableFilter<"Club"> | string | null
     description_ru?: StringNullableFilter<"Club"> | string | null
     supervisor_name?: StringNullableFilter<"Club"> | string | null
     age_group?: StringNullableFilter<"Club"> | string | null
-    schedule_latin?: StringNullableFilter<"Club"> | string | null
-    schedule_cyril?: StringNullableFilter<"Club"> | string | null
-    schedule_ru?: StringNullableFilter<"Club"> | string | null
+    schedule?: JsonNullableFilter<"Club">
     location?: StringNullableFilter<"Club"> | string | null
     cover_image?: StringNullableFilter<"Club"> | string | null
     is_active?: BoolFilter<"Club"> | boolean
@@ -30495,14 +30491,14 @@ export namespace Prisma {
     name_cyril?: SortOrder
     name_ru?: SortOrder
     category?: SortOrder
+    start_date?: SortOrderInput | SortOrder
+    end_date?: SortOrderInput | SortOrder
     description_latin?: SortOrderInput | SortOrder
     description_cyril?: SortOrderInput | SortOrder
     description_ru?: SortOrderInput | SortOrder
     supervisor_name?: SortOrderInput | SortOrder
     age_group?: SortOrderInput | SortOrder
-    schedule_latin?: SortOrderInput | SortOrder
-    schedule_cyril?: SortOrderInput | SortOrder
-    schedule_ru?: SortOrderInput | SortOrder
+    schedule?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
     cover_image?: SortOrderInput | SortOrder
     is_active?: SortOrder
@@ -30523,14 +30519,14 @@ export namespace Prisma {
     name_cyril?: StringWithAggregatesFilter<"Club"> | string
     name_ru?: StringWithAggregatesFilter<"Club"> | string
     category?: EnumClubCategoryWithAggregatesFilter<"Club"> | $Enums.ClubCategory
+    start_date?: DateTimeNullableWithAggregatesFilter<"Club"> | Date | string | null
+    end_date?: DateTimeNullableWithAggregatesFilter<"Club"> | Date | string | null
     description_latin?: StringNullableWithAggregatesFilter<"Club"> | string | null
     description_cyril?: StringNullableWithAggregatesFilter<"Club"> | string | null
     description_ru?: StringNullableWithAggregatesFilter<"Club"> | string | null
     supervisor_name?: StringNullableWithAggregatesFilter<"Club"> | string | null
     age_group?: StringNullableWithAggregatesFilter<"Club"> | string | null
-    schedule_latin?: StringNullableWithAggregatesFilter<"Club"> | string | null
-    schedule_cyril?: StringNullableWithAggregatesFilter<"Club"> | string | null
-    schedule_ru?: StringNullableWithAggregatesFilter<"Club"> | string | null
+    schedule?: JsonNullableWithAggregatesFilter<"Club">
     location?: StringNullableWithAggregatesFilter<"Club"> | string | null
     cover_image?: StringNullableWithAggregatesFilter<"Club"> | string | null
     is_active?: BoolWithAggregatesFilter<"Club"> | boolean
@@ -32555,14 +32551,14 @@ export namespace Prisma {
     name_cyril: string
     name_ru: string
     category: $Enums.ClubCategory
+    start_date?: Date | string | null
+    end_date?: Date | string | null
     description_latin?: string | null
     description_cyril?: string | null
     description_ru?: string | null
     supervisor_name?: string | null
     age_group?: string | null
-    schedule_latin?: string | null
-    schedule_cyril?: string | null
-    schedule_ru?: string | null
+    schedule?: NullableJsonNullValueInput | InputJsonValue
     location?: string | null
     cover_image?: string | null
     is_active?: boolean
@@ -32577,14 +32573,14 @@ export namespace Prisma {
     name_cyril: string
     name_ru: string
     category: $Enums.ClubCategory
+    start_date?: Date | string | null
+    end_date?: Date | string | null
     description_latin?: string | null
     description_cyril?: string | null
     description_ru?: string | null
     supervisor_name?: string | null
     age_group?: string | null
-    schedule_latin?: string | null
-    schedule_cyril?: string | null
-    schedule_ru?: string | null
+    schedule?: NullableJsonNullValueInput | InputJsonValue
     location?: string | null
     cover_image?: string | null
     is_active?: boolean
@@ -32599,14 +32595,14 @@ export namespace Prisma {
     name_cyril?: StringFieldUpdateOperationsInput | string
     name_ru?: StringFieldUpdateOperationsInput | string
     category?: EnumClubCategoryFieldUpdateOperationsInput | $Enums.ClubCategory
+    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    end_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     description_latin?: NullableStringFieldUpdateOperationsInput | string | null
     description_cyril?: NullableStringFieldUpdateOperationsInput | string | null
     description_ru?: NullableStringFieldUpdateOperationsInput | string | null
     supervisor_name?: NullableStringFieldUpdateOperationsInput | string | null
     age_group?: NullableStringFieldUpdateOperationsInput | string | null
-    schedule_latin?: NullableStringFieldUpdateOperationsInput | string | null
-    schedule_cyril?: NullableStringFieldUpdateOperationsInput | string | null
-    schedule_ru?: NullableStringFieldUpdateOperationsInput | string | null
+    schedule?: NullableJsonNullValueInput | InputJsonValue
     location?: NullableStringFieldUpdateOperationsInput | string | null
     cover_image?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
@@ -32621,14 +32617,14 @@ export namespace Prisma {
     name_cyril?: StringFieldUpdateOperationsInput | string
     name_ru?: StringFieldUpdateOperationsInput | string
     category?: EnumClubCategoryFieldUpdateOperationsInput | $Enums.ClubCategory
+    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    end_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     description_latin?: NullableStringFieldUpdateOperationsInput | string | null
     description_cyril?: NullableStringFieldUpdateOperationsInput | string | null
     description_ru?: NullableStringFieldUpdateOperationsInput | string | null
     supervisor_name?: NullableStringFieldUpdateOperationsInput | string | null
     age_group?: NullableStringFieldUpdateOperationsInput | string | null
-    schedule_latin?: NullableStringFieldUpdateOperationsInput | string | null
-    schedule_cyril?: NullableStringFieldUpdateOperationsInput | string | null
-    schedule_ru?: NullableStringFieldUpdateOperationsInput | string | null
+    schedule?: NullableJsonNullValueInput | InputJsonValue
     location?: NullableStringFieldUpdateOperationsInput | string | null
     cover_image?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
@@ -32643,14 +32639,14 @@ export namespace Prisma {
     name_cyril: string
     name_ru: string
     category: $Enums.ClubCategory
+    start_date?: Date | string | null
+    end_date?: Date | string | null
     description_latin?: string | null
     description_cyril?: string | null
     description_ru?: string | null
     supervisor_name?: string | null
     age_group?: string | null
-    schedule_latin?: string | null
-    schedule_cyril?: string | null
-    schedule_ru?: string | null
+    schedule?: NullableJsonNullValueInput | InputJsonValue
     location?: string | null
     cover_image?: string | null
     is_active?: boolean
@@ -32665,14 +32661,14 @@ export namespace Prisma {
     name_cyril?: StringFieldUpdateOperationsInput | string
     name_ru?: StringFieldUpdateOperationsInput | string
     category?: EnumClubCategoryFieldUpdateOperationsInput | $Enums.ClubCategory
+    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    end_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     description_latin?: NullableStringFieldUpdateOperationsInput | string | null
     description_cyril?: NullableStringFieldUpdateOperationsInput | string | null
     description_ru?: NullableStringFieldUpdateOperationsInput | string | null
     supervisor_name?: NullableStringFieldUpdateOperationsInput | string | null
     age_group?: NullableStringFieldUpdateOperationsInput | string | null
-    schedule_latin?: NullableStringFieldUpdateOperationsInput | string | null
-    schedule_cyril?: NullableStringFieldUpdateOperationsInput | string | null
-    schedule_ru?: NullableStringFieldUpdateOperationsInput | string | null
+    schedule?: NullableJsonNullValueInput | InputJsonValue
     location?: NullableStringFieldUpdateOperationsInput | string | null
     cover_image?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
@@ -32686,14 +32682,14 @@ export namespace Prisma {
     name_cyril?: StringFieldUpdateOperationsInput | string
     name_ru?: StringFieldUpdateOperationsInput | string
     category?: EnumClubCategoryFieldUpdateOperationsInput | $Enums.ClubCategory
+    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    end_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     description_latin?: NullableStringFieldUpdateOperationsInput | string | null
     description_cyril?: NullableStringFieldUpdateOperationsInput | string | null
     description_ru?: NullableStringFieldUpdateOperationsInput | string | null
     supervisor_name?: NullableStringFieldUpdateOperationsInput | string | null
     age_group?: NullableStringFieldUpdateOperationsInput | string | null
-    schedule_latin?: NullableStringFieldUpdateOperationsInput | string | null
-    schedule_cyril?: NullableStringFieldUpdateOperationsInput | string | null
-    schedule_ru?: NullableStringFieldUpdateOperationsInput | string | null
+    schedule?: NullableJsonNullValueInput | InputJsonValue
     location?: NullableStringFieldUpdateOperationsInput | string | null
     cover_image?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
@@ -35051,20 +35047,54 @@ export namespace Prisma {
     not?: NestedEnumClubCategoryFilter<$PrismaModel> | $Enums.ClubCategory
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
   export type ClubCountOrderByAggregateInput = {
     id?: SortOrder
     name_latin?: SortOrder
     name_cyril?: SortOrder
     name_ru?: SortOrder
     category?: SortOrder
+    start_date?: SortOrder
+    end_date?: SortOrder
     description_latin?: SortOrder
     description_cyril?: SortOrder
     description_ru?: SortOrder
     supervisor_name?: SortOrder
     age_group?: SortOrder
-    schedule_latin?: SortOrder
-    schedule_cyril?: SortOrder
-    schedule_ru?: SortOrder
+    schedule?: SortOrder
     location?: SortOrder
     cover_image?: SortOrder
     is_active?: SortOrder
@@ -35079,14 +35109,13 @@ export namespace Prisma {
     name_cyril?: SortOrder
     name_ru?: SortOrder
     category?: SortOrder
+    start_date?: SortOrder
+    end_date?: SortOrder
     description_latin?: SortOrder
     description_cyril?: SortOrder
     description_ru?: SortOrder
     supervisor_name?: SortOrder
     age_group?: SortOrder
-    schedule_latin?: SortOrder
-    schedule_cyril?: SortOrder
-    schedule_ru?: SortOrder
     location?: SortOrder
     cover_image?: SortOrder
     is_active?: SortOrder
@@ -35101,14 +35130,13 @@ export namespace Prisma {
     name_cyril?: SortOrder
     name_ru?: SortOrder
     category?: SortOrder
+    start_date?: SortOrder
+    end_date?: SortOrder
     description_latin?: SortOrder
     description_cyril?: SortOrder
     description_ru?: SortOrder
     supervisor_name?: SortOrder
     age_group?: SortOrder
-    schedule_latin?: SortOrder
-    schedule_cyril?: SortOrder
-    schedule_ru?: SortOrder
     location?: SortOrder
     cover_image?: SortOrder
     is_active?: SortOrder
@@ -35125,6 +35153,46 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumClubCategoryFilter<$PrismaModel>
     _max?: NestedEnumClubCategoryFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
   export type EnumWeekDayFilter<$PrismaModel = never> = {
@@ -35316,40 +35384,6 @@ export namespace Prisma {
     updated_at?: SortOrder
   }
 
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-  export type JsonNullableFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonNullableFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonNullableFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-  }
-
   export type CanteenMenuCountOrderByAggregateInput = {
     id?: SortOrder
     start_date?: SortOrder
@@ -35381,46 +35415,6 @@ export namespace Prisma {
     is_active?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
-  }
-
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedJsonNullableFilter<$PrismaModel>
-    _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
   export type ParentTeacherMeetingCountOrderByAggregateInput = {
@@ -36691,6 +36685,10 @@ export namespace Prisma {
     set?: $Enums.ClubCategory
   }
 
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
   export type UserUpdateOneRequiredWithoutClubsNestedInput = {
     create?: XOR<UserCreateWithoutClubsInput, UserUncheckedCreateWithoutClubsInput>
     connectOrCreate?: UserCreateOrConnectWithoutClubsInput
@@ -36709,10 +36707,6 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
-  }
-
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
   }
 
   export type EnumApplicationStatusFieldUpdateOperationsInput = {
@@ -37077,6 +37071,17 @@ export namespace Prisma {
     not?: NestedEnumClubCategoryFilter<$PrismaModel> | $Enums.ClubCategory
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type NestedEnumClubCategoryWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.ClubCategory | EnumClubCategoryFieldRefInput<$PrismaModel>
     in?: $Enums.ClubCategory[] | ListEnumClubCategoryFieldRefInput<$PrismaModel>
@@ -37085,6 +37090,43 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumClubCategoryFilter<$PrismaModel>
     _max?: NestedEnumClubCategoryFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
   export type NestedEnumWeekDayFilter<$PrismaModel = never> = {
@@ -37129,54 +37171,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-  export type NestedJsonNullableFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
-        Required<NestedJsonNullableFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
-
-  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
   export type NestedEnumApplicationStatusFilter<$PrismaModel = never> = {
@@ -37573,14 +37567,14 @@ export namespace Prisma {
     name_cyril: string
     name_ru: string
     category: $Enums.ClubCategory
+    start_date?: Date | string | null
+    end_date?: Date | string | null
     description_latin?: string | null
     description_cyril?: string | null
     description_ru?: string | null
     supervisor_name?: string | null
     age_group?: string | null
-    schedule_latin?: string | null
-    schedule_cyril?: string | null
-    schedule_ru?: string | null
+    schedule?: NullableJsonNullValueInput | InputJsonValue
     location?: string | null
     cover_image?: string | null
     is_active?: boolean
@@ -37594,14 +37588,14 @@ export namespace Prisma {
     name_cyril: string
     name_ru: string
     category: $Enums.ClubCategory
+    start_date?: Date | string | null
+    end_date?: Date | string | null
     description_latin?: string | null
     description_cyril?: string | null
     description_ru?: string | null
     supervisor_name?: string | null
     age_group?: string | null
-    schedule_latin?: string | null
-    schedule_cyril?: string | null
-    schedule_ru?: string | null
+    schedule?: NullableJsonNullValueInput | InputJsonValue
     location?: string | null
     cover_image?: string | null
     is_active?: boolean
@@ -37906,14 +37900,14 @@ export namespace Prisma {
     name_cyril?: StringFilter<"Club"> | string
     name_ru?: StringFilter<"Club"> | string
     category?: EnumClubCategoryFilter<"Club"> | $Enums.ClubCategory
+    start_date?: DateTimeNullableFilter<"Club"> | Date | string | null
+    end_date?: DateTimeNullableFilter<"Club"> | Date | string | null
     description_latin?: StringNullableFilter<"Club"> | string | null
     description_cyril?: StringNullableFilter<"Club"> | string | null
     description_ru?: StringNullableFilter<"Club"> | string | null
     supervisor_name?: StringNullableFilter<"Club"> | string | null
     age_group?: StringNullableFilter<"Club"> | string | null
-    schedule_latin?: StringNullableFilter<"Club"> | string | null
-    schedule_cyril?: StringNullableFilter<"Club"> | string | null
-    schedule_ru?: StringNullableFilter<"Club"> | string | null
+    schedule?: JsonNullableFilter<"Club">
     location?: StringNullableFilter<"Club"> | string | null
     cover_image?: StringNullableFilter<"Club"> | string | null
     is_active?: BoolFilter<"Club"> | boolean
@@ -38994,14 +38988,14 @@ export namespace Prisma {
     name_cyril: string
     name_ru: string
     category: $Enums.ClubCategory
+    start_date?: Date | string | null
+    end_date?: Date | string | null
     description_latin?: string | null
     description_cyril?: string | null
     description_ru?: string | null
     supervisor_name?: string | null
     age_group?: string | null
-    schedule_latin?: string | null
-    schedule_cyril?: string | null
-    schedule_ru?: string | null
+    schedule?: NullableJsonNullValueInput | InputJsonValue
     location?: string | null
     cover_image?: string | null
     is_active?: boolean
@@ -39343,14 +39337,14 @@ export namespace Prisma {
     name_cyril?: StringFieldUpdateOperationsInput | string
     name_ru?: StringFieldUpdateOperationsInput | string
     category?: EnumClubCategoryFieldUpdateOperationsInput | $Enums.ClubCategory
+    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    end_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     description_latin?: NullableStringFieldUpdateOperationsInput | string | null
     description_cyril?: NullableStringFieldUpdateOperationsInput | string | null
     description_ru?: NullableStringFieldUpdateOperationsInput | string | null
     supervisor_name?: NullableStringFieldUpdateOperationsInput | string | null
     age_group?: NullableStringFieldUpdateOperationsInput | string | null
-    schedule_latin?: NullableStringFieldUpdateOperationsInput | string | null
-    schedule_cyril?: NullableStringFieldUpdateOperationsInput | string | null
-    schedule_ru?: NullableStringFieldUpdateOperationsInput | string | null
+    schedule?: NullableJsonNullValueInput | InputJsonValue
     location?: NullableStringFieldUpdateOperationsInput | string | null
     cover_image?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
@@ -39364,14 +39358,14 @@ export namespace Prisma {
     name_cyril?: StringFieldUpdateOperationsInput | string
     name_ru?: StringFieldUpdateOperationsInput | string
     category?: EnumClubCategoryFieldUpdateOperationsInput | $Enums.ClubCategory
+    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    end_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     description_latin?: NullableStringFieldUpdateOperationsInput | string | null
     description_cyril?: NullableStringFieldUpdateOperationsInput | string | null
     description_ru?: NullableStringFieldUpdateOperationsInput | string | null
     supervisor_name?: NullableStringFieldUpdateOperationsInput | string | null
     age_group?: NullableStringFieldUpdateOperationsInput | string | null
-    schedule_latin?: NullableStringFieldUpdateOperationsInput | string | null
-    schedule_cyril?: NullableStringFieldUpdateOperationsInput | string | null
-    schedule_ru?: NullableStringFieldUpdateOperationsInput | string | null
+    schedule?: NullableJsonNullValueInput | InputJsonValue
     location?: NullableStringFieldUpdateOperationsInput | string | null
     cover_image?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
@@ -39385,14 +39379,14 @@ export namespace Prisma {
     name_cyril?: StringFieldUpdateOperationsInput | string
     name_ru?: StringFieldUpdateOperationsInput | string
     category?: EnumClubCategoryFieldUpdateOperationsInput | $Enums.ClubCategory
+    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    end_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     description_latin?: NullableStringFieldUpdateOperationsInput | string | null
     description_cyril?: NullableStringFieldUpdateOperationsInput | string | null
     description_ru?: NullableStringFieldUpdateOperationsInput | string | null
     supervisor_name?: NullableStringFieldUpdateOperationsInput | string | null
     age_group?: NullableStringFieldUpdateOperationsInput | string | null
-    schedule_latin?: NullableStringFieldUpdateOperationsInput | string | null
-    schedule_cyril?: NullableStringFieldUpdateOperationsInput | string | null
-    schedule_ru?: NullableStringFieldUpdateOperationsInput | string | null
+    schedule?: NullableJsonNullValueInput | InputJsonValue
     location?: NullableStringFieldUpdateOperationsInput | string | null
     cover_image?: NullableStringFieldUpdateOperationsInput | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean

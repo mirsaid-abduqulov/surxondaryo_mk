@@ -127,7 +127,7 @@ async function bootstrap() {
   app.enableShutdownHooks();
 
   await app.listen(port);
-  appLogger.log(`Chinoz Kutubxona Markazi API [${nodeEnv}] started on http://localhost:${port}/api`);
+  appLogger.log(`Surxondaryo Maktabi API [${nodeEnv}] started on http://localhost:${port}/api`);
 }
 
 bootstrap().catch((err: unknown) => {

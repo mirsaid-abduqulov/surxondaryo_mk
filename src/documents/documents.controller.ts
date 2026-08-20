@@ -60,7 +60,7 @@ export class DocumentsController {
     if (![UserRole.ADMIN, UserRole.SUPER_ADMIN].includes(role)) {
       throw new ForbiddenException('You are not allowed to access this resource');
     }
-    return this.documentsService.findAllAdmin(query, Boolean(is_public));
+    return this.documentsService.findAllAdmin(query, is_public);
   }
 
   @Get(':id')

@@ -98,13 +98,13 @@ model StaffMember {
 // ==========================================================
 
 enum ClubCategory {
-  SPORT
-  SCIENCE
-  ART
-  LANGUAGE
-  TECHNOLOGY
-  MUSIC
-  OTHER
+  SPORT //sport
+  SCIENCE // ilmiy
+  ART //san'at
+  LANGUAGE //til
+  TECHNOLOGY //texnologiya
+  MUSIC //musiqa
+  OTHER //boshqa
 }
 
 model Club {
@@ -113,6 +113,8 @@ model Club {
   name_cyril String
   name_ru    String
   category   ClubCategory
+  start_date DateTime?
+  end_date   DateTime? // if null, then it is active
 
   description_latin String?
   description_cyril String?
@@ -121,10 +123,7 @@ model Club {
   supervisor_name String? // rahbar / murabbiy ismi
   age_group       String? // masalan "5-7-sinflar"
 
-  schedule_latin String? // "Dush, Chor, Juma 15:00-16:30"
-  schedule_cyril String?
-  schedule_ru    String?
-
+  schedule    Json? // { "monday": [ { "start": "08:00", "end": "09:00", "room": "101"} ] }
   location    String?
   cover_image String?
   is_active   Boolean @default(true)
