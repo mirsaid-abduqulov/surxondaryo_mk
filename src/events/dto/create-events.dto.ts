@@ -2,61 +2,62 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsBoolean, IsNotEmpty, IsOptional, IsString, IsEnum, IsDateString } from 'class-validator';
 import { Transform, Type } from 'class-transformer';
 import { EventType } from '../../core/database/generated';
+import { trimmedOrUndefined } from 'src/common/transformers/string-transformer';
 
 export class CreateEventsDto {
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(trimmedOrUndefined)
   title_latin: string;
 
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(trimmedOrUndefined)
   title_cyril: string;
 
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(trimmedOrUndefined)
   title_ru: string;
 
   
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(trimmedOrUndefined)
   description_latin?: string;
 
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(trimmedOrUndefined)
   description_cyril?: string;
 
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(trimmedOrUndefined)
   description_ru?: string;
 
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(trimmedOrUndefined)
   location_latin?: string;
 
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(trimmedOrUndefined)
   location_cyril?: string;
 
   @ApiPropertyOptional()
   @IsOptional()
   @IsString()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(trimmedOrUndefined)
   location_ru?: string;
 
  @ApiProperty({

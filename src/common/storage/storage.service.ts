@@ -19,7 +19,8 @@ export type StorageFolder =
   | 'staff_photos'
   | 'clubs'
   | 'newspapers'
-  | 'canteen-menu';
+  | 'canteen-menu'
+  | 'media_presentations';
 
 @Injectable()
 export class StorageService {
@@ -44,6 +45,7 @@ export class StorageService {
       'clubs',
       'newspapers',
       'canteen-menu',
+      'media_presentations'
     ];
     for (const folder of folders) {
       const path = join(this.mediaBasePath, folder);

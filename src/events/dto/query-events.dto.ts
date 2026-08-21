@@ -5,18 +5,11 @@ import { Transform } from 'class-transformer';
 import { EventType } from '../../core/database/generated';
 
 export class QueryEventsDto extends BaseQueryDto {
-  
+
   @ApiPropertyOptional()
   @IsOptional()
-  @Transform(({ value }) => value === 'true' || value === true)
   @IsBoolean()
   upcoming?: boolean;
-  
-  @ApiPropertyOptional()
-  @IsOptional()
-  @Transform(({ value }) => value === 'true' || value === true)
-  @IsBoolean()
-  is_public?: boolean;
 
   @ApiPropertyOptional({ enum: EventType })
   @IsOptional()

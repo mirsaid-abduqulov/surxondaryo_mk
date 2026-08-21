@@ -7,38 +7,38 @@ export class UpdateNewsDto extends PartialType(CreateNewsDto) {
     @ApiPropertyOptional()
       @IsOptional()
       @IsString()
-      @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+      @Transform(({ value }) => typeof value === 'string'&& value.trim()!='' ? value.trim() : null)
       title_latin?: string;
     
       @ApiPropertyOptional()
       @IsOptional()
       @IsString()
-      @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+      @Transform(({ value }) => typeof value === 'string'&& value.trim()!='' ? value.trim() : null)
       title_cyril?: string;
     
       @ApiPropertyOptional()
       @IsOptional()
       @IsString()
-      @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+      @Transform(({ value }) => typeof value === 'string'&& value.trim()!='' ? value.trim() : null)
       title_ru?: string;
     
       
       @ApiPropertyOptional()
       @IsOptional()
       @IsString()
-      @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+      @Transform(({ value }) => typeof value === 'string'&& value.trim()!='' ? value.trim() : null)
       content_latin?: string;
     
       @ApiPropertyOptional()
       @IsOptional()
       @IsString()
-      @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+      @Transform(({ value }) => typeof value === 'string'&& value.trim()!='' ? value.trim() : null)
       content_cyril?: string;
     
       @ApiPropertyOptional()
       @IsOptional()
       @IsString()
-      @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+      @Transform(({ value }) => typeof value === 'string'&& value.trim()!='' ? value.trim() : null)
       content_ru?: string;
     
       @ApiPropertyOptional({ type: 'string', format: 'binary' })
@@ -47,7 +47,6 @@ export class UpdateNewsDto extends PartialType(CreateNewsDto) {
     
       @ApiPropertyOptional()
       @IsOptional()
-      @Transform(({ value }) => value === 'true' || value === true)
       @IsBoolean()
       is_public?: boolean;
 }

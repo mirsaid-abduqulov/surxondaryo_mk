@@ -1,84 +1,85 @@
-import { ApiProperty, ApiPropertyOptional, PartialType } from '@nestjs/swagger';
-import { CreateEventsDto } from './create-events.dto';
+import { ApiPropertyOptional } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
-import { IsNotEmpty, IsString, IsOptional, IsBoolean, IsDateString } from 'class-validator';
+import { IsBoolean, IsDateString, IsOptional, IsString } from 'class-validator';
+import { booleanOrUndefined } from 'src/common/transformers/boolean-transformer';
+import { dateOrUndefined } from 'src/common/transformers/date-trimmed-transformer';
+import { trimmedOrUndefined } from 'src/common/transformers/string-transformer';
 
-export class UpdateEventsDto extends PartialType(CreateEventsDto) {
-    @ApiPropertyOptional()
-    @IsString()
-    @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
-    title_latin?: string;
+export class UpdateEventsDto {
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  @Transform(trimmedOrUndefined)
+  title_latin?: string;
 
-    @ApiPropertyOptional()
-    @IsString()
-    @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
-    title_cyril?: string;
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  @Transform(trimmedOrUndefined)
+  title_cyril?: string;
 
-    @ApiPropertyOptional()
-    @IsString()
-    @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
-    title_ru?: string;
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  @Transform(trimmedOrUndefined)
+  title_ru?: string;
 
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  @Transform(trimmedOrUndefined)
+  description_latin?: string;
 
-    @ApiPropertyOptional()
-    @IsOptional()
-    @IsString()
-    @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
-    description_latin?: string;
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  @Transform(trimmedOrUndefined)
+  description_cyril?: string;
 
-    @ApiPropertyOptional()
-    @IsOptional()
-    @IsString()
-    @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
-    description_cyril?: string;
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  @Transform(trimmedOrUndefined)
+  description_ru?: string;
 
-    @ApiPropertyOptional()
-    @IsOptional()
-    @IsString()
-    @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
-    description_ru?: string;
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  @Transform(trimmedOrUndefined)
+  location_latin?: string;
 
-    @ApiPropertyOptional()
-    @IsOptional()
-    @IsString()
-    @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
-    location_latin?: string;
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  @Transform(trimmedOrUndefined)
+  location_cyril?: string;
 
-    @ApiPropertyOptional()
-    @IsOptional()
-    @IsString()
-    @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
-    location_cyril?: string;
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  @Transform(trimmedOrUndefined)
+  location_ru?: string;
 
-    @ApiPropertyOptional()
-    @IsOptional()
-    @IsString()
-    @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
-    location_ru?: string;
+  @ApiPropertyOptional({
+    example: '2026-08-19',
+    description: 'Tadbir sanasi (YYYY-MM-DD formatida)',
+  })
+  @IsOptional()
+  @IsDateString()
+  @Transform(dateOrUndefined)
+  event_date?: string;
 
-    @IsOptional()
-    @ApiPropertyOptional({
-        example: '2026-08-19',
-        description: 'Tadbir sanasi (YYYY-MM-DD formatida)',
-    })
-    @Transform(({ value }) => {
-        if (value === 'null' || value === 'undefined' || value === "") return undefined;
-        if (typeof value === 'string') return value.trim();
-        return value;
-    })
-    event_date?: string;
+  @ApiPropertyOptional({
+    type: 'string',
+    format: 'binary',
+    required: false,
+    description: 'Cover image for the event',
+  })
+  cover_image?: Express.Multer.File;
 
-    @ApiPropertyOptional({
-        type: 'string',
-        format: 'binary',
-        required: false,
-        description: 'Cover image for the event',
-    })
-    cover_image?: Express.Multer.File;
-
-    @ApiPropertyOptional()
-    @IsOptional()
-    @Transform(({ value }) => value === 'true' || value === true)
-    @IsBoolean()
-    is_public?: boolean;
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsBoolean()
+  @Transform(booleanOrUndefined)
+  is_public?: boolean;
 }

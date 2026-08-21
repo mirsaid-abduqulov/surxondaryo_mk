@@ -3,7 +3,7 @@ import { EventsService } from './events.service';
 import { CreateEventsDto } from './dto/create-events.dto';
 import { UpdateEventsDto } from './dto/update-events.dto';
 import { QueryEventsDto } from './dto/query-events.dto';
-import { ApiBearerAuth, ApiTags, ApiOperation, ApiConsumes } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags, ApiOperation, ApiConsumes, ApiQuery } from '@nestjs/swagger';
 import { RolesGuard } from '../common/guards/roles.guard';
 import { Roles } from '../common/decorators/roles-auth-decorator';
 import { UserRole } from '../core/database/generated';
@@ -15,11 +15,11 @@ import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
 @ApiTags('Events(Tadbirlar)')
 @Controller('events')
 export class EventsController {
-  constructor(private readonly eventsService: EventsService) {}
+  constructor(private readonly eventsService: EventsService) { }
 
   @Post()
   @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard,RolesGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
   @ApiOperation({ summary: 'Create a new events' })
   @ApiConsumes('multipart/form-data')
@@ -38,45 +38,38 @@ export class EventsController {
   @Get()
   @ApiOperation({ summary: 'Get all events (Public)' })
   findAll(@Query() query: QueryEventsDto) {
-    return this.eventsService.findAll(query);
+    return this.eventsService.findAll(query, true);
   }
 
-  @Get(':id')
-  @ApiOperation({ summary: 'Get events by id (Public)' })
-  findOne(@Param('id') id: string, @Query('admin') admin?: string) {
-    return this.eventsService.findOne(id, admin === 'true');
-  }
 
   @Get('admin')
   @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard,RolesGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
   @ApiOperation({ summary: 'Get all events' })
-  findAll_admin(@Query() query: QueryEventsDto, @Req() req: any) {
-     const role = req.user.role;
-        if (![UserRole.ADMIN, UserRole.SUPER_ADMIN].includes(role)) {
-          throw new ForbiddenException('You are not allowed to access this resource');
-        }
-    return this.eventsService.findAll(query);
+  @ApiQuery({ name: 'is_public', required: false, type: Boolean })
+  findAll_admin(@Query() query: QueryEventsDto, @Query() is_public?: boolean) {
+    return this.eventsService.findAll(query, is_public);
   }
 
   @Get('admin/:id')
   @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard,RolesGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
   @ApiOperation({ summary: 'Get events by id' })
-  findOne_admin(@Param('id') id: string, @Req() req: any) {
-    if (req.user.role !== UserRole.ADMIN && req.user.role !== UserRole.SUPER_ADMIN) {
-      throw new ForbiddenException('You are not authorized to perform this action');
-    }
+  findOne_admin(@Param('id') id: string) {
     return this.eventsService.findOne(id);
   }
 
-  
+  @Get(':id')
+  @ApiOperation({ summary: 'Get events by id (Public)' })
+  findOne(@Param('id') id: string) {
+    return this.eventsService.findOne(id, true);
+  }
 
   @Patch(':id')
   @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard,RolesGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
   @ApiOperation({ summary: 'Update a events' })
   @ApiConsumes('multipart/form-data')
@@ -94,7 +87,7 @@ export class EventsController {
 
   @Delete(':id')
   @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard,RolesGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
   @ApiOperation({ summary: 'Delete a events (Admin only)' })
   remove(@Param('id') id: string) {

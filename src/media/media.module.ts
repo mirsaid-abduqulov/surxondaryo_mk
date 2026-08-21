@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { MediaAlbumsService } from './media-albums.service';
-import { MediaAlbumsController } from './media-albums.controller';
+import { MediaService } from './media-albums.service';
+import { MediaController } from './media-albums.controller';
 
 @Module({
-  controllers: [MediaAlbumsController],
-  providers: [MediaAlbumsService],
+  controllers: [MediaController],
+  providers: [MediaService],
 })
 export class MediaModule {}

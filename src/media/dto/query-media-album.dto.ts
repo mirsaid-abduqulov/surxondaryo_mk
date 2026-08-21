@@ -3,6 +3,7 @@ import { ApiPropertyOptional } from '@nestjs/swagger';
 import { IsOptional, IsEnum, IsBoolean } from 'class-validator';
 import { MediaType } from '../../core/database/generated';
 import { Transform } from 'class-transformer';
+import { booleanOrUndefined } from 'src/common/transformers/boolean-transformer';
 
 export class QueryMediaAlbumDto extends BaseQueryDto {
   @ApiPropertyOptional({ enum: MediaType })
@@ -12,7 +13,7 @@ export class QueryMediaAlbumDto extends BaseQueryDto {
 
   @ApiPropertyOptional()
   @IsOptional()
-  @Transform(({ value }) => value === 'true' || value === true)
+  @Transform(booleanOrUndefined)
   @IsBoolean()
   is_public?: boolean;
 }

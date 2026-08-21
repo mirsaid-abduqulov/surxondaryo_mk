@@ -7,38 +7,38 @@ export class CreateNewsDto {
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(({ value }) => typeof value === 'string'&& value.trim()!='' ? value.trim() : null)
   title_latin: string;
 
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(({ value }) => typeof value === 'string'&& value.trim()!='' ? value.trim() : null)
   title_cyril: string;
 
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(({ value }) => typeof value === 'string'&& value.trim()!='' ? value.trim() : null)
   title_ru: string;
 
   
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(({ value }) => typeof value === 'string'&& value.trim()!='' ? value.trim() : null)
   content_latin: string;
 
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(({ value }) => typeof value === 'string'&& value.trim()!='' ? value.trim() : null)
   content_cyril: string;
 
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(({ value }) => typeof value === 'string'&& value.trim()!='' ? value.trim() : null)
   content_ru: string;
 
   @ApiPropertyOptional({ type: 'string', format: 'binary' })
