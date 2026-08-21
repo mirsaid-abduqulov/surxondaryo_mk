@@ -119,7 +119,7 @@ export class NewsController {
 
   @Get()
   @ApiOperation({ summary: 'Get all news (Public)' })
-  findAll(@Query() query: QueryNewsDto, @Req() req: any) {
+  findAll(@Query() query: QueryNewsDto) {
     return this.newsService.findAll(query,true);
   }
 
@@ -128,11 +128,7 @@ export class NewsController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
   @ApiOperation({ summary: 'Get all news (Admin)' })
-  findAllAdmin(@Query() query: QueryNewsDto, @Req() req: any, @Query() is_public?: boolean) {
-    const role = req.user.role;
-    if (![UserRole.ADMIN, UserRole.SUPER_ADMIN].includes(role)) {
-      throw new ForbiddenException('Siz ushbu resursdan foydalanishga ruxsat berilmadi');
-    }
+  findAllAdmin(@Query() query: QueryNewsDto, @Query() is_public?: boolean) {
     return this.newsService.findAll(query, is_public);
   }
 
@@ -147,11 +143,7 @@ export class NewsController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
   @ApiOperation({ summary: 'Get news by id (Admin)' })
-  findOneAdmin(@Param('id') id: string, @Req() req: any) {
-    const role = req.user.role;
-    if (![UserRole.ADMIN, UserRole.SUPER_ADMIN].includes(role)) {
-      throw new ForbiddenException('Siz ushbu resursdan foydalanishga ruxsat berilmadi');
-    }
+  findOneAdmin(@Param('id') id: string) {
     return this.newsService.findOne(id);
   }
 

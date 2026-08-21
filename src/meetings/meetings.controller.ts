@@ -17,8 +17,8 @@ export class MeetingsController {
   @Post()
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN, UserRole.EDITOR)
-  @ApiOperation({ summary: 'Create a meeting (Admin/Editor)' })
+  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
+  @ApiOperation({ summary: 'Create a meeting (Admin)' })
   create(@Body() dto: CreateMeetingDto) {
     return this.meetingsService.create(dto);
   }
@@ -38,8 +38,8 @@ export class MeetingsController {
   @Patch(':id')
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN, UserRole.EDITOR)
-  @ApiOperation({ summary: 'Update a meeting (Admin/Editor)' })
+  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
+  @ApiOperation({ summary: 'Update a meeting (Admin)' })
   update(@Param('id') id: string, @Body() dto: UpdateMeetingDto) {
     return this.meetingsService.update(id, dto);
   }

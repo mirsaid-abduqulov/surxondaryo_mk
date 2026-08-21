@@ -6,12 +6,14 @@ import { UpdateStaffMemberDto } from './dto/update-staff-member.dto';
 import { QueryStaffMemberDto } from './dto/query-staff-member.dto';
 import { buildPaginationParams, buildPaginatedResponse } from '../common/helpers/pagination.helper';
 import { normalizeName } from '../common/helpers/normalize-name.helper';
+import { ClassScheduleService } from '../class-schedule/class-schedule.service';
 
 @Injectable()
 export class StaffService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly storageService: StorageService,
+    private readonly classScheduleService: ClassScheduleService,
   ) {}
 
   async create(
@@ -143,11 +145,18 @@ export class StaffService {
     if (updateDto.order !== undefined) data.order = updateDto.order;
     if (updateDto.is_active !== undefined) data.is_active = updateDto.is_active;
 
-    return this.prisma.staffMember.update({
+    const updatedStaff = await this.prisma.staffMember.update({
       where: { id },
       data,
       include: { creator: { select: { id: true, full_name: true } } },
     });
+
+    // Agar o'qituvchi ismi o'zgargan bo'lsa, dars jadvalini sinxronlash
+    if (updateDto.full_name_latin !== undefined) {
+      this.classScheduleService.syncTeacherNamesForActiveSchedules(id, updatedStaff.full_name_latin).catch(() => {});
+    }
+
+    return updatedStaff;
   }
 
   async remove(id: string) {

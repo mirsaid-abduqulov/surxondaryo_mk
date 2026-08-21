@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards } f
 import { RequiredDocumentsService } from './required-documents.service';
 import { CreateRequiredDocumentDto } from './dto/create-required-document.dto';
 import { UpdateRequiredDocumentDto } from './dto/update-required-document.dto';
-import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiBearerAuth, ApiQuery } from '@nestjs/swagger';
 import { RolesGuard } from '../common/guards/roles.guard';
 import { Roles } from '../common/decorators/roles-auth-decorator';
 import { UserRole } from '../core/database/generated';
@@ -12,13 +12,13 @@ import { BaseQueryDto } from '../common/dto/base-query.dto';
 @ApiTags('Required Documents (Qabul Hujjatlari)')
 @Controller('required-documents')
 export class RequiredDocumentsController {
-  constructor(private readonly requiredDocumentsService: RequiredDocumentsService) {}
+  constructor(private readonly requiredDocumentsService: RequiredDocumentsService) { }
 
   @Post()
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN, UserRole.EDITOR)
-  @ApiOperation({ summary: 'Create a required document entry (Admin/Editor)' })
+  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
+  @ApiOperation({ summary: 'Create a required document entry (Admin)' })
   create(@Body() dto: CreateRequiredDocumentDto) {
     return this.requiredDocumentsService.create(dto);
   }
@@ -29,26 +29,41 @@ export class RequiredDocumentsController {
     return this.requiredDocumentsService.findAll(query);
   }
 
-  @Get('admin')
-  @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
-  @ApiOperation({ summary: 'Get all required documents including inactive (Admin only)' })
-  findAllAdmin(@Query() query: BaseQueryDto) {
-    return this.requiredDocumentsService.findAllAdmin(query);
-  }
+@Get('admin')
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard, RolesGuard)
+@Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
+@ApiQuery({ name: 'is_active', required: false, type: Boolean })
+@ApiOperation({ summary: 'Get all required documents including inactive (Admin only)' })
+findAllAdmin(
+  @Query() query: BaseQueryDto,
+  @Query('is_active') is_active?: string,
+) {
+  const isActiveBool =
+    is_active === 'true' ? true : is_active === 'false' ? false : undefined;
+  return this.requiredDocumentsService.findAll(query, isActiveBool);
+}
 
   @Get(':id')
   @ApiOperation({ summary: 'Get a required document by id (Public)' })
   findOne(@Param('id') id: string) {
+    return this.requiredDocumentsService.findOne(id,true);
+  }
+
+  @Get('admin/:id')
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
+  @ApiOperation({ summary: 'Get a required document by id (Admin only)' })
+  findOneAdmin(@Param('id') id: string) {
     return this.requiredDocumentsService.findOne(id);
   }
 
   @Patch(':id')
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN, UserRole.EDITOR)
-  @ApiOperation({ summary: 'Update a required document (Admin/Editor)' })
+  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
+  @ApiOperation({ summary: 'Update a required document (Admin)' })
   update(@Param('id') id: string, @Body() dto: UpdateRequiredDocumentDto) {
     return this.requiredDocumentsService.update(id, dto);
   }

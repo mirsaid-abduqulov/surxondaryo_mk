@@ -12,7 +12,7 @@ export class NewspapersService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly storageService: StorageService,
-  ) {}
+  ) { }
 
   async create(
     creatorId: string,
@@ -21,6 +21,8 @@ export class NewspapersService {
     coverImage?: Express.Multer.File,
   ) {
     if (!file) throw new BadRequestException('Gazeta PDF fayli majburiy');
+    const existUser = await this.prisma.user.findUnique({ where: { id: creatorId } });
+    if (!existUser) throw new NotFoundException('Yaratuvchi topilmadi');
 
     const fileInfo = await this.storageService.saveFile(file, 'newspapers');
 
@@ -45,10 +47,13 @@ export class NewspapersService {
     });
   }
 
-  async findAll(query: BaseQueryDto) {
+  async findAll(query: BaseQueryDto, is_public?: boolean) {
     const { skip, take, page, limit } = buildPaginationParams(query);
 
     const where: any = {};
+    if (is_public !== undefined) {
+      where.is_public = is_public;
+    }
     if (query.search) {
       where.OR = [
         { title_latin: { contains: query.search, mode: 'insensitive' } },
@@ -71,9 +76,13 @@ export class NewspapersService {
     return buildPaginatedResponse(data, total, page, limit);
   }
 
-  async findOne(id: string) {
+  async findOne(id: string, is_public?: boolean) {
+    const where: any = { id };
+    if (is_public !== undefined) {
+      where.is_public = is_public;
+    }
     const item = await this.prisma.newspaper.findUnique({
-      where: { id },
+      where,
       include: { creator: { select: { id: true, full_name: true } } },
     });
     if (!item) throw new NotFoundException('Gazeta topilmadi');
@@ -107,6 +116,7 @@ export class NewspapersService {
     if (dto.title_cyril !== undefined) data.title_cyril = normalizeName(dto.title_cyril);
     if (dto.title_ru !== undefined) data.title_ru = normalizeName(dto.title_ru);
     if (dto.issue_number !== undefined) data.issue_number = dto.issue_number;
+    if (dto.is_public !== undefined) data.is_public = dto.is_public;
 
     return this.prisma.newspaper.update({
       where: { id },

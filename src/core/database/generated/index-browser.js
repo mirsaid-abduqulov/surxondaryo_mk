@@ -188,39 +188,11 @@ exports.Prisma.ClubScalarFieldEnum = {
 exports.Prisma.ClassScheduleScalarFieldEnum = {
   id: 'id',
   grade: 'grade',
-  day: 'day',
-  lesson_number: 'lesson_number',
-  subject_latin: 'subject_latin',
-  subject_cyril: 'subject_cyril',
-  subject_ru: 'subject_ru',
-  teacher_name: 'teacher_name',
-  room: 'room',
-  start_time: 'start_time',
-  end_time: 'end_time',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.BellScheduleScalarFieldEnum = {
-  id: 'id',
-  lesson_number: 'lesson_number',
-  start_time: 'start_time',
-  end_time: 'end_time',
-  break_minutes: 'break_minutes',
-  shift: 'shift',
-  is_active: 'is_active'
-};
-
-exports.Prisma.HolidayScheduleScalarFieldEnum = {
-  id: 'id',
-  title_latin: 'title_latin',
-  title_cyril: 'title_cyril',
-  title_ru: 'title_ru',
   start_date: 'start_date',
   end_date: 'end_date',
-  description_latin: 'description_latin',
-  description_cyril: 'description_cyril',
-  description_ru: 'description_ru',
+  is_active: 'is_active',
+  schedule: 'schedule',
+  creator_id: 'creator_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -399,6 +371,7 @@ exports.Prisma.NewspaperScalarFieldEnum = {
   file_url: 'file_url',
   file_size: 'file_size',
   published_at: 'published_at',
+  is_public: 'is_public',
   creator_id: 'creator_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
@@ -491,8 +464,7 @@ exports.Prisma.JsonNullValueFilter = {
 };
 exports.UserRole = exports.$Enums.UserRole = {
   SUPER_ADMIN: 'SUPER_ADMIN',
-  ADMIN: 'ADMIN',
-  EDITOR: 'EDITOR'
+  ADMIN: 'ADMIN'
 };
 
 exports.StaffCategory = exports.$Enums.StaffCategory = {
@@ -511,15 +483,6 @@ exports.ClubCategory = exports.$Enums.ClubCategory = {
   TECHNOLOGY: 'TECHNOLOGY',
   MUSIC: 'MUSIC',
   OTHER: 'OTHER'
-};
-
-exports.WeekDay = exports.$Enums.WeekDay = {
-  MONDAY: 'MONDAY',
-  TUESDAY: 'TUESDAY',
-  WEDNESDAY: 'WEDNESDAY',
-  THURSDAY: 'THURSDAY',
-  FRIDAY: 'FRIDAY',
-  SATURDAY: 'SATURDAY'
 };
 
 exports.ApplicationStatus = exports.$Enums.ApplicationStatus = {
@@ -572,8 +535,6 @@ exports.Prisma.ModelName = {
   StaffMember: 'StaffMember',
   Club: 'Club',
   ClassSchedule: 'ClassSchedule',
-  BellSchedule: 'BellSchedule',
-  HolidaySchedule: 'HolidaySchedule',
   CanteenMenu: 'CanteenMenu',
   ParentTeacherMeeting: 'ParentTeacherMeeting',
   AdmissionApplication: 'AdmissionApplication',

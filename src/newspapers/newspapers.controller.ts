@@ -19,8 +19,8 @@ export class NewspapersController {
   @Post()
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN, UserRole.EDITOR)
-  @ApiOperation({ summary: 'Create a newspaper issue (Admin/Editor)' })
+  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
+  @ApiOperation({ summary: 'Create a newspaper issue (Admin)' })
   @ApiConsumes('multipart/form-data')
   @UseInterceptors(FileFieldsInterceptor([
     { name: 'file', maxCount: 1 },
@@ -45,17 +45,35 @@ export class NewspapersController {
     return this.newspapersService.findAll(query);
   }
 
+  @Get('admin')
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
+  @ApiOperation({ summary: 'Get all newspaper issues (Admin only)' })
+  findAllAdmin(@Query() query: BaseQueryDto,@Query() is_public:boolean) {
+    return this.newspapersService.findAll(query,is_public);
+  }
+
   @Get(':id')
   @ApiOperation({ summary: 'Get a newspaper issue by id (Public)' })
   findOne(@Param('id') id: string) {
-    return this.newspapersService.findOne(id);
+    return this.newspapersService.findOne(id,true);
+  }
+  
+  @Get(':id/admin')
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
+  @ApiOperation({ summary: 'Get a newspaper issue by id (Admin only)' })
+  findOneAdmin(@Param('id') id: string,@Query() is_public:boolean) {
+    return this.newspapersService.findOne(id,is_public);
   }
 
   @Patch(':id')
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN, UserRole.EDITOR)
-  @ApiOperation({ summary: 'Update a newspaper issue (Admin/Editor)' })
+  @Roles(UserRole.ADMIN, UserRole.SUPER_ADMIN)
+  @ApiOperation({ summary: 'Update a newspaper issue (Admin)' })
   @ApiConsumes('multipart/form-data')
   @UseInterceptors(FileFieldsInterceptor([
     { name: 'file', maxCount: 1 },
