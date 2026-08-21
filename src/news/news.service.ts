@@ -16,6 +16,8 @@ export class NewsService {
   ) { }
 
   async create(creatorId: string, createDto: CreateNewsDto, file?: Express.Multer.File) {
+    const existUser = await this.prisma.user.findUnique({ where: { id: creatorId } });
+    if (!existUser) throw new NotFoundException('Yaratuvchi ID topilmadi');
     let fileInfo: any = null;
     if (file) {
       fileInfo = await this.storageService.saveFile(file, 'news');
@@ -107,7 +109,9 @@ export class NewsService {
     if (updateDto.content_latin && updateDto.content_latin?.trim()?.length > 0) data.content_latin = updateDto.content_latin;
     if (updateDto.content_cyril && updateDto.content_cyril?.trim()?.length > 0) data.content_cyril = updateDto.content_cyril;
     if (updateDto.content_ru && updateDto.content_ru?.trim()?.length > 0) data.content_ru = updateDto.content_ru;
-    if (updateDto.is_public !== undefined) data.is_public = updateDto.is_public;
+    if(updateDto.is_public===true || updateDto.is_public===false){
+      data.is_public = updateDto.is_public;
+    }
 
     return this.prisma.news.update({
       where: { id },

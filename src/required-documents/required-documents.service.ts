@@ -4,6 +4,7 @@ import { CreateRequiredDocumentDto } from './dto/create-required-document.dto';
 import { UpdateRequiredDocumentDto } from './dto/update-required-document.dto';
 import { buildPaginationParams, buildPaginatedResponse } from '../common/helpers/pagination.helper';
 import { BaseQueryDto } from '../common/dto/base-query.dto';
+import { buildMultilangSearchWhere } from 'src/common/helpers/multilang-search.helper';
 
 @Injectable()
 export class RequiredDocumentsService {
@@ -13,41 +14,17 @@ export class RequiredDocumentsService {
     return this.prisma.requiredDocument.create({ data: { ...dto } });
   }
 
-  async findAll(query: BaseQueryDto) {
+  async findAll(query: BaseQueryDto,is_active?:boolean) {
     const { skip, take, page, limit } = buildPaginationParams(query);
-
-    const where: any = { is_active: true };
-    if (query.search) {
-      where.OR = [
-        { title_latin: { contains: query.search, mode: 'insensitive' } },
-        { title_cyril: { contains: query.search, mode: 'insensitive' } },
-        { title_ru: { contains: query.search, mode: 'insensitive' } },
-      ];
-    }
-
-    const [data, total] = await Promise.all([
-      this.prisma.requiredDocument.findMany({
-        where,
-        skip,
-        take,
-        orderBy: { order: 'asc' },
-      }),
-      this.prisma.requiredDocument.count({ where }),
-    ]);
-
-    return buildPaginatedResponse(data, total, page, limit);
-  }
-
-  async findAllAdmin(query: BaseQueryDto) {
-    const { skip, take, page, limit } = buildPaginationParams(query);
-
     const where: any = {};
+     if (typeof is_active === 'boolean') {
+    where.is_active = is_active;
+  }
+
+
     if (query.search) {
-      where.OR = [
-        { title_latin: { contains: query.search, mode: 'insensitive' } },
-        { title_cyril: { contains: query.search, mode: 'insensitive' } },
-        { title_ru: { contains: query.search, mode: 'insensitive' } },
-      ];
+      const titleFilter=buildMultilangSearchWhere(query.search,'title')
+       where.OR=[...(titleFilter?.OR || [])]
     }
 
     const [data, total] = await Promise.all([
@@ -63,8 +40,12 @@ export class RequiredDocumentsService {
     return buildPaginatedResponse(data, total, page, limit);
   }
 
-  async findOne(id: string) {
-    const item = await this.prisma.requiredDocument.findUnique({ where: { id } });
+  async findOne(id: string,is_active?:boolean) {
+    const where: any = {id};
+    if (is_active!=undefined){
+      where.is_active = is_active;
+    }
+    const item = await this.prisma.requiredDocument.findUnique({ where });
     if (!item) throw new NotFoundException('Hujjat topilmadi');
     return item;
   }

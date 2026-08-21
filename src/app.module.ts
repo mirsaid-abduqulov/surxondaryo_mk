@@ -18,13 +18,14 @@ import { MediaModule } from './media/media.module';
 import { ContactModule } from './contact/contact.module';
 import { StaffModule } from './staff/staff.module';
 import { ClubsModule } from './clubs/clubs.module';
-import { SchedulesModule } from './schedules/schedules.module';
+
 import { CanteenMenuModule } from './canteen-menu/canteen-menu.module';
 import { MeetingsModule } from './meetings/meetings.module';
 import { AdmissionModule } from './admission/admission.module';
 import { RequiredDocumentsModule } from './required-documents/required-documents.module';
 import { AppealsModule } from './appeals/appeals.module';
 import { NewspapersModule } from './newspapers/newspapers.module';
+import { ClassScheduleModule } from './class-schedule/class-schedule.module';
 
 @Module({
   imports: [
@@ -57,13 +58,14 @@ import { NewspapersModule } from './newspapers/newspapers.module';
     MediaModule,
     ContactModule,
     ClubsModule,
-    SchedulesModule,
+
     CanteenMenuModule,
     MeetingsModule,
     AdmissionModule,
     RequiredDocumentsModule,
     AppealsModule,
     NewspapersModule,
+    ClassScheduleModule,
   ],
   controllers: [],
   providers: [],

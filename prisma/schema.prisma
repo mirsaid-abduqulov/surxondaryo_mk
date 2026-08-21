@@ -14,7 +14,6 @@ datasource db {
 enum UserRole {
   SUPER_ADMIN
   ADMIN
-  EDITOR
 }
 
 model User {
@@ -25,7 +24,7 @@ model User {
   hashed_password      String
   hashed_refresh_token String?
   refresh_token_jti    String?
-  role                 UserRole  @default(EDITOR)
+  role                 UserRole  @default(ADMIN)
   is_login             Boolean   @default(true)
   created_at            DateTime  @default(now())
   updated_at            DateTime  @updatedAt
@@ -38,6 +37,7 @@ model User {
   staff_members StaffMember[]
   clubs         Club[]
   newspapers    Newspaper[]
+  class_schedules ClassSchedule[]
 }
 
 // ==========================================================
@@ -149,55 +149,25 @@ enum WeekDay {
 }
 
 model ClassSchedule {
-  id             String   @id @default(uuid())
-  grade          String   // masalan "5-A", "9-B"
-  day            WeekDay
-  lesson_number  Int
+  id           String    @id @default(uuid())
+  grade        String    // "5-A", "9-B"
 
-  subject_latin  String
-  subject_cyril  String
-  subject_ru     String
+  start_date   DateTime?
+  end_date     DateTime?
+  is_active    Boolean   @default(true)
 
-  teacher_name   String?
-  room           String?
-  start_time     String   // "08:30"
-  end_time       String   // "09:15"
+  schedule     Json?     // { "monday": [ {...LessonSlot} ], "tuesday": [...], ... }
 
-  created_at     DateTime @default(now())
-  updated_at     DateTime @updatedAt
+  creator_id   String
+  creator      User      @relation(fields: [creator_id], references: [id])
 
-  @@index([grade, day])
+  created_at   DateTime  @default(now())
+  updated_at   DateTime  @updatedAt
+
+  @@index([grade, is_active])
 }
 
-model BellSchedule {
-  id             String   @id @default(uuid())
-  lesson_number  Int
-  start_time     String
-  end_time       String
-  break_minutes  Int?
-  shift          Int      @default(1)   // 1-smena / 2-smena
-  is_active      Boolean  @default(true)
 
-  @@unique([lesson_number, shift])
-}
-
-// ==========================================================
-// BAYRAM / TA'TIL JADVALI
-// ==========================================================
-
-model HolidaySchedule {
-  id             String   @id @default(uuid())
-  title_latin    String
-  title_cyril    String
-  title_ru       String
-  start_date     DateTime
-  end_date       DateTime
-  description_latin String?
-  description_cyril String?
-  description_ru    String?
-  created_at     DateTime @default(now())
-  updated_at     DateTime @updatedAt
-}
 
 // ==========================================================
 // OSHXONA MENYUSI
@@ -470,6 +440,7 @@ model Newspaper {
   file_url      String
   file_size     Int?
   published_at  DateTime @default(now())
+  is_public     Boolean  @default(true)
 
   creator_id    String
   creator       User     @relation(fields: [creator_id], references: [id])

@@ -34,16 +34,6 @@ export type Club = $Result.DefaultSelection<Prisma.$ClubPayload>
  */
 export type ClassSchedule = $Result.DefaultSelection<Prisma.$ClassSchedulePayload>
 /**
- * Model BellSchedule
- * 
- */
-export type BellSchedule = $Result.DefaultSelection<Prisma.$BellSchedulePayload>
-/**
- * Model HolidaySchedule
- * 
- */
-export type HolidaySchedule = $Result.DefaultSelection<Prisma.$HolidaySchedulePayload>
-/**
  * Model CanteenMenu
  * 
  */
@@ -135,8 +125,7 @@ export type ContactMessage = $Result.DefaultSelection<Prisma.$ContactMessagePayl
 export namespace $Enums {
   export const UserRole: {
   SUPER_ADMIN: 'SUPER_ADMIN',
-  ADMIN: 'ADMIN',
-  EDITOR: 'EDITOR'
+  ADMIN: 'ADMIN'
 };
 
 export type UserRole = (typeof UserRole)[keyof typeof UserRole]
@@ -442,26 +431,6 @@ export class PrismaClient<
     * ```
     */
   get classSchedule(): Prisma.ClassScheduleDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.bellSchedule`: Exposes CRUD operations for the **BellSchedule** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more BellSchedules
-    * const bellSchedules = await prisma.bellSchedule.findMany()
-    * ```
-    */
-  get bellSchedule(): Prisma.BellScheduleDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.holidaySchedule`: Exposes CRUD operations for the **HolidaySchedule** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more HolidaySchedules
-    * const holidaySchedules = await prisma.holidaySchedule.findMany()
-    * ```
-    */
-  get holidaySchedule(): Prisma.HolidayScheduleDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.canteenMenu`: Exposes CRUD operations for the **CanteenMenu** model.
@@ -1083,8 +1052,6 @@ export namespace Prisma {
     StaffMember: 'StaffMember',
     Club: 'Club',
     ClassSchedule: 'ClassSchedule',
-    BellSchedule: 'BellSchedule',
-    HolidaySchedule: 'HolidaySchedule',
     CanteenMenu: 'CanteenMenu',
     ParentTeacherMeeting: 'ParentTeacherMeeting',
     AdmissionApplication: 'AdmissionApplication',
@@ -1117,7 +1084,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "staffMember" | "club" | "classSchedule" | "bellSchedule" | "holidaySchedule" | "canteenMenu" | "parentTeacherMeeting" | "admissionApplication" | "requiredDocument" | "directorAppeal" | "news" | "event" | "announcement" | "document" | "mediaAlbum" | "mediaItem" | "newspaper" | "page" | "banner" | "usefulLink" | "contactInfo" | "contactMessage"
+      modelProps: "user" | "staffMember" | "club" | "classSchedule" | "canteenMenu" | "parentTeacherMeeting" | "admissionApplication" | "requiredDocument" | "directorAppeal" | "news" | "event" | "announcement" | "document" | "mediaAlbum" | "mediaItem" | "newspaper" | "page" | "banner" | "usefulLink" | "contactInfo" | "contactMessage"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1414,154 +1381,6 @@ export namespace Prisma {
           count: {
             args: Prisma.ClassScheduleCountArgs<ExtArgs>
             result: $Utils.Optional<ClassScheduleCountAggregateOutputType> | number
-          }
-        }
-      }
-      BellSchedule: {
-        payload: Prisma.$BellSchedulePayload<ExtArgs>
-        fields: Prisma.BellScheduleFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.BellScheduleFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BellSchedulePayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.BellScheduleFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BellSchedulePayload>
-          }
-          findFirst: {
-            args: Prisma.BellScheduleFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BellSchedulePayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.BellScheduleFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BellSchedulePayload>
-          }
-          findMany: {
-            args: Prisma.BellScheduleFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BellSchedulePayload>[]
-          }
-          create: {
-            args: Prisma.BellScheduleCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BellSchedulePayload>
-          }
-          createMany: {
-            args: Prisma.BellScheduleCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.BellScheduleCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BellSchedulePayload>[]
-          }
-          delete: {
-            args: Prisma.BellScheduleDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BellSchedulePayload>
-          }
-          update: {
-            args: Prisma.BellScheduleUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BellSchedulePayload>
-          }
-          deleteMany: {
-            args: Prisma.BellScheduleDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.BellScheduleUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.BellScheduleUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BellSchedulePayload>[]
-          }
-          upsert: {
-            args: Prisma.BellScheduleUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BellSchedulePayload>
-          }
-          aggregate: {
-            args: Prisma.BellScheduleAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateBellSchedule>
-          }
-          groupBy: {
-            args: Prisma.BellScheduleGroupByArgs<ExtArgs>
-            result: $Utils.Optional<BellScheduleGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.BellScheduleCountArgs<ExtArgs>
-            result: $Utils.Optional<BellScheduleCountAggregateOutputType> | number
-          }
-        }
-      }
-      HolidaySchedule: {
-        payload: Prisma.$HolidaySchedulePayload<ExtArgs>
-        fields: Prisma.HolidayScheduleFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.HolidayScheduleFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HolidaySchedulePayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.HolidayScheduleFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HolidaySchedulePayload>
-          }
-          findFirst: {
-            args: Prisma.HolidayScheduleFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HolidaySchedulePayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.HolidayScheduleFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HolidaySchedulePayload>
-          }
-          findMany: {
-            args: Prisma.HolidayScheduleFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HolidaySchedulePayload>[]
-          }
-          create: {
-            args: Prisma.HolidayScheduleCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HolidaySchedulePayload>
-          }
-          createMany: {
-            args: Prisma.HolidayScheduleCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.HolidayScheduleCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HolidaySchedulePayload>[]
-          }
-          delete: {
-            args: Prisma.HolidayScheduleDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HolidaySchedulePayload>
-          }
-          update: {
-            args: Prisma.HolidayScheduleUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HolidaySchedulePayload>
-          }
-          deleteMany: {
-            args: Prisma.HolidayScheduleDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.HolidayScheduleUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.HolidayScheduleUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HolidaySchedulePayload>[]
-          }
-          upsert: {
-            args: Prisma.HolidayScheduleUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HolidaySchedulePayload>
-          }
-          aggregate: {
-            args: Prisma.HolidayScheduleAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateHolidaySchedule>
-          }
-          groupBy: {
-            args: Prisma.HolidayScheduleGroupByArgs<ExtArgs>
-            result: $Utils.Optional<HolidayScheduleGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.HolidayScheduleCountArgs<ExtArgs>
-            result: $Utils.Optional<HolidayScheduleCountAggregateOutputType> | number
           }
         }
       }
@@ -2950,8 +2769,6 @@ export namespace Prisma {
     staffMember?: StaffMemberOmit
     club?: ClubOmit
     classSchedule?: ClassScheduleOmit
-    bellSchedule?: BellScheduleOmit
-    holidaySchedule?: HolidayScheduleOmit
     canteenMenu?: CanteenMenuOmit
     parentTeacherMeeting?: ParentTeacherMeetingOmit
     admissionApplication?: AdmissionApplicationOmit
@@ -3057,6 +2874,7 @@ export namespace Prisma {
     staff_members: number
     clubs: number
     newspapers: number
+    class_schedules: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3068,6 +2886,7 @@ export namespace Prisma {
     staff_members?: boolean | UserCountOutputTypeCountStaff_membersArgs
     clubs?: boolean | UserCountOutputTypeCountClubsArgs
     newspapers?: boolean | UserCountOutputTypeCountNewspapersArgs
+    class_schedules?: boolean | UserCountOutputTypeCountClass_schedulesArgs
   }
 
   // Custom InputTypes
@@ -3135,6 +2954,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountNewspapersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: NewspaperWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountClass_schedulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ClassScheduleWhereInput
   }
 
 
@@ -3393,6 +3219,7 @@ export namespace Prisma {
     staff_members?: boolean | User$staff_membersArgs<ExtArgs>
     clubs?: boolean | User$clubsArgs<ExtArgs>
     newspapers?: boolean | User$newspapersArgs<ExtArgs>
+    class_schedules?: boolean | User$class_schedulesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3448,6 +3275,7 @@ export namespace Prisma {
     staff_members?: boolean | User$staff_membersArgs<ExtArgs>
     clubs?: boolean | User$clubsArgs<ExtArgs>
     newspapers?: boolean | User$newspapersArgs<ExtArgs>
+    class_schedules?: boolean | User$class_schedulesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3464,6 +3292,7 @@ export namespace Prisma {
       staff_members: Prisma.$StaffMemberPayload<ExtArgs>[]
       clubs: Prisma.$ClubPayload<ExtArgs>[]
       newspapers: Prisma.$NewspaperPayload<ExtArgs>[]
+      class_schedules: Prisma.$ClassSchedulePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3879,6 +3708,7 @@ export namespace Prisma {
     staff_members<T extends User$staff_membersArgs<ExtArgs> = {}>(args?: Subset<T, User$staff_membersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StaffMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     clubs<T extends User$clubsArgs<ExtArgs> = {}>(args?: Subset<T, User$clubsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClubPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     newspapers<T extends User$newspapersArgs<ExtArgs> = {}>(args?: Subset<T, User$newspapersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NewspaperPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    class_schedules<T extends User$class_schedulesArgs<ExtArgs> = {}>(args?: Subset<T, User$class_schedulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4501,6 +4331,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: NewspaperScalarFieldEnum | NewspaperScalarFieldEnum[]
+  }
+
+  /**
+   * User.class_schedules
+   */
+  export type User$class_schedulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClassSchedule
+     */
+    select?: ClassScheduleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClassSchedule
+     */
+    omit?: ClassScheduleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClassScheduleInclude<ExtArgs> | null
+    where?: ClassScheduleWhereInput
+    orderBy?: ClassScheduleOrderByWithRelationInput | ClassScheduleOrderByWithRelationInput[]
+    cursor?: ClassScheduleWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ClassScheduleScalarFieldEnum | ClassScheduleScalarFieldEnum[]
   }
 
   /**
@@ -7139,32 +6993,17 @@ export namespace Prisma {
 
   export type AggregateClassSchedule = {
     _count: ClassScheduleCountAggregateOutputType | null
-    _avg: ClassScheduleAvgAggregateOutputType | null
-    _sum: ClassScheduleSumAggregateOutputType | null
     _min: ClassScheduleMinAggregateOutputType | null
     _max: ClassScheduleMaxAggregateOutputType | null
-  }
-
-  export type ClassScheduleAvgAggregateOutputType = {
-    lesson_number: number | null
-  }
-
-  export type ClassScheduleSumAggregateOutputType = {
-    lesson_number: number | null
   }
 
   export type ClassScheduleMinAggregateOutputType = {
     id: string | null
     grade: string | null
-    day: $Enums.WeekDay | null
-    lesson_number: number | null
-    subject_latin: string | null
-    subject_cyril: string | null
-    subject_ru: string | null
-    teacher_name: string | null
-    room: string | null
-    start_time: string | null
-    end_time: string | null
+    start_date: Date | null
+    end_date: Date | null
+    is_active: boolean | null
+    creator_id: string | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -7172,15 +7011,10 @@ export namespace Prisma {
   export type ClassScheduleMaxAggregateOutputType = {
     id: string | null
     grade: string | null
-    day: $Enums.WeekDay | null
-    lesson_number: number | null
-    subject_latin: string | null
-    subject_cyril: string | null
-    subject_ru: string | null
-    teacher_name: string | null
-    room: string | null
-    start_time: string | null
-    end_time: string | null
+    start_date: Date | null
+    end_date: Date | null
+    is_active: boolean | null
+    creator_id: string | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -7188,41 +7022,24 @@ export namespace Prisma {
   export type ClassScheduleCountAggregateOutputType = {
     id: number
     grade: number
-    day: number
-    lesson_number: number
-    subject_latin: number
-    subject_cyril: number
-    subject_ru: number
-    teacher_name: number
-    room: number
-    start_time: number
-    end_time: number
+    start_date: number
+    end_date: number
+    is_active: number
+    schedule: number
+    creator_id: number
     created_at: number
     updated_at: number
     _all: number
   }
 
 
-  export type ClassScheduleAvgAggregateInputType = {
-    lesson_number?: true
-  }
-
-  export type ClassScheduleSumAggregateInputType = {
-    lesson_number?: true
-  }
-
   export type ClassScheduleMinAggregateInputType = {
     id?: true
     grade?: true
-    day?: true
-    lesson_number?: true
-    subject_latin?: true
-    subject_cyril?: true
-    subject_ru?: true
-    teacher_name?: true
-    room?: true
-    start_time?: true
-    end_time?: true
+    start_date?: true
+    end_date?: true
+    is_active?: true
+    creator_id?: true
     created_at?: true
     updated_at?: true
   }
@@ -7230,15 +7047,10 @@ export namespace Prisma {
   export type ClassScheduleMaxAggregateInputType = {
     id?: true
     grade?: true
-    day?: true
-    lesson_number?: true
-    subject_latin?: true
-    subject_cyril?: true
-    subject_ru?: true
-    teacher_name?: true
-    room?: true
-    start_time?: true
-    end_time?: true
+    start_date?: true
+    end_date?: true
+    is_active?: true
+    creator_id?: true
     created_at?: true
     updated_at?: true
   }
@@ -7246,15 +7058,11 @@ export namespace Prisma {
   export type ClassScheduleCountAggregateInputType = {
     id?: true
     grade?: true
-    day?: true
-    lesson_number?: true
-    subject_latin?: true
-    subject_cyril?: true
-    subject_ru?: true
-    teacher_name?: true
-    room?: true
-    start_time?: true
-    end_time?: true
+    start_date?: true
+    end_date?: true
+    is_active?: true
+    schedule?: true
+    creator_id?: true
     created_at?: true
     updated_at?: true
     _all?: true
@@ -7298,18 +7106,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: ClassScheduleAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: ClassScheduleSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: ClassScheduleMinAggregateInputType
@@ -7340,8 +7136,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: ClassScheduleCountAggregateInputType | true
-    _avg?: ClassScheduleAvgAggregateInputType
-    _sum?: ClassScheduleSumAggregateInputType
     _min?: ClassScheduleMinAggregateInputType
     _max?: ClassScheduleMaxAggregateInputType
   }
@@ -7349,20 +7143,14 @@ export namespace Prisma {
   export type ClassScheduleGroupByOutputType = {
     id: string
     grade: string
-    day: $Enums.WeekDay
-    lesson_number: number
-    subject_latin: string
-    subject_cyril: string
-    subject_ru: string
-    teacher_name: string | null
-    room: string | null
-    start_time: string
-    end_time: string
+    start_date: Date | null
+    end_date: Date | null
+    is_active: boolean
+    schedule: JsonValue | null
+    creator_id: string
     created_at: Date
     updated_at: Date
     _count: ClassScheduleCountAggregateOutputType | null
-    _avg: ClassScheduleAvgAggregateOutputType | null
-    _sum: ClassScheduleSumAggregateOutputType | null
     _min: ClassScheduleMinAggregateOutputType | null
     _max: ClassScheduleMaxAggregateOutputType | null
   }
@@ -7384,84 +7172,78 @@ export namespace Prisma {
   export type ClassScheduleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     grade?: boolean
-    day?: boolean
-    lesson_number?: boolean
-    subject_latin?: boolean
-    subject_cyril?: boolean
-    subject_ru?: boolean
-    teacher_name?: boolean
-    room?: boolean
-    start_time?: boolean
-    end_time?: boolean
+    start_date?: boolean
+    end_date?: boolean
+    is_active?: boolean
+    schedule?: boolean
+    creator_id?: boolean
     created_at?: boolean
     updated_at?: boolean
+    creator?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["classSchedule"]>
 
   export type ClassScheduleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     grade?: boolean
-    day?: boolean
-    lesson_number?: boolean
-    subject_latin?: boolean
-    subject_cyril?: boolean
-    subject_ru?: boolean
-    teacher_name?: boolean
-    room?: boolean
-    start_time?: boolean
-    end_time?: boolean
+    start_date?: boolean
+    end_date?: boolean
+    is_active?: boolean
+    schedule?: boolean
+    creator_id?: boolean
     created_at?: boolean
     updated_at?: boolean
+    creator?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["classSchedule"]>
 
   export type ClassScheduleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     grade?: boolean
-    day?: boolean
-    lesson_number?: boolean
-    subject_latin?: boolean
-    subject_cyril?: boolean
-    subject_ru?: boolean
-    teacher_name?: boolean
-    room?: boolean
-    start_time?: boolean
-    end_time?: boolean
+    start_date?: boolean
+    end_date?: boolean
+    is_active?: boolean
+    schedule?: boolean
+    creator_id?: boolean
     created_at?: boolean
     updated_at?: boolean
+    creator?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["classSchedule"]>
 
   export type ClassScheduleSelectScalar = {
     id?: boolean
     grade?: boolean
-    day?: boolean
-    lesson_number?: boolean
-    subject_latin?: boolean
-    subject_cyril?: boolean
-    subject_ru?: boolean
-    teacher_name?: boolean
-    room?: boolean
-    start_time?: boolean
-    end_time?: boolean
+    start_date?: boolean
+    end_date?: boolean
+    is_active?: boolean
+    schedule?: boolean
+    creator_id?: boolean
     created_at?: boolean
     updated_at?: boolean
   }
 
-  export type ClassScheduleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "grade" | "day" | "lesson_number" | "subject_latin" | "subject_cyril" | "subject_ru" | "teacher_name" | "room" | "start_time" | "end_time" | "created_at" | "updated_at", ExtArgs["result"]["classSchedule"]>
+  export type ClassScheduleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "grade" | "start_date" | "end_date" | "is_active" | "schedule" | "creator_id" | "created_at" | "updated_at", ExtArgs["result"]["classSchedule"]>
+  export type ClassScheduleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ClassScheduleIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ClassScheduleIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }
 
   export type $ClassSchedulePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ClassSchedule"
-    objects: {}
+    objects: {
+      creator: Prisma.$UserPayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       grade: string
-      day: $Enums.WeekDay
-      lesson_number: number
-      subject_latin: string
-      subject_cyril: string
-      subject_ru: string
-      teacher_name: string | null
-      room: string | null
-      start_time: string
-      end_time: string
+      start_date: Date | null
+      end_date: Date | null
+      is_active: boolean
+      schedule: Prisma.JsonValue | null
+      creator_id: string
       created_at: Date
       updated_at: Date
     }, ExtArgs["result"]["classSchedule"]>
@@ -7858,6 +7640,7 @@ export namespace Prisma {
    */
   export interface Prisma__ClassScheduleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    creator<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7889,15 +7672,11 @@ export namespace Prisma {
   interface ClassScheduleFieldRefs {
     readonly id: FieldRef<"ClassSchedule", 'String'>
     readonly grade: FieldRef<"ClassSchedule", 'String'>
-    readonly day: FieldRef<"ClassSchedule", 'WeekDay'>
-    readonly lesson_number: FieldRef<"ClassSchedule", 'Int'>
-    readonly subject_latin: FieldRef<"ClassSchedule", 'String'>
-    readonly subject_cyril: FieldRef<"ClassSchedule", 'String'>
-    readonly subject_ru: FieldRef<"ClassSchedule", 'String'>
-    readonly teacher_name: FieldRef<"ClassSchedule", 'String'>
-    readonly room: FieldRef<"ClassSchedule", 'String'>
-    readonly start_time: FieldRef<"ClassSchedule", 'String'>
-    readonly end_time: FieldRef<"ClassSchedule", 'String'>
+    readonly start_date: FieldRef<"ClassSchedule", 'DateTime'>
+    readonly end_date: FieldRef<"ClassSchedule", 'DateTime'>
+    readonly is_active: FieldRef<"ClassSchedule", 'Boolean'>
+    readonly schedule: FieldRef<"ClassSchedule", 'Json'>
+    readonly creator_id: FieldRef<"ClassSchedule", 'String'>
     readonly created_at: FieldRef<"ClassSchedule", 'DateTime'>
     readonly updated_at: FieldRef<"ClassSchedule", 'DateTime'>
   }
@@ -7917,6 +7696,10 @@ export namespace Prisma {
      */
     omit?: ClassScheduleOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClassScheduleInclude<ExtArgs> | null
+    /**
      * Filter, which ClassSchedule to fetch.
      */
     where: ClassScheduleWhereUniqueInput
@@ -7935,6 +7718,10 @@ export namespace Prisma {
      */
     omit?: ClassScheduleOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClassScheduleInclude<ExtArgs> | null
+    /**
      * Filter, which ClassSchedule to fetch.
      */
     where: ClassScheduleWhereUniqueInput
@@ -7952,6 +7739,10 @@ export namespace Prisma {
      * Omit specific fields from the ClassSchedule
      */
     omit?: ClassScheduleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClassScheduleInclude<ExtArgs> | null
     /**
      * Filter, which ClassSchedule to fetch.
      */
@@ -8001,6 +7792,10 @@ export namespace Prisma {
      */
     omit?: ClassScheduleOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClassScheduleInclude<ExtArgs> | null
+    /**
      * Filter, which ClassSchedule to fetch.
      */
     where?: ClassScheduleWhereInput
@@ -8048,6 +7843,10 @@ export namespace Prisma {
      * Omit specific fields from the ClassSchedule
      */
     omit?: ClassScheduleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClassScheduleInclude<ExtArgs> | null
     /**
      * Filter, which ClassSchedules to fetch.
      */
@@ -8097,6 +7896,10 @@ export namespace Prisma {
      */
     omit?: ClassScheduleOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClassScheduleInclude<ExtArgs> | null
+    /**
      * The data needed to create a ClassSchedule.
      */
     data: XOR<ClassScheduleCreateInput, ClassScheduleUncheckedCreateInput>
@@ -8130,6 +7933,10 @@ export namespace Prisma {
      */
     data: ClassScheduleCreateManyInput | ClassScheduleCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClassScheduleIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -8144,6 +7951,10 @@ export namespace Prisma {
      * Omit specific fields from the ClassSchedule
      */
     omit?: ClassScheduleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClassScheduleInclude<ExtArgs> | null
     /**
      * The data needed to update a ClassSchedule.
      */
@@ -8196,6 +8007,10 @@ export namespace Prisma {
      * Limit how many ClassSchedules to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClassScheduleIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -8210,6 +8025,10 @@ export namespace Prisma {
      * Omit specific fields from the ClassSchedule
      */
     omit?: ClassScheduleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClassScheduleInclude<ExtArgs> | null
     /**
      * The filter to search for the ClassSchedule to update in case it exists.
      */
@@ -8236,6 +8055,10 @@ export namespace Prisma {
      * Omit specific fields from the ClassSchedule
      */
     omit?: ClassScheduleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClassScheduleInclude<ExtArgs> | null
     /**
      * Filter which ClassSchedule to delete.
      */
@@ -8268,2152 +8091,10 @@ export namespace Prisma {
      * Omit specific fields from the ClassSchedule
      */
     omit?: ClassScheduleOmit<ExtArgs> | null
-  }
-
-
-  /**
-   * Model BellSchedule
-   */
-
-  export type AggregateBellSchedule = {
-    _count: BellScheduleCountAggregateOutputType | null
-    _avg: BellScheduleAvgAggregateOutputType | null
-    _sum: BellScheduleSumAggregateOutputType | null
-    _min: BellScheduleMinAggregateOutputType | null
-    _max: BellScheduleMaxAggregateOutputType | null
-  }
-
-  export type BellScheduleAvgAggregateOutputType = {
-    lesson_number: number | null
-    break_minutes: number | null
-    shift: number | null
-  }
-
-  export type BellScheduleSumAggregateOutputType = {
-    lesson_number: number | null
-    break_minutes: number | null
-    shift: number | null
-  }
-
-  export type BellScheduleMinAggregateOutputType = {
-    id: string | null
-    lesson_number: number | null
-    start_time: string | null
-    end_time: string | null
-    break_minutes: number | null
-    shift: number | null
-    is_active: boolean | null
-  }
-
-  export type BellScheduleMaxAggregateOutputType = {
-    id: string | null
-    lesson_number: number | null
-    start_time: string | null
-    end_time: string | null
-    break_minutes: number | null
-    shift: number | null
-    is_active: boolean | null
-  }
-
-  export type BellScheduleCountAggregateOutputType = {
-    id: number
-    lesson_number: number
-    start_time: number
-    end_time: number
-    break_minutes: number
-    shift: number
-    is_active: number
-    _all: number
-  }
-
-
-  export type BellScheduleAvgAggregateInputType = {
-    lesson_number?: true
-    break_minutes?: true
-    shift?: true
-  }
-
-  export type BellScheduleSumAggregateInputType = {
-    lesson_number?: true
-    break_minutes?: true
-    shift?: true
-  }
-
-  export type BellScheduleMinAggregateInputType = {
-    id?: true
-    lesson_number?: true
-    start_time?: true
-    end_time?: true
-    break_minutes?: true
-    shift?: true
-    is_active?: true
-  }
-
-  export type BellScheduleMaxAggregateInputType = {
-    id?: true
-    lesson_number?: true
-    start_time?: true
-    end_time?: true
-    break_minutes?: true
-    shift?: true
-    is_active?: true
-  }
-
-  export type BellScheduleCountAggregateInputType = {
-    id?: true
-    lesson_number?: true
-    start_time?: true
-    end_time?: true
-    break_minutes?: true
-    shift?: true
-    is_active?: true
-    _all?: true
-  }
-
-  export type BellScheduleAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which BellSchedule to aggregate.
+     * Choose, which related nodes to fetch as well
      */
-    where?: BellScheduleWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of BellSchedules to fetch.
-     */
-    orderBy?: BellScheduleOrderByWithRelationInput | BellScheduleOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: BellScheduleWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` BellSchedules from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` BellSchedules.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned BellSchedules
-    **/
-    _count?: true | BellScheduleCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: BellScheduleAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: BellScheduleSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: BellScheduleMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: BellScheduleMaxAggregateInputType
-  }
-
-  export type GetBellScheduleAggregateType<T extends BellScheduleAggregateArgs> = {
-        [P in keyof T & keyof AggregateBellSchedule]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateBellSchedule[P]>
-      : GetScalarType<T[P], AggregateBellSchedule[P]>
-  }
-
-
-
-
-  export type BellScheduleGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: BellScheduleWhereInput
-    orderBy?: BellScheduleOrderByWithAggregationInput | BellScheduleOrderByWithAggregationInput[]
-    by: BellScheduleScalarFieldEnum[] | BellScheduleScalarFieldEnum
-    having?: BellScheduleScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: BellScheduleCountAggregateInputType | true
-    _avg?: BellScheduleAvgAggregateInputType
-    _sum?: BellScheduleSumAggregateInputType
-    _min?: BellScheduleMinAggregateInputType
-    _max?: BellScheduleMaxAggregateInputType
-  }
-
-  export type BellScheduleGroupByOutputType = {
-    id: string
-    lesson_number: number
-    start_time: string
-    end_time: string
-    break_minutes: number | null
-    shift: number
-    is_active: boolean
-    _count: BellScheduleCountAggregateOutputType | null
-    _avg: BellScheduleAvgAggregateOutputType | null
-    _sum: BellScheduleSumAggregateOutputType | null
-    _min: BellScheduleMinAggregateOutputType | null
-    _max: BellScheduleMaxAggregateOutputType | null
-  }
-
-  type GetBellScheduleGroupByPayload<T extends BellScheduleGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<BellScheduleGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof BellScheduleGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], BellScheduleGroupByOutputType[P]>
-            : GetScalarType<T[P], BellScheduleGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type BellScheduleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    lesson_number?: boolean
-    start_time?: boolean
-    end_time?: boolean
-    break_minutes?: boolean
-    shift?: boolean
-    is_active?: boolean
-  }, ExtArgs["result"]["bellSchedule"]>
-
-  export type BellScheduleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    lesson_number?: boolean
-    start_time?: boolean
-    end_time?: boolean
-    break_minutes?: boolean
-    shift?: boolean
-    is_active?: boolean
-  }, ExtArgs["result"]["bellSchedule"]>
-
-  export type BellScheduleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    lesson_number?: boolean
-    start_time?: boolean
-    end_time?: boolean
-    break_minutes?: boolean
-    shift?: boolean
-    is_active?: boolean
-  }, ExtArgs["result"]["bellSchedule"]>
-
-  export type BellScheduleSelectScalar = {
-    id?: boolean
-    lesson_number?: boolean
-    start_time?: boolean
-    end_time?: boolean
-    break_minutes?: boolean
-    shift?: boolean
-    is_active?: boolean
-  }
-
-  export type BellScheduleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "lesson_number" | "start_time" | "end_time" | "break_minutes" | "shift" | "is_active", ExtArgs["result"]["bellSchedule"]>
-
-  export type $BellSchedulePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "BellSchedule"
-    objects: {}
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      lesson_number: number
-      start_time: string
-      end_time: string
-      break_minutes: number | null
-      shift: number
-      is_active: boolean
-    }, ExtArgs["result"]["bellSchedule"]>
-    composites: {}
-  }
-
-  type BellScheduleGetPayload<S extends boolean | null | undefined | BellScheduleDefaultArgs> = $Result.GetResult<Prisma.$BellSchedulePayload, S>
-
-  type BellScheduleCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<BellScheduleFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: BellScheduleCountAggregateInputType | true
-    }
-
-  export interface BellScheduleDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BellSchedule'], meta: { name: 'BellSchedule' } }
-    /**
-     * Find zero or one BellSchedule that matches the filter.
-     * @param {BellScheduleFindUniqueArgs} args - Arguments to find a BellSchedule
-     * @example
-     * // Get one BellSchedule
-     * const bellSchedule = await prisma.bellSchedule.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends BellScheduleFindUniqueArgs>(args: SelectSubset<T, BellScheduleFindUniqueArgs<ExtArgs>>): Prisma__BellScheduleClient<$Result.GetResult<Prisma.$BellSchedulePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one BellSchedule that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {BellScheduleFindUniqueOrThrowArgs} args - Arguments to find a BellSchedule
-     * @example
-     * // Get one BellSchedule
-     * const bellSchedule = await prisma.bellSchedule.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends BellScheduleFindUniqueOrThrowArgs>(args: SelectSubset<T, BellScheduleFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BellScheduleClient<$Result.GetResult<Prisma.$BellSchedulePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first BellSchedule that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {BellScheduleFindFirstArgs} args - Arguments to find a BellSchedule
-     * @example
-     * // Get one BellSchedule
-     * const bellSchedule = await prisma.bellSchedule.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends BellScheduleFindFirstArgs>(args?: SelectSubset<T, BellScheduleFindFirstArgs<ExtArgs>>): Prisma__BellScheduleClient<$Result.GetResult<Prisma.$BellSchedulePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first BellSchedule that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {BellScheduleFindFirstOrThrowArgs} args - Arguments to find a BellSchedule
-     * @example
-     * // Get one BellSchedule
-     * const bellSchedule = await prisma.bellSchedule.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends BellScheduleFindFirstOrThrowArgs>(args?: SelectSubset<T, BellScheduleFindFirstOrThrowArgs<ExtArgs>>): Prisma__BellScheduleClient<$Result.GetResult<Prisma.$BellSchedulePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more BellSchedules that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {BellScheduleFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all BellSchedules
-     * const bellSchedules = await prisma.bellSchedule.findMany()
-     * 
-     * // Get first 10 BellSchedules
-     * const bellSchedules = await prisma.bellSchedule.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const bellScheduleWithIdOnly = await prisma.bellSchedule.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends BellScheduleFindManyArgs>(args?: SelectSubset<T, BellScheduleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BellSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a BellSchedule.
-     * @param {BellScheduleCreateArgs} args - Arguments to create a BellSchedule.
-     * @example
-     * // Create one BellSchedule
-     * const BellSchedule = await prisma.bellSchedule.create({
-     *   data: {
-     *     // ... data to create a BellSchedule
-     *   }
-     * })
-     * 
-     */
-    create<T extends BellScheduleCreateArgs>(args: SelectSubset<T, BellScheduleCreateArgs<ExtArgs>>): Prisma__BellScheduleClient<$Result.GetResult<Prisma.$BellSchedulePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many BellSchedules.
-     * @param {BellScheduleCreateManyArgs} args - Arguments to create many BellSchedules.
-     * @example
-     * // Create many BellSchedules
-     * const bellSchedule = await prisma.bellSchedule.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends BellScheduleCreateManyArgs>(args?: SelectSubset<T, BellScheduleCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many BellSchedules and returns the data saved in the database.
-     * @param {BellScheduleCreateManyAndReturnArgs} args - Arguments to create many BellSchedules.
-     * @example
-     * // Create many BellSchedules
-     * const bellSchedule = await prisma.bellSchedule.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many BellSchedules and only return the `id`
-     * const bellScheduleWithIdOnly = await prisma.bellSchedule.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends BellScheduleCreateManyAndReturnArgs>(args?: SelectSubset<T, BellScheduleCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BellSchedulePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a BellSchedule.
-     * @param {BellScheduleDeleteArgs} args - Arguments to delete one BellSchedule.
-     * @example
-     * // Delete one BellSchedule
-     * const BellSchedule = await prisma.bellSchedule.delete({
-     *   where: {
-     *     // ... filter to delete one BellSchedule
-     *   }
-     * })
-     * 
-     */
-    delete<T extends BellScheduleDeleteArgs>(args: SelectSubset<T, BellScheduleDeleteArgs<ExtArgs>>): Prisma__BellScheduleClient<$Result.GetResult<Prisma.$BellSchedulePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one BellSchedule.
-     * @param {BellScheduleUpdateArgs} args - Arguments to update one BellSchedule.
-     * @example
-     * // Update one BellSchedule
-     * const bellSchedule = await prisma.bellSchedule.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends BellScheduleUpdateArgs>(args: SelectSubset<T, BellScheduleUpdateArgs<ExtArgs>>): Prisma__BellScheduleClient<$Result.GetResult<Prisma.$BellSchedulePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more BellSchedules.
-     * @param {BellScheduleDeleteManyArgs} args - Arguments to filter BellSchedules to delete.
-     * @example
-     * // Delete a few BellSchedules
-     * const { count } = await prisma.bellSchedule.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends BellScheduleDeleteManyArgs>(args?: SelectSubset<T, BellScheduleDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more BellSchedules.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {BellScheduleUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many BellSchedules
-     * const bellSchedule = await prisma.bellSchedule.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends BellScheduleUpdateManyArgs>(args: SelectSubset<T, BellScheduleUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more BellSchedules and returns the data updated in the database.
-     * @param {BellScheduleUpdateManyAndReturnArgs} args - Arguments to update many BellSchedules.
-     * @example
-     * // Update many BellSchedules
-     * const bellSchedule = await prisma.bellSchedule.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more BellSchedules and only return the `id`
-     * const bellScheduleWithIdOnly = await prisma.bellSchedule.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends BellScheduleUpdateManyAndReturnArgs>(args: SelectSubset<T, BellScheduleUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BellSchedulePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one BellSchedule.
-     * @param {BellScheduleUpsertArgs} args - Arguments to update or create a BellSchedule.
-     * @example
-     * // Update or create a BellSchedule
-     * const bellSchedule = await prisma.bellSchedule.upsert({
-     *   create: {
-     *     // ... data to create a BellSchedule
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the BellSchedule we want to update
-     *   }
-     * })
-     */
-    upsert<T extends BellScheduleUpsertArgs>(args: SelectSubset<T, BellScheduleUpsertArgs<ExtArgs>>): Prisma__BellScheduleClient<$Result.GetResult<Prisma.$BellSchedulePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of BellSchedules.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {BellScheduleCountArgs} args - Arguments to filter BellSchedules to count.
-     * @example
-     * // Count the number of BellSchedules
-     * const count = await prisma.bellSchedule.count({
-     *   where: {
-     *     // ... the filter for the BellSchedules we want to count
-     *   }
-     * })
-    **/
-    count<T extends BellScheduleCountArgs>(
-      args?: Subset<T, BellScheduleCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], BellScheduleCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a BellSchedule.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {BellScheduleAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends BellScheduleAggregateArgs>(args: Subset<T, BellScheduleAggregateArgs>): Prisma.PrismaPromise<GetBellScheduleAggregateType<T>>
-
-    /**
-     * Group by BellSchedule.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {BellScheduleGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends BellScheduleGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: BellScheduleGroupByArgs['orderBy'] }
-        : { orderBy?: BellScheduleGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, BellScheduleGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBellScheduleGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the BellSchedule model
-   */
-  readonly fields: BellScheduleFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for BellSchedule.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__BellScheduleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the BellSchedule model
-   */
-  interface BellScheduleFieldRefs {
-    readonly id: FieldRef<"BellSchedule", 'String'>
-    readonly lesson_number: FieldRef<"BellSchedule", 'Int'>
-    readonly start_time: FieldRef<"BellSchedule", 'String'>
-    readonly end_time: FieldRef<"BellSchedule", 'String'>
-    readonly break_minutes: FieldRef<"BellSchedule", 'Int'>
-    readonly shift: FieldRef<"BellSchedule", 'Int'>
-    readonly is_active: FieldRef<"BellSchedule", 'Boolean'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * BellSchedule findUnique
-   */
-  export type BellScheduleFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the BellSchedule
-     */
-    select?: BellScheduleSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the BellSchedule
-     */
-    omit?: BellScheduleOmit<ExtArgs> | null
-    /**
-     * Filter, which BellSchedule to fetch.
-     */
-    where: BellScheduleWhereUniqueInput
-  }
-
-  /**
-   * BellSchedule findUniqueOrThrow
-   */
-  export type BellScheduleFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the BellSchedule
-     */
-    select?: BellScheduleSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the BellSchedule
-     */
-    omit?: BellScheduleOmit<ExtArgs> | null
-    /**
-     * Filter, which BellSchedule to fetch.
-     */
-    where: BellScheduleWhereUniqueInput
-  }
-
-  /**
-   * BellSchedule findFirst
-   */
-  export type BellScheduleFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the BellSchedule
-     */
-    select?: BellScheduleSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the BellSchedule
-     */
-    omit?: BellScheduleOmit<ExtArgs> | null
-    /**
-     * Filter, which BellSchedule to fetch.
-     */
-    where?: BellScheduleWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of BellSchedules to fetch.
-     */
-    orderBy?: BellScheduleOrderByWithRelationInput | BellScheduleOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for BellSchedules.
-     */
-    cursor?: BellScheduleWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` BellSchedules from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` BellSchedules.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of BellSchedules.
-     */
-    distinct?: BellScheduleScalarFieldEnum | BellScheduleScalarFieldEnum[]
-  }
-
-  /**
-   * BellSchedule findFirstOrThrow
-   */
-  export type BellScheduleFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the BellSchedule
-     */
-    select?: BellScheduleSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the BellSchedule
-     */
-    omit?: BellScheduleOmit<ExtArgs> | null
-    /**
-     * Filter, which BellSchedule to fetch.
-     */
-    where?: BellScheduleWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of BellSchedules to fetch.
-     */
-    orderBy?: BellScheduleOrderByWithRelationInput | BellScheduleOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for BellSchedules.
-     */
-    cursor?: BellScheduleWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` BellSchedules from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` BellSchedules.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of BellSchedules.
-     */
-    distinct?: BellScheduleScalarFieldEnum | BellScheduleScalarFieldEnum[]
-  }
-
-  /**
-   * BellSchedule findMany
-   */
-  export type BellScheduleFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the BellSchedule
-     */
-    select?: BellScheduleSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the BellSchedule
-     */
-    omit?: BellScheduleOmit<ExtArgs> | null
-    /**
-     * Filter, which BellSchedules to fetch.
-     */
-    where?: BellScheduleWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of BellSchedules to fetch.
-     */
-    orderBy?: BellScheduleOrderByWithRelationInput | BellScheduleOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing BellSchedules.
-     */
-    cursor?: BellScheduleWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` BellSchedules from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` BellSchedules.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of BellSchedules.
-     */
-    distinct?: BellScheduleScalarFieldEnum | BellScheduleScalarFieldEnum[]
-  }
-
-  /**
-   * BellSchedule create
-   */
-  export type BellScheduleCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the BellSchedule
-     */
-    select?: BellScheduleSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the BellSchedule
-     */
-    omit?: BellScheduleOmit<ExtArgs> | null
-    /**
-     * The data needed to create a BellSchedule.
-     */
-    data: XOR<BellScheduleCreateInput, BellScheduleUncheckedCreateInput>
-  }
-
-  /**
-   * BellSchedule createMany
-   */
-  export type BellScheduleCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many BellSchedules.
-     */
-    data: BellScheduleCreateManyInput | BellScheduleCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * BellSchedule createManyAndReturn
-   */
-  export type BellScheduleCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the BellSchedule
-     */
-    select?: BellScheduleSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the BellSchedule
-     */
-    omit?: BellScheduleOmit<ExtArgs> | null
-    /**
-     * The data used to create many BellSchedules.
-     */
-    data: BellScheduleCreateManyInput | BellScheduleCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * BellSchedule update
-   */
-  export type BellScheduleUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the BellSchedule
-     */
-    select?: BellScheduleSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the BellSchedule
-     */
-    omit?: BellScheduleOmit<ExtArgs> | null
-    /**
-     * The data needed to update a BellSchedule.
-     */
-    data: XOR<BellScheduleUpdateInput, BellScheduleUncheckedUpdateInput>
-    /**
-     * Choose, which BellSchedule to update.
-     */
-    where: BellScheduleWhereUniqueInput
-  }
-
-  /**
-   * BellSchedule updateMany
-   */
-  export type BellScheduleUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update BellSchedules.
-     */
-    data: XOR<BellScheduleUpdateManyMutationInput, BellScheduleUncheckedUpdateManyInput>
-    /**
-     * Filter which BellSchedules to update
-     */
-    where?: BellScheduleWhereInput
-    /**
-     * Limit how many BellSchedules to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * BellSchedule updateManyAndReturn
-   */
-  export type BellScheduleUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the BellSchedule
-     */
-    select?: BellScheduleSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the BellSchedule
-     */
-    omit?: BellScheduleOmit<ExtArgs> | null
-    /**
-     * The data used to update BellSchedules.
-     */
-    data: XOR<BellScheduleUpdateManyMutationInput, BellScheduleUncheckedUpdateManyInput>
-    /**
-     * Filter which BellSchedules to update
-     */
-    where?: BellScheduleWhereInput
-    /**
-     * Limit how many BellSchedules to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * BellSchedule upsert
-   */
-  export type BellScheduleUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the BellSchedule
-     */
-    select?: BellScheduleSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the BellSchedule
-     */
-    omit?: BellScheduleOmit<ExtArgs> | null
-    /**
-     * The filter to search for the BellSchedule to update in case it exists.
-     */
-    where: BellScheduleWhereUniqueInput
-    /**
-     * In case the BellSchedule found by the `where` argument doesn't exist, create a new BellSchedule with this data.
-     */
-    create: XOR<BellScheduleCreateInput, BellScheduleUncheckedCreateInput>
-    /**
-     * In case the BellSchedule was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<BellScheduleUpdateInput, BellScheduleUncheckedUpdateInput>
-  }
-
-  /**
-   * BellSchedule delete
-   */
-  export type BellScheduleDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the BellSchedule
-     */
-    select?: BellScheduleSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the BellSchedule
-     */
-    omit?: BellScheduleOmit<ExtArgs> | null
-    /**
-     * Filter which BellSchedule to delete.
-     */
-    where: BellScheduleWhereUniqueInput
-  }
-
-  /**
-   * BellSchedule deleteMany
-   */
-  export type BellScheduleDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which BellSchedules to delete
-     */
-    where?: BellScheduleWhereInput
-    /**
-     * Limit how many BellSchedules to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * BellSchedule without action
-   */
-  export type BellScheduleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the BellSchedule
-     */
-    select?: BellScheduleSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the BellSchedule
-     */
-    omit?: BellScheduleOmit<ExtArgs> | null
-  }
-
-
-  /**
-   * Model HolidaySchedule
-   */
-
-  export type AggregateHolidaySchedule = {
-    _count: HolidayScheduleCountAggregateOutputType | null
-    _min: HolidayScheduleMinAggregateOutputType | null
-    _max: HolidayScheduleMaxAggregateOutputType | null
-  }
-
-  export type HolidayScheduleMinAggregateOutputType = {
-    id: string | null
-    title_latin: string | null
-    title_cyril: string | null
-    title_ru: string | null
-    start_date: Date | null
-    end_date: Date | null
-    description_latin: string | null
-    description_cyril: string | null
-    description_ru: string | null
-    created_at: Date | null
-    updated_at: Date | null
-  }
-
-  export type HolidayScheduleMaxAggregateOutputType = {
-    id: string | null
-    title_latin: string | null
-    title_cyril: string | null
-    title_ru: string | null
-    start_date: Date | null
-    end_date: Date | null
-    description_latin: string | null
-    description_cyril: string | null
-    description_ru: string | null
-    created_at: Date | null
-    updated_at: Date | null
-  }
-
-  export type HolidayScheduleCountAggregateOutputType = {
-    id: number
-    title_latin: number
-    title_cyril: number
-    title_ru: number
-    start_date: number
-    end_date: number
-    description_latin: number
-    description_cyril: number
-    description_ru: number
-    created_at: number
-    updated_at: number
-    _all: number
-  }
-
-
-  export type HolidayScheduleMinAggregateInputType = {
-    id?: true
-    title_latin?: true
-    title_cyril?: true
-    title_ru?: true
-    start_date?: true
-    end_date?: true
-    description_latin?: true
-    description_cyril?: true
-    description_ru?: true
-    created_at?: true
-    updated_at?: true
-  }
-
-  export type HolidayScheduleMaxAggregateInputType = {
-    id?: true
-    title_latin?: true
-    title_cyril?: true
-    title_ru?: true
-    start_date?: true
-    end_date?: true
-    description_latin?: true
-    description_cyril?: true
-    description_ru?: true
-    created_at?: true
-    updated_at?: true
-  }
-
-  export type HolidayScheduleCountAggregateInputType = {
-    id?: true
-    title_latin?: true
-    title_cyril?: true
-    title_ru?: true
-    start_date?: true
-    end_date?: true
-    description_latin?: true
-    description_cyril?: true
-    description_ru?: true
-    created_at?: true
-    updated_at?: true
-    _all?: true
-  }
-
-  export type HolidayScheduleAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which HolidaySchedule to aggregate.
-     */
-    where?: HolidayScheduleWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of HolidaySchedules to fetch.
-     */
-    orderBy?: HolidayScheduleOrderByWithRelationInput | HolidayScheduleOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: HolidayScheduleWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` HolidaySchedules from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` HolidaySchedules.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned HolidaySchedules
-    **/
-    _count?: true | HolidayScheduleCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: HolidayScheduleMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: HolidayScheduleMaxAggregateInputType
-  }
-
-  export type GetHolidayScheduleAggregateType<T extends HolidayScheduleAggregateArgs> = {
-        [P in keyof T & keyof AggregateHolidaySchedule]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateHolidaySchedule[P]>
-      : GetScalarType<T[P], AggregateHolidaySchedule[P]>
-  }
-
-
-
-
-  export type HolidayScheduleGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: HolidayScheduleWhereInput
-    orderBy?: HolidayScheduleOrderByWithAggregationInput | HolidayScheduleOrderByWithAggregationInput[]
-    by: HolidayScheduleScalarFieldEnum[] | HolidayScheduleScalarFieldEnum
-    having?: HolidayScheduleScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: HolidayScheduleCountAggregateInputType | true
-    _min?: HolidayScheduleMinAggregateInputType
-    _max?: HolidayScheduleMaxAggregateInputType
-  }
-
-  export type HolidayScheduleGroupByOutputType = {
-    id: string
-    title_latin: string
-    title_cyril: string
-    title_ru: string
-    start_date: Date
-    end_date: Date
-    description_latin: string | null
-    description_cyril: string | null
-    description_ru: string | null
-    created_at: Date
-    updated_at: Date
-    _count: HolidayScheduleCountAggregateOutputType | null
-    _min: HolidayScheduleMinAggregateOutputType | null
-    _max: HolidayScheduleMaxAggregateOutputType | null
-  }
-
-  type GetHolidayScheduleGroupByPayload<T extends HolidayScheduleGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<HolidayScheduleGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof HolidayScheduleGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], HolidayScheduleGroupByOutputType[P]>
-            : GetScalarType<T[P], HolidayScheduleGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type HolidayScheduleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    title_latin?: boolean
-    title_cyril?: boolean
-    title_ru?: boolean
-    start_date?: boolean
-    end_date?: boolean
-    description_latin?: boolean
-    description_cyril?: boolean
-    description_ru?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-  }, ExtArgs["result"]["holidaySchedule"]>
-
-  export type HolidayScheduleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    title_latin?: boolean
-    title_cyril?: boolean
-    title_ru?: boolean
-    start_date?: boolean
-    end_date?: boolean
-    description_latin?: boolean
-    description_cyril?: boolean
-    description_ru?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-  }, ExtArgs["result"]["holidaySchedule"]>
-
-  export type HolidayScheduleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    title_latin?: boolean
-    title_cyril?: boolean
-    title_ru?: boolean
-    start_date?: boolean
-    end_date?: boolean
-    description_latin?: boolean
-    description_cyril?: boolean
-    description_ru?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-  }, ExtArgs["result"]["holidaySchedule"]>
-
-  export type HolidayScheduleSelectScalar = {
-    id?: boolean
-    title_latin?: boolean
-    title_cyril?: boolean
-    title_ru?: boolean
-    start_date?: boolean
-    end_date?: boolean
-    description_latin?: boolean
-    description_cyril?: boolean
-    description_ru?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-  }
-
-  export type HolidayScheduleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title_latin" | "title_cyril" | "title_ru" | "start_date" | "end_date" | "description_latin" | "description_cyril" | "description_ru" | "created_at" | "updated_at", ExtArgs["result"]["holidaySchedule"]>
-
-  export type $HolidaySchedulePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "HolidaySchedule"
-    objects: {}
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      title_latin: string
-      title_cyril: string
-      title_ru: string
-      start_date: Date
-      end_date: Date
-      description_latin: string | null
-      description_cyril: string | null
-      description_ru: string | null
-      created_at: Date
-      updated_at: Date
-    }, ExtArgs["result"]["holidaySchedule"]>
-    composites: {}
-  }
-
-  type HolidayScheduleGetPayload<S extends boolean | null | undefined | HolidayScheduleDefaultArgs> = $Result.GetResult<Prisma.$HolidaySchedulePayload, S>
-
-  type HolidayScheduleCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<HolidayScheduleFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: HolidayScheduleCountAggregateInputType | true
-    }
-
-  export interface HolidayScheduleDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['HolidaySchedule'], meta: { name: 'HolidaySchedule' } }
-    /**
-     * Find zero or one HolidaySchedule that matches the filter.
-     * @param {HolidayScheduleFindUniqueArgs} args - Arguments to find a HolidaySchedule
-     * @example
-     * // Get one HolidaySchedule
-     * const holidaySchedule = await prisma.holidaySchedule.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends HolidayScheduleFindUniqueArgs>(args: SelectSubset<T, HolidayScheduleFindUniqueArgs<ExtArgs>>): Prisma__HolidayScheduleClient<$Result.GetResult<Prisma.$HolidaySchedulePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one HolidaySchedule that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {HolidayScheduleFindUniqueOrThrowArgs} args - Arguments to find a HolidaySchedule
-     * @example
-     * // Get one HolidaySchedule
-     * const holidaySchedule = await prisma.holidaySchedule.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends HolidayScheduleFindUniqueOrThrowArgs>(args: SelectSubset<T, HolidayScheduleFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HolidayScheduleClient<$Result.GetResult<Prisma.$HolidaySchedulePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first HolidaySchedule that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HolidayScheduleFindFirstArgs} args - Arguments to find a HolidaySchedule
-     * @example
-     * // Get one HolidaySchedule
-     * const holidaySchedule = await prisma.holidaySchedule.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends HolidayScheduleFindFirstArgs>(args?: SelectSubset<T, HolidayScheduleFindFirstArgs<ExtArgs>>): Prisma__HolidayScheduleClient<$Result.GetResult<Prisma.$HolidaySchedulePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first HolidaySchedule that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HolidayScheduleFindFirstOrThrowArgs} args - Arguments to find a HolidaySchedule
-     * @example
-     * // Get one HolidaySchedule
-     * const holidaySchedule = await prisma.holidaySchedule.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends HolidayScheduleFindFirstOrThrowArgs>(args?: SelectSubset<T, HolidayScheduleFindFirstOrThrowArgs<ExtArgs>>): Prisma__HolidayScheduleClient<$Result.GetResult<Prisma.$HolidaySchedulePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more HolidaySchedules that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HolidayScheduleFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all HolidaySchedules
-     * const holidaySchedules = await prisma.holidaySchedule.findMany()
-     * 
-     * // Get first 10 HolidaySchedules
-     * const holidaySchedules = await prisma.holidaySchedule.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const holidayScheduleWithIdOnly = await prisma.holidaySchedule.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends HolidayScheduleFindManyArgs>(args?: SelectSubset<T, HolidayScheduleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HolidaySchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a HolidaySchedule.
-     * @param {HolidayScheduleCreateArgs} args - Arguments to create a HolidaySchedule.
-     * @example
-     * // Create one HolidaySchedule
-     * const HolidaySchedule = await prisma.holidaySchedule.create({
-     *   data: {
-     *     // ... data to create a HolidaySchedule
-     *   }
-     * })
-     * 
-     */
-    create<T extends HolidayScheduleCreateArgs>(args: SelectSubset<T, HolidayScheduleCreateArgs<ExtArgs>>): Prisma__HolidayScheduleClient<$Result.GetResult<Prisma.$HolidaySchedulePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many HolidaySchedules.
-     * @param {HolidayScheduleCreateManyArgs} args - Arguments to create many HolidaySchedules.
-     * @example
-     * // Create many HolidaySchedules
-     * const holidaySchedule = await prisma.holidaySchedule.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends HolidayScheduleCreateManyArgs>(args?: SelectSubset<T, HolidayScheduleCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many HolidaySchedules and returns the data saved in the database.
-     * @param {HolidayScheduleCreateManyAndReturnArgs} args - Arguments to create many HolidaySchedules.
-     * @example
-     * // Create many HolidaySchedules
-     * const holidaySchedule = await prisma.holidaySchedule.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many HolidaySchedules and only return the `id`
-     * const holidayScheduleWithIdOnly = await prisma.holidaySchedule.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends HolidayScheduleCreateManyAndReturnArgs>(args?: SelectSubset<T, HolidayScheduleCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HolidaySchedulePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a HolidaySchedule.
-     * @param {HolidayScheduleDeleteArgs} args - Arguments to delete one HolidaySchedule.
-     * @example
-     * // Delete one HolidaySchedule
-     * const HolidaySchedule = await prisma.holidaySchedule.delete({
-     *   where: {
-     *     // ... filter to delete one HolidaySchedule
-     *   }
-     * })
-     * 
-     */
-    delete<T extends HolidayScheduleDeleteArgs>(args: SelectSubset<T, HolidayScheduleDeleteArgs<ExtArgs>>): Prisma__HolidayScheduleClient<$Result.GetResult<Prisma.$HolidaySchedulePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one HolidaySchedule.
-     * @param {HolidayScheduleUpdateArgs} args - Arguments to update one HolidaySchedule.
-     * @example
-     * // Update one HolidaySchedule
-     * const holidaySchedule = await prisma.holidaySchedule.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends HolidayScheduleUpdateArgs>(args: SelectSubset<T, HolidayScheduleUpdateArgs<ExtArgs>>): Prisma__HolidayScheduleClient<$Result.GetResult<Prisma.$HolidaySchedulePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more HolidaySchedules.
-     * @param {HolidayScheduleDeleteManyArgs} args - Arguments to filter HolidaySchedules to delete.
-     * @example
-     * // Delete a few HolidaySchedules
-     * const { count } = await prisma.holidaySchedule.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends HolidayScheduleDeleteManyArgs>(args?: SelectSubset<T, HolidayScheduleDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more HolidaySchedules.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HolidayScheduleUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many HolidaySchedules
-     * const holidaySchedule = await prisma.holidaySchedule.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends HolidayScheduleUpdateManyArgs>(args: SelectSubset<T, HolidayScheduleUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more HolidaySchedules and returns the data updated in the database.
-     * @param {HolidayScheduleUpdateManyAndReturnArgs} args - Arguments to update many HolidaySchedules.
-     * @example
-     * // Update many HolidaySchedules
-     * const holidaySchedule = await prisma.holidaySchedule.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more HolidaySchedules and only return the `id`
-     * const holidayScheduleWithIdOnly = await prisma.holidaySchedule.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends HolidayScheduleUpdateManyAndReturnArgs>(args: SelectSubset<T, HolidayScheduleUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HolidaySchedulePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one HolidaySchedule.
-     * @param {HolidayScheduleUpsertArgs} args - Arguments to update or create a HolidaySchedule.
-     * @example
-     * // Update or create a HolidaySchedule
-     * const holidaySchedule = await prisma.holidaySchedule.upsert({
-     *   create: {
-     *     // ... data to create a HolidaySchedule
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the HolidaySchedule we want to update
-     *   }
-     * })
-     */
-    upsert<T extends HolidayScheduleUpsertArgs>(args: SelectSubset<T, HolidayScheduleUpsertArgs<ExtArgs>>): Prisma__HolidayScheduleClient<$Result.GetResult<Prisma.$HolidaySchedulePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of HolidaySchedules.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HolidayScheduleCountArgs} args - Arguments to filter HolidaySchedules to count.
-     * @example
-     * // Count the number of HolidaySchedules
-     * const count = await prisma.holidaySchedule.count({
-     *   where: {
-     *     // ... the filter for the HolidaySchedules we want to count
-     *   }
-     * })
-    **/
-    count<T extends HolidayScheduleCountArgs>(
-      args?: Subset<T, HolidayScheduleCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], HolidayScheduleCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a HolidaySchedule.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HolidayScheduleAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends HolidayScheduleAggregateArgs>(args: Subset<T, HolidayScheduleAggregateArgs>): Prisma.PrismaPromise<GetHolidayScheduleAggregateType<T>>
-
-    /**
-     * Group by HolidaySchedule.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HolidayScheduleGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends HolidayScheduleGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: HolidayScheduleGroupByArgs['orderBy'] }
-        : { orderBy?: HolidayScheduleGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, HolidayScheduleGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHolidayScheduleGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the HolidaySchedule model
-   */
-  readonly fields: HolidayScheduleFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for HolidaySchedule.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__HolidayScheduleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the HolidaySchedule model
-   */
-  interface HolidayScheduleFieldRefs {
-    readonly id: FieldRef<"HolidaySchedule", 'String'>
-    readonly title_latin: FieldRef<"HolidaySchedule", 'String'>
-    readonly title_cyril: FieldRef<"HolidaySchedule", 'String'>
-    readonly title_ru: FieldRef<"HolidaySchedule", 'String'>
-    readonly start_date: FieldRef<"HolidaySchedule", 'DateTime'>
-    readonly end_date: FieldRef<"HolidaySchedule", 'DateTime'>
-    readonly description_latin: FieldRef<"HolidaySchedule", 'String'>
-    readonly description_cyril: FieldRef<"HolidaySchedule", 'String'>
-    readonly description_ru: FieldRef<"HolidaySchedule", 'String'>
-    readonly created_at: FieldRef<"HolidaySchedule", 'DateTime'>
-    readonly updated_at: FieldRef<"HolidaySchedule", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * HolidaySchedule findUnique
-   */
-  export type HolidayScheduleFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HolidaySchedule
-     */
-    select?: HolidayScheduleSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HolidaySchedule
-     */
-    omit?: HolidayScheduleOmit<ExtArgs> | null
-    /**
-     * Filter, which HolidaySchedule to fetch.
-     */
-    where: HolidayScheduleWhereUniqueInput
-  }
-
-  /**
-   * HolidaySchedule findUniqueOrThrow
-   */
-  export type HolidayScheduleFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HolidaySchedule
-     */
-    select?: HolidayScheduleSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HolidaySchedule
-     */
-    omit?: HolidayScheduleOmit<ExtArgs> | null
-    /**
-     * Filter, which HolidaySchedule to fetch.
-     */
-    where: HolidayScheduleWhereUniqueInput
-  }
-
-  /**
-   * HolidaySchedule findFirst
-   */
-  export type HolidayScheduleFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HolidaySchedule
-     */
-    select?: HolidayScheduleSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HolidaySchedule
-     */
-    omit?: HolidayScheduleOmit<ExtArgs> | null
-    /**
-     * Filter, which HolidaySchedule to fetch.
-     */
-    where?: HolidayScheduleWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of HolidaySchedules to fetch.
-     */
-    orderBy?: HolidayScheduleOrderByWithRelationInput | HolidayScheduleOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for HolidaySchedules.
-     */
-    cursor?: HolidayScheduleWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` HolidaySchedules from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` HolidaySchedules.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of HolidaySchedules.
-     */
-    distinct?: HolidayScheduleScalarFieldEnum | HolidayScheduleScalarFieldEnum[]
-  }
-
-  /**
-   * HolidaySchedule findFirstOrThrow
-   */
-  export type HolidayScheduleFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HolidaySchedule
-     */
-    select?: HolidayScheduleSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HolidaySchedule
-     */
-    omit?: HolidayScheduleOmit<ExtArgs> | null
-    /**
-     * Filter, which HolidaySchedule to fetch.
-     */
-    where?: HolidayScheduleWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of HolidaySchedules to fetch.
-     */
-    orderBy?: HolidayScheduleOrderByWithRelationInput | HolidayScheduleOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for HolidaySchedules.
-     */
-    cursor?: HolidayScheduleWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` HolidaySchedules from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` HolidaySchedules.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of HolidaySchedules.
-     */
-    distinct?: HolidayScheduleScalarFieldEnum | HolidayScheduleScalarFieldEnum[]
-  }
-
-  /**
-   * HolidaySchedule findMany
-   */
-  export type HolidayScheduleFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HolidaySchedule
-     */
-    select?: HolidayScheduleSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HolidaySchedule
-     */
-    omit?: HolidayScheduleOmit<ExtArgs> | null
-    /**
-     * Filter, which HolidaySchedules to fetch.
-     */
-    where?: HolidayScheduleWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of HolidaySchedules to fetch.
-     */
-    orderBy?: HolidayScheduleOrderByWithRelationInput | HolidayScheduleOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing HolidaySchedules.
-     */
-    cursor?: HolidayScheduleWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` HolidaySchedules from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` HolidaySchedules.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of HolidaySchedules.
-     */
-    distinct?: HolidayScheduleScalarFieldEnum | HolidayScheduleScalarFieldEnum[]
-  }
-
-  /**
-   * HolidaySchedule create
-   */
-  export type HolidayScheduleCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HolidaySchedule
-     */
-    select?: HolidayScheduleSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HolidaySchedule
-     */
-    omit?: HolidayScheduleOmit<ExtArgs> | null
-    /**
-     * The data needed to create a HolidaySchedule.
-     */
-    data: XOR<HolidayScheduleCreateInput, HolidayScheduleUncheckedCreateInput>
-  }
-
-  /**
-   * HolidaySchedule createMany
-   */
-  export type HolidayScheduleCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many HolidaySchedules.
-     */
-    data: HolidayScheduleCreateManyInput | HolidayScheduleCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * HolidaySchedule createManyAndReturn
-   */
-  export type HolidayScheduleCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HolidaySchedule
-     */
-    select?: HolidayScheduleSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the HolidaySchedule
-     */
-    omit?: HolidayScheduleOmit<ExtArgs> | null
-    /**
-     * The data used to create many HolidaySchedules.
-     */
-    data: HolidayScheduleCreateManyInput | HolidayScheduleCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * HolidaySchedule update
-   */
-  export type HolidayScheduleUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HolidaySchedule
-     */
-    select?: HolidayScheduleSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HolidaySchedule
-     */
-    omit?: HolidayScheduleOmit<ExtArgs> | null
-    /**
-     * The data needed to update a HolidaySchedule.
-     */
-    data: XOR<HolidayScheduleUpdateInput, HolidayScheduleUncheckedUpdateInput>
-    /**
-     * Choose, which HolidaySchedule to update.
-     */
-    where: HolidayScheduleWhereUniqueInput
-  }
-
-  /**
-   * HolidaySchedule updateMany
-   */
-  export type HolidayScheduleUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update HolidaySchedules.
-     */
-    data: XOR<HolidayScheduleUpdateManyMutationInput, HolidayScheduleUncheckedUpdateManyInput>
-    /**
-     * Filter which HolidaySchedules to update
-     */
-    where?: HolidayScheduleWhereInput
-    /**
-     * Limit how many HolidaySchedules to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * HolidaySchedule updateManyAndReturn
-   */
-  export type HolidayScheduleUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HolidaySchedule
-     */
-    select?: HolidayScheduleSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the HolidaySchedule
-     */
-    omit?: HolidayScheduleOmit<ExtArgs> | null
-    /**
-     * The data used to update HolidaySchedules.
-     */
-    data: XOR<HolidayScheduleUpdateManyMutationInput, HolidayScheduleUncheckedUpdateManyInput>
-    /**
-     * Filter which HolidaySchedules to update
-     */
-    where?: HolidayScheduleWhereInput
-    /**
-     * Limit how many HolidaySchedules to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * HolidaySchedule upsert
-   */
-  export type HolidayScheduleUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HolidaySchedule
-     */
-    select?: HolidayScheduleSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HolidaySchedule
-     */
-    omit?: HolidayScheduleOmit<ExtArgs> | null
-    /**
-     * The filter to search for the HolidaySchedule to update in case it exists.
-     */
-    where: HolidayScheduleWhereUniqueInput
-    /**
-     * In case the HolidaySchedule found by the `where` argument doesn't exist, create a new HolidaySchedule with this data.
-     */
-    create: XOR<HolidayScheduleCreateInput, HolidayScheduleUncheckedCreateInput>
-    /**
-     * In case the HolidaySchedule was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<HolidayScheduleUpdateInput, HolidayScheduleUncheckedUpdateInput>
-  }
-
-  /**
-   * HolidaySchedule delete
-   */
-  export type HolidayScheduleDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HolidaySchedule
-     */
-    select?: HolidayScheduleSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HolidaySchedule
-     */
-    omit?: HolidayScheduleOmit<ExtArgs> | null
-    /**
-     * Filter which HolidaySchedule to delete.
-     */
-    where: HolidayScheduleWhereUniqueInput
-  }
-
-  /**
-   * HolidaySchedule deleteMany
-   */
-  export type HolidayScheduleDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which HolidaySchedules to delete
-     */
-    where?: HolidayScheduleWhereInput
-    /**
-     * Limit how many HolidaySchedules to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * HolidaySchedule without action
-   */
-  export type HolidayScheduleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HolidaySchedule
-     */
-    select?: HolidayScheduleSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HolidaySchedule
-     */
-    omit?: HolidayScheduleOmit<ExtArgs> | null
+    include?: ClassScheduleInclude<ExtArgs> | null
   }
 
 
@@ -22927,6 +20608,7 @@ export namespace Prisma {
     file_url: string | null
     file_size: number | null
     published_at: Date | null
+    is_public: boolean | null
     creator_id: string | null
     created_at: Date | null
     updated_at: Date | null
@@ -22942,6 +20624,7 @@ export namespace Prisma {
     file_url: string | null
     file_size: number | null
     published_at: Date | null
+    is_public: boolean | null
     creator_id: string | null
     created_at: Date | null
     updated_at: Date | null
@@ -22957,6 +20640,7 @@ export namespace Prisma {
     file_url: number
     file_size: number
     published_at: number
+    is_public: number
     creator_id: number
     created_at: number
     updated_at: number
@@ -22984,6 +20668,7 @@ export namespace Prisma {
     file_url?: true
     file_size?: true
     published_at?: true
+    is_public?: true
     creator_id?: true
     created_at?: true
     updated_at?: true
@@ -22999,6 +20684,7 @@ export namespace Prisma {
     file_url?: true
     file_size?: true
     published_at?: true
+    is_public?: true
     creator_id?: true
     created_at?: true
     updated_at?: true
@@ -23014,6 +20700,7 @@ export namespace Prisma {
     file_url?: true
     file_size?: true
     published_at?: true
+    is_public?: true
     creator_id?: true
     created_at?: true
     updated_at?: true
@@ -23116,6 +20803,7 @@ export namespace Prisma {
     file_url: string
     file_size: number | null
     published_at: Date
+    is_public: boolean
     creator_id: string
     created_at: Date
     updated_at: Date
@@ -23150,6 +20838,7 @@ export namespace Prisma {
     file_url?: boolean
     file_size?: boolean
     published_at?: boolean
+    is_public?: boolean
     creator_id?: boolean
     created_at?: boolean
     updated_at?: boolean
@@ -23166,6 +20855,7 @@ export namespace Prisma {
     file_url?: boolean
     file_size?: boolean
     published_at?: boolean
+    is_public?: boolean
     creator_id?: boolean
     created_at?: boolean
     updated_at?: boolean
@@ -23182,6 +20872,7 @@ export namespace Prisma {
     file_url?: boolean
     file_size?: boolean
     published_at?: boolean
+    is_public?: boolean
     creator_id?: boolean
     created_at?: boolean
     updated_at?: boolean
@@ -23198,12 +20889,13 @@ export namespace Prisma {
     file_url?: boolean
     file_size?: boolean
     published_at?: boolean
+    is_public?: boolean
     creator_id?: boolean
     created_at?: boolean
     updated_at?: boolean
   }
 
-  export type NewspaperOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title_latin" | "title_cyril" | "title_ru" | "issue_number" | "cover_image" | "file_url" | "file_size" | "published_at" | "creator_id" | "created_at" | "updated_at", ExtArgs["result"]["newspaper"]>
+  export type NewspaperOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title_latin" | "title_cyril" | "title_ru" | "issue_number" | "cover_image" | "file_url" | "file_size" | "published_at" | "is_public" | "creator_id" | "created_at" | "updated_at", ExtArgs["result"]["newspaper"]>
   export type NewspaperInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     creator?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -23229,6 +20921,7 @@ export namespace Prisma {
       file_url: string
       file_size: number | null
       published_at: Date
+      is_public: boolean
       creator_id: string
       created_at: Date
       updated_at: Date
@@ -23665,6 +21358,7 @@ export namespace Prisma {
     readonly file_url: FieldRef<"Newspaper", 'String'>
     readonly file_size: FieldRef<"Newspaper", 'Int'>
     readonly published_at: FieldRef<"Newspaper", 'DateTime'>
+    readonly is_public: FieldRef<"Newspaper", 'Boolean'>
     readonly creator_id: FieldRef<"Newspaper", 'String'>
     readonly created_at: FieldRef<"Newspaper", 'DateTime'>
     readonly updated_at: FieldRef<"Newspaper", 'DateTime'>
@@ -29540,50 +27234,16 @@ export namespace Prisma {
   export const ClassScheduleScalarFieldEnum: {
     id: 'id',
     grade: 'grade',
-    day: 'day',
-    lesson_number: 'lesson_number',
-    subject_latin: 'subject_latin',
-    subject_cyril: 'subject_cyril',
-    subject_ru: 'subject_ru',
-    teacher_name: 'teacher_name',
-    room: 'room',
-    start_time: 'start_time',
-    end_time: 'end_time',
+    start_date: 'start_date',
+    end_date: 'end_date',
+    is_active: 'is_active',
+    schedule: 'schedule',
+    creator_id: 'creator_id',
     created_at: 'created_at',
     updated_at: 'updated_at'
   };
 
   export type ClassScheduleScalarFieldEnum = (typeof ClassScheduleScalarFieldEnum)[keyof typeof ClassScheduleScalarFieldEnum]
-
-
-  export const BellScheduleScalarFieldEnum: {
-    id: 'id',
-    lesson_number: 'lesson_number',
-    start_time: 'start_time',
-    end_time: 'end_time',
-    break_minutes: 'break_minutes',
-    shift: 'shift',
-    is_active: 'is_active'
-  };
-
-  export type BellScheduleScalarFieldEnum = (typeof BellScheduleScalarFieldEnum)[keyof typeof BellScheduleScalarFieldEnum]
-
-
-  export const HolidayScheduleScalarFieldEnum: {
-    id: 'id',
-    title_latin: 'title_latin',
-    title_cyril: 'title_cyril',
-    title_ru: 'title_ru',
-    start_date: 'start_date',
-    end_date: 'end_date',
-    description_latin: 'description_latin',
-    description_cyril: 'description_cyril',
-    description_ru: 'description_ru',
-    created_at: 'created_at',
-    updated_at: 'updated_at'
-  };
-
-  export type HolidayScheduleScalarFieldEnum = (typeof HolidayScheduleScalarFieldEnum)[keyof typeof HolidayScheduleScalarFieldEnum]
 
 
   export const CanteenMenuScalarFieldEnum: {
@@ -29793,6 +27453,7 @@ export namespace Prisma {
     file_url: 'file_url',
     file_size: 'file_size',
     published_at: 'published_at',
+    is_public: 'is_public',
     creator_id: 'creator_id',
     created_at: 'created_at',
     updated_at: 'updated_at'
@@ -30028,20 +27689,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'WeekDay'
-   */
-  export type EnumWeekDayFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WeekDay'>
-    
-
-
-  /**
-   * Reference to a field of type 'WeekDay[]'
-   */
-  export type ListEnumWeekDayFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WeekDay[]'>
-    
-
-
-  /**
    * Reference to a field of type 'ApplicationStatus'
    */
   export type EnumApplicationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ApplicationStatus'>
@@ -30165,6 +27812,7 @@ export namespace Prisma {
     staff_members?: StaffMemberListRelationFilter
     clubs?: ClubListRelationFilter
     newspapers?: NewspaperListRelationFilter
+    class_schedules?: ClassScheduleListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -30187,6 +27835,7 @@ export namespace Prisma {
     staff_members?: StaffMemberOrderByRelationAggregateInput
     clubs?: ClubOrderByRelationAggregateInput
     newspapers?: NewspaperOrderByRelationAggregateInput
+    class_schedules?: ClassScheduleOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -30212,6 +27861,7 @@ export namespace Prisma {
     staff_members?: StaffMemberListRelationFilter
     clubs?: ClubListRelationFilter
     newspapers?: NewspaperListRelationFilter
+    class_schedules?: ClassScheduleListRelationFilter
   }, "id" | "phone_number" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -30541,33 +28191,27 @@ export namespace Prisma {
     NOT?: ClassScheduleWhereInput | ClassScheduleWhereInput[]
     id?: StringFilter<"ClassSchedule"> | string
     grade?: StringFilter<"ClassSchedule"> | string
-    day?: EnumWeekDayFilter<"ClassSchedule"> | $Enums.WeekDay
-    lesson_number?: IntFilter<"ClassSchedule"> | number
-    subject_latin?: StringFilter<"ClassSchedule"> | string
-    subject_cyril?: StringFilter<"ClassSchedule"> | string
-    subject_ru?: StringFilter<"ClassSchedule"> | string
-    teacher_name?: StringNullableFilter<"ClassSchedule"> | string | null
-    room?: StringNullableFilter<"ClassSchedule"> | string | null
-    start_time?: StringFilter<"ClassSchedule"> | string
-    end_time?: StringFilter<"ClassSchedule"> | string
+    start_date?: DateTimeNullableFilter<"ClassSchedule"> | Date | string | null
+    end_date?: DateTimeNullableFilter<"ClassSchedule"> | Date | string | null
+    is_active?: BoolFilter<"ClassSchedule"> | boolean
+    schedule?: JsonNullableFilter<"ClassSchedule">
+    creator_id?: StringFilter<"ClassSchedule"> | string
     created_at?: DateTimeFilter<"ClassSchedule"> | Date | string
     updated_at?: DateTimeFilter<"ClassSchedule"> | Date | string
+    creator?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type ClassScheduleOrderByWithRelationInput = {
     id?: SortOrder
     grade?: SortOrder
-    day?: SortOrder
-    lesson_number?: SortOrder
-    subject_latin?: SortOrder
-    subject_cyril?: SortOrder
-    subject_ru?: SortOrder
-    teacher_name?: SortOrderInput | SortOrder
-    room?: SortOrderInput | SortOrder
-    start_time?: SortOrder
-    end_time?: SortOrder
+    start_date?: SortOrderInput | SortOrder
+    end_date?: SortOrderInput | SortOrder
+    is_active?: SortOrder
+    schedule?: SortOrderInput | SortOrder
+    creator_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    creator?: UserOrderByWithRelationInput
   }
 
   export type ClassScheduleWhereUniqueInput = Prisma.AtLeast<{
@@ -30576,38 +28220,29 @@ export namespace Prisma {
     OR?: ClassScheduleWhereInput[]
     NOT?: ClassScheduleWhereInput | ClassScheduleWhereInput[]
     grade?: StringFilter<"ClassSchedule"> | string
-    day?: EnumWeekDayFilter<"ClassSchedule"> | $Enums.WeekDay
-    lesson_number?: IntFilter<"ClassSchedule"> | number
-    subject_latin?: StringFilter<"ClassSchedule"> | string
-    subject_cyril?: StringFilter<"ClassSchedule"> | string
-    subject_ru?: StringFilter<"ClassSchedule"> | string
-    teacher_name?: StringNullableFilter<"ClassSchedule"> | string | null
-    room?: StringNullableFilter<"ClassSchedule"> | string | null
-    start_time?: StringFilter<"ClassSchedule"> | string
-    end_time?: StringFilter<"ClassSchedule"> | string
+    start_date?: DateTimeNullableFilter<"ClassSchedule"> | Date | string | null
+    end_date?: DateTimeNullableFilter<"ClassSchedule"> | Date | string | null
+    is_active?: BoolFilter<"ClassSchedule"> | boolean
+    schedule?: JsonNullableFilter<"ClassSchedule">
+    creator_id?: StringFilter<"ClassSchedule"> | string
     created_at?: DateTimeFilter<"ClassSchedule"> | Date | string
     updated_at?: DateTimeFilter<"ClassSchedule"> | Date | string
+    creator?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
   export type ClassScheduleOrderByWithAggregationInput = {
     id?: SortOrder
     grade?: SortOrder
-    day?: SortOrder
-    lesson_number?: SortOrder
-    subject_latin?: SortOrder
-    subject_cyril?: SortOrder
-    subject_ru?: SortOrder
-    teacher_name?: SortOrderInput | SortOrder
-    room?: SortOrderInput | SortOrder
-    start_time?: SortOrder
-    end_time?: SortOrder
+    start_date?: SortOrderInput | SortOrder
+    end_date?: SortOrderInput | SortOrder
+    is_active?: SortOrder
+    schedule?: SortOrderInput | SortOrder
+    creator_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     _count?: ClassScheduleCountOrderByAggregateInput
-    _avg?: ClassScheduleAvgOrderByAggregateInput
     _max?: ClassScheduleMaxOrderByAggregateInput
     _min?: ClassScheduleMinOrderByAggregateInput
-    _sum?: ClassScheduleSumOrderByAggregateInput
   }
 
   export type ClassScheduleScalarWhereWithAggregatesInput = {
@@ -30616,164 +28251,13 @@ export namespace Prisma {
     NOT?: ClassScheduleScalarWhereWithAggregatesInput | ClassScheduleScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"ClassSchedule"> | string
     grade?: StringWithAggregatesFilter<"ClassSchedule"> | string
-    day?: EnumWeekDayWithAggregatesFilter<"ClassSchedule"> | $Enums.WeekDay
-    lesson_number?: IntWithAggregatesFilter<"ClassSchedule"> | number
-    subject_latin?: StringWithAggregatesFilter<"ClassSchedule"> | string
-    subject_cyril?: StringWithAggregatesFilter<"ClassSchedule"> | string
-    subject_ru?: StringWithAggregatesFilter<"ClassSchedule"> | string
-    teacher_name?: StringNullableWithAggregatesFilter<"ClassSchedule"> | string | null
-    room?: StringNullableWithAggregatesFilter<"ClassSchedule"> | string | null
-    start_time?: StringWithAggregatesFilter<"ClassSchedule"> | string
-    end_time?: StringWithAggregatesFilter<"ClassSchedule"> | string
+    start_date?: DateTimeNullableWithAggregatesFilter<"ClassSchedule"> | Date | string | null
+    end_date?: DateTimeNullableWithAggregatesFilter<"ClassSchedule"> | Date | string | null
+    is_active?: BoolWithAggregatesFilter<"ClassSchedule"> | boolean
+    schedule?: JsonNullableWithAggregatesFilter<"ClassSchedule">
+    creator_id?: StringWithAggregatesFilter<"ClassSchedule"> | string
     created_at?: DateTimeWithAggregatesFilter<"ClassSchedule"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"ClassSchedule"> | Date | string
-  }
-
-  export type BellScheduleWhereInput = {
-    AND?: BellScheduleWhereInput | BellScheduleWhereInput[]
-    OR?: BellScheduleWhereInput[]
-    NOT?: BellScheduleWhereInput | BellScheduleWhereInput[]
-    id?: StringFilter<"BellSchedule"> | string
-    lesson_number?: IntFilter<"BellSchedule"> | number
-    start_time?: StringFilter<"BellSchedule"> | string
-    end_time?: StringFilter<"BellSchedule"> | string
-    break_minutes?: IntNullableFilter<"BellSchedule"> | number | null
-    shift?: IntFilter<"BellSchedule"> | number
-    is_active?: BoolFilter<"BellSchedule"> | boolean
-  }
-
-  export type BellScheduleOrderByWithRelationInput = {
-    id?: SortOrder
-    lesson_number?: SortOrder
-    start_time?: SortOrder
-    end_time?: SortOrder
-    break_minutes?: SortOrderInput | SortOrder
-    shift?: SortOrder
-    is_active?: SortOrder
-  }
-
-  export type BellScheduleWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    lesson_number_shift?: BellScheduleLesson_numberShiftCompoundUniqueInput
-    AND?: BellScheduleWhereInput | BellScheduleWhereInput[]
-    OR?: BellScheduleWhereInput[]
-    NOT?: BellScheduleWhereInput | BellScheduleWhereInput[]
-    lesson_number?: IntFilter<"BellSchedule"> | number
-    start_time?: StringFilter<"BellSchedule"> | string
-    end_time?: StringFilter<"BellSchedule"> | string
-    break_minutes?: IntNullableFilter<"BellSchedule"> | number | null
-    shift?: IntFilter<"BellSchedule"> | number
-    is_active?: BoolFilter<"BellSchedule"> | boolean
-  }, "id" | "lesson_number_shift">
-
-  export type BellScheduleOrderByWithAggregationInput = {
-    id?: SortOrder
-    lesson_number?: SortOrder
-    start_time?: SortOrder
-    end_time?: SortOrder
-    break_minutes?: SortOrderInput | SortOrder
-    shift?: SortOrder
-    is_active?: SortOrder
-    _count?: BellScheduleCountOrderByAggregateInput
-    _avg?: BellScheduleAvgOrderByAggregateInput
-    _max?: BellScheduleMaxOrderByAggregateInput
-    _min?: BellScheduleMinOrderByAggregateInput
-    _sum?: BellScheduleSumOrderByAggregateInput
-  }
-
-  export type BellScheduleScalarWhereWithAggregatesInput = {
-    AND?: BellScheduleScalarWhereWithAggregatesInput | BellScheduleScalarWhereWithAggregatesInput[]
-    OR?: BellScheduleScalarWhereWithAggregatesInput[]
-    NOT?: BellScheduleScalarWhereWithAggregatesInput | BellScheduleScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"BellSchedule"> | string
-    lesson_number?: IntWithAggregatesFilter<"BellSchedule"> | number
-    start_time?: StringWithAggregatesFilter<"BellSchedule"> | string
-    end_time?: StringWithAggregatesFilter<"BellSchedule"> | string
-    break_minutes?: IntNullableWithAggregatesFilter<"BellSchedule"> | number | null
-    shift?: IntWithAggregatesFilter<"BellSchedule"> | number
-    is_active?: BoolWithAggregatesFilter<"BellSchedule"> | boolean
-  }
-
-  export type HolidayScheduleWhereInput = {
-    AND?: HolidayScheduleWhereInput | HolidayScheduleWhereInput[]
-    OR?: HolidayScheduleWhereInput[]
-    NOT?: HolidayScheduleWhereInput | HolidayScheduleWhereInput[]
-    id?: StringFilter<"HolidaySchedule"> | string
-    title_latin?: StringFilter<"HolidaySchedule"> | string
-    title_cyril?: StringFilter<"HolidaySchedule"> | string
-    title_ru?: StringFilter<"HolidaySchedule"> | string
-    start_date?: DateTimeFilter<"HolidaySchedule"> | Date | string
-    end_date?: DateTimeFilter<"HolidaySchedule"> | Date | string
-    description_latin?: StringNullableFilter<"HolidaySchedule"> | string | null
-    description_cyril?: StringNullableFilter<"HolidaySchedule"> | string | null
-    description_ru?: StringNullableFilter<"HolidaySchedule"> | string | null
-    created_at?: DateTimeFilter<"HolidaySchedule"> | Date | string
-    updated_at?: DateTimeFilter<"HolidaySchedule"> | Date | string
-  }
-
-  export type HolidayScheduleOrderByWithRelationInput = {
-    id?: SortOrder
-    title_latin?: SortOrder
-    title_cyril?: SortOrder
-    title_ru?: SortOrder
-    start_date?: SortOrder
-    end_date?: SortOrder
-    description_latin?: SortOrderInput | SortOrder
-    description_cyril?: SortOrderInput | SortOrder
-    description_ru?: SortOrderInput | SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type HolidayScheduleWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: HolidayScheduleWhereInput | HolidayScheduleWhereInput[]
-    OR?: HolidayScheduleWhereInput[]
-    NOT?: HolidayScheduleWhereInput | HolidayScheduleWhereInput[]
-    title_latin?: StringFilter<"HolidaySchedule"> | string
-    title_cyril?: StringFilter<"HolidaySchedule"> | string
-    title_ru?: StringFilter<"HolidaySchedule"> | string
-    start_date?: DateTimeFilter<"HolidaySchedule"> | Date | string
-    end_date?: DateTimeFilter<"HolidaySchedule"> | Date | string
-    description_latin?: StringNullableFilter<"HolidaySchedule"> | string | null
-    description_cyril?: StringNullableFilter<"HolidaySchedule"> | string | null
-    description_ru?: StringNullableFilter<"HolidaySchedule"> | string | null
-    created_at?: DateTimeFilter<"HolidaySchedule"> | Date | string
-    updated_at?: DateTimeFilter<"HolidaySchedule"> | Date | string
-  }, "id">
-
-  export type HolidayScheduleOrderByWithAggregationInput = {
-    id?: SortOrder
-    title_latin?: SortOrder
-    title_cyril?: SortOrder
-    title_ru?: SortOrder
-    start_date?: SortOrder
-    end_date?: SortOrder
-    description_latin?: SortOrderInput | SortOrder
-    description_cyril?: SortOrderInput | SortOrder
-    description_ru?: SortOrderInput | SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    _count?: HolidayScheduleCountOrderByAggregateInput
-    _max?: HolidayScheduleMaxOrderByAggregateInput
-    _min?: HolidayScheduleMinOrderByAggregateInput
-  }
-
-  export type HolidayScheduleScalarWhereWithAggregatesInput = {
-    AND?: HolidayScheduleScalarWhereWithAggregatesInput | HolidayScheduleScalarWhereWithAggregatesInput[]
-    OR?: HolidayScheduleScalarWhereWithAggregatesInput[]
-    NOT?: HolidayScheduleScalarWhereWithAggregatesInput | HolidayScheduleScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"HolidaySchedule"> | string
-    title_latin?: StringWithAggregatesFilter<"HolidaySchedule"> | string
-    title_cyril?: StringWithAggregatesFilter<"HolidaySchedule"> | string
-    title_ru?: StringWithAggregatesFilter<"HolidaySchedule"> | string
-    start_date?: DateTimeWithAggregatesFilter<"HolidaySchedule"> | Date | string
-    end_date?: DateTimeWithAggregatesFilter<"HolidaySchedule"> | Date | string
-    description_latin?: StringNullableWithAggregatesFilter<"HolidaySchedule"> | string | null
-    description_cyril?: StringNullableWithAggregatesFilter<"HolidaySchedule"> | string | null
-    description_ru?: StringNullableWithAggregatesFilter<"HolidaySchedule"> | string | null
-    created_at?: DateTimeWithAggregatesFilter<"HolidaySchedule"> | Date | string
-    updated_at?: DateTimeWithAggregatesFilter<"HolidaySchedule"> | Date | string
   }
 
   export type CanteenMenuWhereInput = {
@@ -31768,6 +29252,7 @@ export namespace Prisma {
     file_url?: StringFilter<"Newspaper"> | string
     file_size?: IntNullableFilter<"Newspaper"> | number | null
     published_at?: DateTimeFilter<"Newspaper"> | Date | string
+    is_public?: BoolFilter<"Newspaper"> | boolean
     creator_id?: StringFilter<"Newspaper"> | string
     created_at?: DateTimeFilter<"Newspaper"> | Date | string
     updated_at?: DateTimeFilter<"Newspaper"> | Date | string
@@ -31784,6 +29269,7 @@ export namespace Prisma {
     file_url?: SortOrder
     file_size?: SortOrderInput | SortOrder
     published_at?: SortOrder
+    is_public?: SortOrder
     creator_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -31803,6 +29289,7 @@ export namespace Prisma {
     file_url?: StringFilter<"Newspaper"> | string
     file_size?: IntNullableFilter<"Newspaper"> | number | null
     published_at?: DateTimeFilter<"Newspaper"> | Date | string
+    is_public?: BoolFilter<"Newspaper"> | boolean
     creator_id?: StringFilter<"Newspaper"> | string
     created_at?: DateTimeFilter<"Newspaper"> | Date | string
     updated_at?: DateTimeFilter<"Newspaper"> | Date | string
@@ -31819,6 +29306,7 @@ export namespace Prisma {
     file_url?: SortOrder
     file_size?: SortOrderInput | SortOrder
     published_at?: SortOrder
+    is_public?: SortOrder
     creator_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -31842,6 +29330,7 @@ export namespace Prisma {
     file_url?: StringWithAggregatesFilter<"Newspaper"> | string
     file_size?: IntNullableWithAggregatesFilter<"Newspaper"> | number | null
     published_at?: DateTimeWithAggregatesFilter<"Newspaper"> | Date | string
+    is_public?: BoolWithAggregatesFilter<"Newspaper"> | boolean
     creator_id?: StringWithAggregatesFilter<"Newspaper"> | string
     created_at?: DateTimeWithAggregatesFilter<"Newspaper"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"Newspaper"> | Date | string
@@ -32233,6 +29722,7 @@ export namespace Prisma {
     staff_members?: StaffMemberCreateNestedManyWithoutCreatorInput
     clubs?: ClubCreateNestedManyWithoutCreatorInput
     newspapers?: NewspaperCreateNestedManyWithoutCreatorInput
+    class_schedules?: ClassScheduleCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -32255,6 +29745,7 @@ export namespace Prisma {
     staff_members?: StaffMemberUncheckedCreateNestedManyWithoutCreatorInput
     clubs?: ClubUncheckedCreateNestedManyWithoutCreatorInput
     newspapers?: NewspaperUncheckedCreateNestedManyWithoutCreatorInput
+    class_schedules?: ClassScheduleUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUpdateInput = {
@@ -32277,6 +29768,7 @@ export namespace Prisma {
     staff_members?: StaffMemberUpdateManyWithoutCreatorNestedInput
     clubs?: ClubUpdateManyWithoutCreatorNestedInput
     newspapers?: NewspaperUpdateManyWithoutCreatorNestedInput
+    class_schedules?: ClassScheduleUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -32299,6 +29791,7 @@ export namespace Prisma {
     staff_members?: StaffMemberUncheckedUpdateManyWithoutCreatorNestedInput
     clubs?: ClubUncheckedUpdateManyWithoutCreatorNestedInput
     newspapers?: NewspaperUncheckedUpdateManyWithoutCreatorNestedInput
+    class_schedules?: ClassScheduleUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -32701,31 +30194,23 @@ export namespace Prisma {
   export type ClassScheduleCreateInput = {
     id?: string
     grade: string
-    day: $Enums.WeekDay
-    lesson_number: number
-    subject_latin: string
-    subject_cyril: string
-    subject_ru: string
-    teacher_name?: string | null
-    room?: string | null
-    start_time: string
-    end_time: string
+    start_date?: Date | string | null
+    end_date?: Date | string | null
+    is_active?: boolean
+    schedule?: NullableJsonNullValueInput | InputJsonValue
     created_at?: Date | string
     updated_at?: Date | string
+    creator: UserCreateNestedOneWithoutClass_schedulesInput
   }
 
   export type ClassScheduleUncheckedCreateInput = {
     id?: string
     grade: string
-    day: $Enums.WeekDay
-    lesson_number: number
-    subject_latin: string
-    subject_cyril: string
-    subject_ru: string
-    teacher_name?: string | null
-    room?: string | null
-    start_time: string
-    end_time: string
+    start_date?: Date | string | null
+    end_date?: Date | string | null
+    is_active?: boolean
+    schedule?: NullableJsonNullValueInput | InputJsonValue
+    creator_id: string
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -32733,31 +30218,23 @@ export namespace Prisma {
   export type ClassScheduleUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     grade?: StringFieldUpdateOperationsInput | string
-    day?: EnumWeekDayFieldUpdateOperationsInput | $Enums.WeekDay
-    lesson_number?: IntFieldUpdateOperationsInput | number
-    subject_latin?: StringFieldUpdateOperationsInput | string
-    subject_cyril?: StringFieldUpdateOperationsInput | string
-    subject_ru?: StringFieldUpdateOperationsInput | string
-    teacher_name?: NullableStringFieldUpdateOperationsInput | string | null
-    room?: NullableStringFieldUpdateOperationsInput | string | null
-    start_time?: StringFieldUpdateOperationsInput | string
-    end_time?: StringFieldUpdateOperationsInput | string
+    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    end_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    schedule?: NullableJsonNullValueInput | InputJsonValue
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    creator?: UserUpdateOneRequiredWithoutClass_schedulesNestedInput
   }
 
   export type ClassScheduleUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     grade?: StringFieldUpdateOperationsInput | string
-    day?: EnumWeekDayFieldUpdateOperationsInput | $Enums.WeekDay
-    lesson_number?: IntFieldUpdateOperationsInput | number
-    subject_latin?: StringFieldUpdateOperationsInput | string
-    subject_cyril?: StringFieldUpdateOperationsInput | string
-    subject_ru?: StringFieldUpdateOperationsInput | string
-    teacher_name?: NullableStringFieldUpdateOperationsInput | string | null
-    room?: NullableStringFieldUpdateOperationsInput | string | null
-    start_time?: StringFieldUpdateOperationsInput | string
-    end_time?: StringFieldUpdateOperationsInput | string
+    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    end_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    schedule?: NullableJsonNullValueInput | InputJsonValue
+    creator_id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -32765,15 +30242,11 @@ export namespace Prisma {
   export type ClassScheduleCreateManyInput = {
     id?: string
     grade: string
-    day: $Enums.WeekDay
-    lesson_number: number
-    subject_latin: string
-    subject_cyril: string
-    subject_ru: string
-    teacher_name?: string | null
-    room?: string | null
-    start_time: string
-    end_time: string
+    start_date?: Date | string | null
+    end_date?: Date | string | null
+    is_active?: boolean
+    schedule?: NullableJsonNullValueInput | InputJsonValue
+    creator_id: string
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -32781,15 +30254,10 @@ export namespace Prisma {
   export type ClassScheduleUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     grade?: StringFieldUpdateOperationsInput | string
-    day?: EnumWeekDayFieldUpdateOperationsInput | $Enums.WeekDay
-    lesson_number?: IntFieldUpdateOperationsInput | number
-    subject_latin?: StringFieldUpdateOperationsInput | string
-    subject_cyril?: StringFieldUpdateOperationsInput | string
-    subject_ru?: StringFieldUpdateOperationsInput | string
-    teacher_name?: NullableStringFieldUpdateOperationsInput | string | null
-    room?: NullableStringFieldUpdateOperationsInput | string | null
-    start_time?: StringFieldUpdateOperationsInput | string
-    end_time?: StringFieldUpdateOperationsInput | string
+    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    end_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    schedule?: NullableJsonNullValueInput | InputJsonValue
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -32797,183 +30265,11 @@ export namespace Prisma {
   export type ClassScheduleUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     grade?: StringFieldUpdateOperationsInput | string
-    day?: EnumWeekDayFieldUpdateOperationsInput | $Enums.WeekDay
-    lesson_number?: IntFieldUpdateOperationsInput | number
-    subject_latin?: StringFieldUpdateOperationsInput | string
-    subject_cyril?: StringFieldUpdateOperationsInput | string
-    subject_ru?: StringFieldUpdateOperationsInput | string
-    teacher_name?: NullableStringFieldUpdateOperationsInput | string | null
-    room?: NullableStringFieldUpdateOperationsInput | string | null
-    start_time?: StringFieldUpdateOperationsInput | string
-    end_time?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type BellScheduleCreateInput = {
-    id?: string
-    lesson_number: number
-    start_time: string
-    end_time: string
-    break_minutes?: number | null
-    shift?: number
-    is_active?: boolean
-  }
-
-  export type BellScheduleUncheckedCreateInput = {
-    id?: string
-    lesson_number: number
-    start_time: string
-    end_time: string
-    break_minutes?: number | null
-    shift?: number
-    is_active?: boolean
-  }
-
-  export type BellScheduleUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    lesson_number?: IntFieldUpdateOperationsInput | number
-    start_time?: StringFieldUpdateOperationsInput | string
-    end_time?: StringFieldUpdateOperationsInput | string
-    break_minutes?: NullableIntFieldUpdateOperationsInput | number | null
-    shift?: IntFieldUpdateOperationsInput | number
+    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    end_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     is_active?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type BellScheduleUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    lesson_number?: IntFieldUpdateOperationsInput | number
-    start_time?: StringFieldUpdateOperationsInput | string
-    end_time?: StringFieldUpdateOperationsInput | string
-    break_minutes?: NullableIntFieldUpdateOperationsInput | number | null
-    shift?: IntFieldUpdateOperationsInput | number
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type BellScheduleCreateManyInput = {
-    id?: string
-    lesson_number: number
-    start_time: string
-    end_time: string
-    break_minutes?: number | null
-    shift?: number
-    is_active?: boolean
-  }
-
-  export type BellScheduleUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    lesson_number?: IntFieldUpdateOperationsInput | number
-    start_time?: StringFieldUpdateOperationsInput | string
-    end_time?: StringFieldUpdateOperationsInput | string
-    break_minutes?: NullableIntFieldUpdateOperationsInput | number | null
-    shift?: IntFieldUpdateOperationsInput | number
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type BellScheduleUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    lesson_number?: IntFieldUpdateOperationsInput | number
-    start_time?: StringFieldUpdateOperationsInput | string
-    end_time?: StringFieldUpdateOperationsInput | string
-    break_minutes?: NullableIntFieldUpdateOperationsInput | number | null
-    shift?: IntFieldUpdateOperationsInput | number
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type HolidayScheduleCreateInput = {
-    id?: string
-    title_latin: string
-    title_cyril: string
-    title_ru: string
-    start_date: Date | string
-    end_date: Date | string
-    description_latin?: string | null
-    description_cyril?: string | null
-    description_ru?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-  }
-
-  export type HolidayScheduleUncheckedCreateInput = {
-    id?: string
-    title_latin: string
-    title_cyril: string
-    title_ru: string
-    start_date: Date | string
-    end_date: Date | string
-    description_latin?: string | null
-    description_cyril?: string | null
-    description_ru?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-  }
-
-  export type HolidayScheduleUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title_latin?: StringFieldUpdateOperationsInput | string
-    title_cyril?: StringFieldUpdateOperationsInput | string
-    title_ru?: StringFieldUpdateOperationsInput | string
-    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    description_latin?: NullableStringFieldUpdateOperationsInput | string | null
-    description_cyril?: NullableStringFieldUpdateOperationsInput | string | null
-    description_ru?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type HolidayScheduleUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title_latin?: StringFieldUpdateOperationsInput | string
-    title_cyril?: StringFieldUpdateOperationsInput | string
-    title_ru?: StringFieldUpdateOperationsInput | string
-    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    description_latin?: NullableStringFieldUpdateOperationsInput | string | null
-    description_cyril?: NullableStringFieldUpdateOperationsInput | string | null
-    description_ru?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type HolidayScheduleCreateManyInput = {
-    id?: string
-    title_latin: string
-    title_cyril: string
-    title_ru: string
-    start_date: Date | string
-    end_date: Date | string
-    description_latin?: string | null
-    description_cyril?: string | null
-    description_ru?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-  }
-
-  export type HolidayScheduleUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title_latin?: StringFieldUpdateOperationsInput | string
-    title_cyril?: StringFieldUpdateOperationsInput | string
-    title_ru?: StringFieldUpdateOperationsInput | string
-    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    description_latin?: NullableStringFieldUpdateOperationsInput | string | null
-    description_cyril?: NullableStringFieldUpdateOperationsInput | string | null
-    description_ru?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type HolidayScheduleUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title_latin?: StringFieldUpdateOperationsInput | string
-    title_cyril?: StringFieldUpdateOperationsInput | string
-    title_ru?: StringFieldUpdateOperationsInput | string
-    start_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    description_latin?: NullableStringFieldUpdateOperationsInput | string | null
-    description_cyril?: NullableStringFieldUpdateOperationsInput | string | null
-    description_ru?: NullableStringFieldUpdateOperationsInput | string | null
+    schedule?: NullableJsonNullValueInput | InputJsonValue
+    creator_id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -34134,6 +31430,7 @@ export namespace Prisma {
     file_url: string
     file_size?: number | null
     published_at?: Date | string
+    is_public?: boolean
     created_at?: Date | string
     updated_at?: Date | string
     creator: UserCreateNestedOneWithoutNewspapersInput
@@ -34149,6 +31446,7 @@ export namespace Prisma {
     file_url: string
     file_size?: number | null
     published_at?: Date | string
+    is_public?: boolean
     creator_id: string
     created_at?: Date | string
     updated_at?: Date | string
@@ -34164,6 +31462,7 @@ export namespace Prisma {
     file_url?: StringFieldUpdateOperationsInput | string
     file_size?: NullableIntFieldUpdateOperationsInput | number | null
     published_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_public?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     creator?: UserUpdateOneRequiredWithoutNewspapersNestedInput
@@ -34179,6 +31478,7 @@ export namespace Prisma {
     file_url?: StringFieldUpdateOperationsInput | string
     file_size?: NullableIntFieldUpdateOperationsInput | number | null
     published_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_public?: BoolFieldUpdateOperationsInput | boolean
     creator_id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -34194,6 +31494,7 @@ export namespace Prisma {
     file_url: string
     file_size?: number | null
     published_at?: Date | string
+    is_public?: boolean
     creator_id: string
     created_at?: Date | string
     updated_at?: Date | string
@@ -34209,6 +31510,7 @@ export namespace Prisma {
     file_url?: StringFieldUpdateOperationsInput | string
     file_size?: NullableIntFieldUpdateOperationsInput | number | null
     published_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_public?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -34223,6 +31525,7 @@ export namespace Prisma {
     file_url?: StringFieldUpdateOperationsInput | string
     file_size?: NullableIntFieldUpdateOperationsInput | number | null
     published_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_public?: BoolFieldUpdateOperationsInput | boolean
     creator_id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -34749,6 +32052,12 @@ export namespace Prisma {
     none?: NewspaperWhereInput
   }
 
+  export type ClassScheduleListRelationFilter = {
+    every?: ClassScheduleWhereInput
+    some?: ClassScheduleWhereInput
+    none?: ClassScheduleWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -34783,6 +32092,10 @@ export namespace Prisma {
   }
 
   export type NewspaperOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ClassScheduleOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -35195,45 +32508,25 @@ export namespace Prisma {
     _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
-  export type EnumWeekDayFilter<$PrismaModel = never> = {
-    equals?: $Enums.WeekDay | EnumWeekDayFieldRefInput<$PrismaModel>
-    in?: $Enums.WeekDay[] | ListEnumWeekDayFieldRefInput<$PrismaModel>
-    notIn?: $Enums.WeekDay[] | ListEnumWeekDayFieldRefInput<$PrismaModel>
-    not?: NestedEnumWeekDayFilter<$PrismaModel> | $Enums.WeekDay
-  }
-
   export type ClassScheduleCountOrderByAggregateInput = {
     id?: SortOrder
     grade?: SortOrder
-    day?: SortOrder
-    lesson_number?: SortOrder
-    subject_latin?: SortOrder
-    subject_cyril?: SortOrder
-    subject_ru?: SortOrder
-    teacher_name?: SortOrder
-    room?: SortOrder
-    start_time?: SortOrder
-    end_time?: SortOrder
+    start_date?: SortOrder
+    end_date?: SortOrder
+    is_active?: SortOrder
+    schedule?: SortOrder
+    creator_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
-  }
-
-  export type ClassScheduleAvgOrderByAggregateInput = {
-    lesson_number?: SortOrder
   }
 
   export type ClassScheduleMaxOrderByAggregateInput = {
     id?: SortOrder
     grade?: SortOrder
-    day?: SortOrder
-    lesson_number?: SortOrder
-    subject_latin?: SortOrder
-    subject_cyril?: SortOrder
-    subject_ru?: SortOrder
-    teacher_name?: SortOrder
-    room?: SortOrder
-    start_time?: SortOrder
-    end_time?: SortOrder
+    start_date?: SortOrder
+    end_date?: SortOrder
+    is_active?: SortOrder
+    creator_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -35241,145 +32534,10 @@ export namespace Prisma {
   export type ClassScheduleMinOrderByAggregateInput = {
     id?: SortOrder
     grade?: SortOrder
-    day?: SortOrder
-    lesson_number?: SortOrder
-    subject_latin?: SortOrder
-    subject_cyril?: SortOrder
-    subject_ru?: SortOrder
-    teacher_name?: SortOrder
-    room?: SortOrder
-    start_time?: SortOrder
-    end_time?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type ClassScheduleSumOrderByAggregateInput = {
-    lesson_number?: SortOrder
-  }
-
-  export type EnumWeekDayWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.WeekDay | EnumWeekDayFieldRefInput<$PrismaModel>
-    in?: $Enums.WeekDay[] | ListEnumWeekDayFieldRefInput<$PrismaModel>
-    notIn?: $Enums.WeekDay[] | ListEnumWeekDayFieldRefInput<$PrismaModel>
-    not?: NestedEnumWeekDayWithAggregatesFilter<$PrismaModel> | $Enums.WeekDay
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumWeekDayFilter<$PrismaModel>
-    _max?: NestedEnumWeekDayFilter<$PrismaModel>
-  }
-
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type BellScheduleLesson_numberShiftCompoundUniqueInput = {
-    lesson_number: number
-    shift: number
-  }
-
-  export type BellScheduleCountOrderByAggregateInput = {
-    id?: SortOrder
-    lesson_number?: SortOrder
-    start_time?: SortOrder
-    end_time?: SortOrder
-    break_minutes?: SortOrder
-    shift?: SortOrder
-    is_active?: SortOrder
-  }
-
-  export type BellScheduleAvgOrderByAggregateInput = {
-    lesson_number?: SortOrder
-    break_minutes?: SortOrder
-    shift?: SortOrder
-  }
-
-  export type BellScheduleMaxOrderByAggregateInput = {
-    id?: SortOrder
-    lesson_number?: SortOrder
-    start_time?: SortOrder
-    end_time?: SortOrder
-    break_minutes?: SortOrder
-    shift?: SortOrder
-    is_active?: SortOrder
-  }
-
-  export type BellScheduleMinOrderByAggregateInput = {
-    id?: SortOrder
-    lesson_number?: SortOrder
-    start_time?: SortOrder
-    end_time?: SortOrder
-    break_minutes?: SortOrder
-    shift?: SortOrder
-    is_active?: SortOrder
-  }
-
-  export type BellScheduleSumOrderByAggregateInput = {
-    lesson_number?: SortOrder
-    break_minutes?: SortOrder
-    shift?: SortOrder
-  }
-
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type HolidayScheduleCountOrderByAggregateInput = {
-    id?: SortOrder
-    title_latin?: SortOrder
-    title_cyril?: SortOrder
-    title_ru?: SortOrder
     start_date?: SortOrder
     end_date?: SortOrder
-    description_latin?: SortOrder
-    description_cyril?: SortOrder
-    description_ru?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type HolidayScheduleMaxOrderByAggregateInput = {
-    id?: SortOrder
-    title_latin?: SortOrder
-    title_cyril?: SortOrder
-    title_ru?: SortOrder
-    start_date?: SortOrder
-    end_date?: SortOrder
-    description_latin?: SortOrder
-    description_cyril?: SortOrder
-    description_ru?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type HolidayScheduleMinOrderByAggregateInput = {
-    id?: SortOrder
-    title_latin?: SortOrder
-    title_cyril?: SortOrder
-    title_ru?: SortOrder
-    start_date?: SortOrder
-    end_date?: SortOrder
-    description_latin?: SortOrder
-    description_cyril?: SortOrder
-    description_ru?: SortOrder
+    is_active?: SortOrder
+    creator_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -35810,6 +32968,17 @@ export namespace Prisma {
     not?: NestedEnumDocumentCategoryFilter<$PrismaModel> | $Enums.DocumentCategory
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type DocumentCountOrderByAggregateInput = {
     id?: SortOrder
     title_latin?: SortOrder
@@ -35874,6 +33043,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumDocumentCategoryFilter<$PrismaModel>
     _max?: NestedEnumDocumentCategoryFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type EnumMediaTypeFilter<$PrismaModel = never> = {
@@ -36000,6 +33185,7 @@ export namespace Prisma {
     file_url?: SortOrder
     file_size?: SortOrder
     published_at?: SortOrder
+    is_public?: SortOrder
     creator_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -36020,6 +33206,7 @@ export namespace Prisma {
     file_url?: SortOrder
     file_size?: SortOrder
     published_at?: SortOrder
+    is_public?: SortOrder
     creator_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -36035,6 +33222,7 @@ export namespace Prisma {
     file_url?: SortOrder
     file_size?: SortOrder
     published_at?: SortOrder
+    is_public?: SortOrder
     creator_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -36349,6 +33537,13 @@ export namespace Prisma {
     connect?: NewspaperWhereUniqueInput | NewspaperWhereUniqueInput[]
   }
 
+  export type ClassScheduleCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<ClassScheduleCreateWithoutCreatorInput, ClassScheduleUncheckedCreateWithoutCreatorInput> | ClassScheduleCreateWithoutCreatorInput[] | ClassScheduleUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: ClassScheduleCreateOrConnectWithoutCreatorInput | ClassScheduleCreateOrConnectWithoutCreatorInput[]
+    createMany?: ClassScheduleCreateManyCreatorInputEnvelope
+    connect?: ClassScheduleWhereUniqueInput | ClassScheduleWhereUniqueInput[]
+  }
+
   export type AnnouncementUncheckedCreateNestedManyWithoutCreatorInput = {
     create?: XOR<AnnouncementCreateWithoutCreatorInput, AnnouncementUncheckedCreateWithoutCreatorInput> | AnnouncementCreateWithoutCreatorInput[] | AnnouncementUncheckedCreateWithoutCreatorInput[]
     connectOrCreate?: AnnouncementCreateOrConnectWithoutCreatorInput | AnnouncementCreateOrConnectWithoutCreatorInput[]
@@ -36403,6 +33598,13 @@ export namespace Prisma {
     connectOrCreate?: NewspaperCreateOrConnectWithoutCreatorInput | NewspaperCreateOrConnectWithoutCreatorInput[]
     createMany?: NewspaperCreateManyCreatorInputEnvelope
     connect?: NewspaperWhereUniqueInput | NewspaperWhereUniqueInput[]
+  }
+
+  export type ClassScheduleUncheckedCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<ClassScheduleCreateWithoutCreatorInput, ClassScheduleUncheckedCreateWithoutCreatorInput> | ClassScheduleCreateWithoutCreatorInput[] | ClassScheduleUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: ClassScheduleCreateOrConnectWithoutCreatorInput | ClassScheduleCreateOrConnectWithoutCreatorInput[]
+    createMany?: ClassScheduleCreateManyCreatorInputEnvelope
+    connect?: ClassScheduleWhereUniqueInput | ClassScheduleWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -36537,6 +33739,20 @@ export namespace Prisma {
     deleteMany?: NewspaperScalarWhereInput | NewspaperScalarWhereInput[]
   }
 
+  export type ClassScheduleUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<ClassScheduleCreateWithoutCreatorInput, ClassScheduleUncheckedCreateWithoutCreatorInput> | ClassScheduleCreateWithoutCreatorInput[] | ClassScheduleUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: ClassScheduleCreateOrConnectWithoutCreatorInput | ClassScheduleCreateOrConnectWithoutCreatorInput[]
+    upsert?: ClassScheduleUpsertWithWhereUniqueWithoutCreatorInput | ClassScheduleUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: ClassScheduleCreateManyCreatorInputEnvelope
+    set?: ClassScheduleWhereUniqueInput | ClassScheduleWhereUniqueInput[]
+    disconnect?: ClassScheduleWhereUniqueInput | ClassScheduleWhereUniqueInput[]
+    delete?: ClassScheduleWhereUniqueInput | ClassScheduleWhereUniqueInput[]
+    connect?: ClassScheduleWhereUniqueInput | ClassScheduleWhereUniqueInput[]
+    update?: ClassScheduleUpdateWithWhereUniqueWithoutCreatorInput | ClassScheduleUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: ClassScheduleUpdateManyWithWhereWithoutCreatorInput | ClassScheduleUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: ClassScheduleScalarWhereInput | ClassScheduleScalarWhereInput[]
+  }
+
   export type AnnouncementUncheckedUpdateManyWithoutCreatorNestedInput = {
     create?: XOR<AnnouncementCreateWithoutCreatorInput, AnnouncementUncheckedCreateWithoutCreatorInput> | AnnouncementCreateWithoutCreatorInput[] | AnnouncementUncheckedCreateWithoutCreatorInput[]
     connectOrCreate?: AnnouncementCreateOrConnectWithoutCreatorInput | AnnouncementCreateOrConnectWithoutCreatorInput[]
@@ -36649,6 +33865,20 @@ export namespace Prisma {
     deleteMany?: NewspaperScalarWhereInput | NewspaperScalarWhereInput[]
   }
 
+  export type ClassScheduleUncheckedUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<ClassScheduleCreateWithoutCreatorInput, ClassScheduleUncheckedCreateWithoutCreatorInput> | ClassScheduleCreateWithoutCreatorInput[] | ClassScheduleUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: ClassScheduleCreateOrConnectWithoutCreatorInput | ClassScheduleCreateOrConnectWithoutCreatorInput[]
+    upsert?: ClassScheduleUpsertWithWhereUniqueWithoutCreatorInput | ClassScheduleUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: ClassScheduleCreateManyCreatorInputEnvelope
+    set?: ClassScheduleWhereUniqueInput | ClassScheduleWhereUniqueInput[]
+    disconnect?: ClassScheduleWhereUniqueInput | ClassScheduleWhereUniqueInput[]
+    delete?: ClassScheduleWhereUniqueInput | ClassScheduleWhereUniqueInput[]
+    connect?: ClassScheduleWhereUniqueInput | ClassScheduleWhereUniqueInput[]
+    update?: ClassScheduleUpdateWithWhereUniqueWithoutCreatorInput | ClassScheduleUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: ClassScheduleUpdateManyWithWhereWithoutCreatorInput | ClassScheduleUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: ClassScheduleScalarWhereInput | ClassScheduleScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutStaff_membersInput = {
     create?: XOR<UserCreateWithoutStaff_membersInput, UserUncheckedCreateWithoutStaff_membersInput>
     connectOrCreate?: UserCreateOrConnectWithoutStaff_membersInput
@@ -36697,16 +33927,18 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutClubsInput, UserUpdateWithoutClubsInput>, UserUncheckedUpdateWithoutClubsInput>
   }
 
-  export type EnumWeekDayFieldUpdateOperationsInput = {
-    set?: $Enums.WeekDay
+  export type UserCreateNestedOneWithoutClass_schedulesInput = {
+    create?: XOR<UserCreateWithoutClass_schedulesInput, UserUncheckedCreateWithoutClass_schedulesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutClass_schedulesInput
+    connect?: UserWhereUniqueInput
   }
 
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
+  export type UserUpdateOneRequiredWithoutClass_schedulesNestedInput = {
+    create?: XOR<UserCreateWithoutClass_schedulesInput, UserUncheckedCreateWithoutClass_schedulesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutClass_schedulesInput
+    upsert?: UserUpsertWithoutClass_schedulesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutClass_schedulesInput, UserUpdateWithoutClass_schedulesInput>, UserUncheckedUpdateWithoutClass_schedulesInput>
   }
 
   export type EnumApplicationStatusFieldUpdateOperationsInput = {
@@ -36771,6 +34003,14 @@ export namespace Prisma {
 
   export type EnumDocumentCategoryFieldUpdateOperationsInput = {
     set?: $Enums.DocumentCategory
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type UserUpdateOneRequiredWithoutDocumentsNestedInput = {
@@ -37129,50 +34369,6 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
-  export type NestedEnumWeekDayFilter<$PrismaModel = never> = {
-    equals?: $Enums.WeekDay | EnumWeekDayFieldRefInput<$PrismaModel>
-    in?: $Enums.WeekDay[] | ListEnumWeekDayFieldRefInput<$PrismaModel>
-    notIn?: $Enums.WeekDay[] | ListEnumWeekDayFieldRefInput<$PrismaModel>
-    not?: NestedEnumWeekDayFilter<$PrismaModel> | $Enums.WeekDay
-  }
-
-  export type NestedEnumWeekDayWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.WeekDay | EnumWeekDayFieldRefInput<$PrismaModel>
-    in?: $Enums.WeekDay[] | ListEnumWeekDayFieldRefInput<$PrismaModel>
-    notIn?: $Enums.WeekDay[] | ListEnumWeekDayFieldRefInput<$PrismaModel>
-    not?: NestedEnumWeekDayWithAggregatesFilter<$PrismaModel> | $Enums.WeekDay
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumWeekDayFilter<$PrismaModel>
-    _max?: NestedEnumWeekDayFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type NestedFloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
-
   export type NestedEnumApplicationStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.ApplicationStatus | EnumApplicationStatusFieldRefInput<$PrismaModel>
     in?: $Enums.ApplicationStatus[] | ListEnumApplicationStatusFieldRefInput<$PrismaModel>
@@ -37239,6 +34435,33 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumDocumentCategoryFilter<$PrismaModel>
     _max?: NestedEnumDocumentCategoryFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedEnumMediaTypeFilter<$PrismaModel = never> = {
@@ -37623,6 +34846,7 @@ export namespace Prisma {
     file_url: string
     file_size?: number | null
     published_at?: Date | string
+    is_public?: boolean
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -37637,6 +34861,7 @@ export namespace Prisma {
     file_url: string
     file_size?: number | null
     published_at?: Date | string
+    is_public?: boolean
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -37648,6 +34873,38 @@ export namespace Prisma {
 
   export type NewspaperCreateManyCreatorInputEnvelope = {
     data: NewspaperCreateManyCreatorInput | NewspaperCreateManyCreatorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ClassScheduleCreateWithoutCreatorInput = {
+    id?: string
+    grade: string
+    start_date?: Date | string | null
+    end_date?: Date | string | null
+    is_active?: boolean
+    schedule?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type ClassScheduleUncheckedCreateWithoutCreatorInput = {
+    id?: string
+    grade: string
+    start_date?: Date | string | null
+    end_date?: Date | string | null
+    is_active?: boolean
+    schedule?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type ClassScheduleCreateOrConnectWithoutCreatorInput = {
+    where: ClassScheduleWhereUniqueInput
+    create: XOR<ClassScheduleCreateWithoutCreatorInput, ClassScheduleUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type ClassScheduleCreateManyCreatorInputEnvelope = {
+    data: ClassScheduleCreateManyCreatorInput | ClassScheduleCreateManyCreatorInput[]
     skipDuplicates?: boolean
   }
 
@@ -37945,9 +35202,41 @@ export namespace Prisma {
     file_url?: StringFilter<"Newspaper"> | string
     file_size?: IntNullableFilter<"Newspaper"> | number | null
     published_at?: DateTimeFilter<"Newspaper"> | Date | string
+    is_public?: BoolFilter<"Newspaper"> | boolean
     creator_id?: StringFilter<"Newspaper"> | string
     created_at?: DateTimeFilter<"Newspaper"> | Date | string
     updated_at?: DateTimeFilter<"Newspaper"> | Date | string
+  }
+
+  export type ClassScheduleUpsertWithWhereUniqueWithoutCreatorInput = {
+    where: ClassScheduleWhereUniqueInput
+    update: XOR<ClassScheduleUpdateWithoutCreatorInput, ClassScheduleUncheckedUpdateWithoutCreatorInput>
+    create: XOR<ClassScheduleCreateWithoutCreatorInput, ClassScheduleUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type ClassScheduleUpdateWithWhereUniqueWithoutCreatorInput = {
+    where: ClassScheduleWhereUniqueInput
+    data: XOR<ClassScheduleUpdateWithoutCreatorInput, ClassScheduleUncheckedUpdateWithoutCreatorInput>
+  }
+
+  export type ClassScheduleUpdateManyWithWhereWithoutCreatorInput = {
+    where: ClassScheduleScalarWhereInput
+    data: XOR<ClassScheduleUpdateManyMutationInput, ClassScheduleUncheckedUpdateManyWithoutCreatorInput>
+  }
+
+  export type ClassScheduleScalarWhereInput = {
+    AND?: ClassScheduleScalarWhereInput | ClassScheduleScalarWhereInput[]
+    OR?: ClassScheduleScalarWhereInput[]
+    NOT?: ClassScheduleScalarWhereInput | ClassScheduleScalarWhereInput[]
+    id?: StringFilter<"ClassSchedule"> | string
+    grade?: StringFilter<"ClassSchedule"> | string
+    start_date?: DateTimeNullableFilter<"ClassSchedule"> | Date | string | null
+    end_date?: DateTimeNullableFilter<"ClassSchedule"> | Date | string | null
+    is_active?: BoolFilter<"ClassSchedule"> | boolean
+    schedule?: JsonNullableFilter<"ClassSchedule">
+    creator_id?: StringFilter<"ClassSchedule"> | string
+    created_at?: DateTimeFilter<"ClassSchedule"> | Date | string
+    updated_at?: DateTimeFilter<"ClassSchedule"> | Date | string
   }
 
   export type UserCreateWithoutStaff_membersInput = {
@@ -37969,6 +35258,7 @@ export namespace Prisma {
     media_albums?: MediaAlbumCreateNestedManyWithoutCreatorInput
     clubs?: ClubCreateNestedManyWithoutCreatorInput
     newspapers?: NewspaperCreateNestedManyWithoutCreatorInput
+    class_schedules?: ClassScheduleCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateWithoutStaff_membersInput = {
@@ -37990,6 +35280,7 @@ export namespace Prisma {
     media_albums?: MediaAlbumUncheckedCreateNestedManyWithoutCreatorInput
     clubs?: ClubUncheckedCreateNestedManyWithoutCreatorInput
     newspapers?: NewspaperUncheckedCreateNestedManyWithoutCreatorInput
+    class_schedules?: ClassScheduleUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserCreateOrConnectWithoutStaff_membersInput = {
@@ -38027,6 +35318,7 @@ export namespace Prisma {
     media_albums?: MediaAlbumUpdateManyWithoutCreatorNestedInput
     clubs?: ClubUpdateManyWithoutCreatorNestedInput
     newspapers?: NewspaperUpdateManyWithoutCreatorNestedInput
+    class_schedules?: ClassScheduleUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutStaff_membersInput = {
@@ -38048,6 +35340,7 @@ export namespace Prisma {
     media_albums?: MediaAlbumUncheckedUpdateManyWithoutCreatorNestedInput
     clubs?: ClubUncheckedUpdateManyWithoutCreatorNestedInput
     newspapers?: NewspaperUncheckedUpdateManyWithoutCreatorNestedInput
+    class_schedules?: ClassScheduleUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserCreateWithoutClubsInput = {
@@ -38069,6 +35362,7 @@ export namespace Prisma {
     media_albums?: MediaAlbumCreateNestedManyWithoutCreatorInput
     staff_members?: StaffMemberCreateNestedManyWithoutCreatorInput
     newspapers?: NewspaperCreateNestedManyWithoutCreatorInput
+    class_schedules?: ClassScheduleCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateWithoutClubsInput = {
@@ -38090,6 +35384,7 @@ export namespace Prisma {
     media_albums?: MediaAlbumUncheckedCreateNestedManyWithoutCreatorInput
     staff_members?: StaffMemberUncheckedCreateNestedManyWithoutCreatorInput
     newspapers?: NewspaperUncheckedCreateNestedManyWithoutCreatorInput
+    class_schedules?: ClassScheduleUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserCreateOrConnectWithoutClubsInput = {
@@ -38127,6 +35422,7 @@ export namespace Prisma {
     media_albums?: MediaAlbumUpdateManyWithoutCreatorNestedInput
     staff_members?: StaffMemberUpdateManyWithoutCreatorNestedInput
     newspapers?: NewspaperUpdateManyWithoutCreatorNestedInput
+    class_schedules?: ClassScheduleUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutClubsInput = {
@@ -38147,6 +35443,111 @@ export namespace Prisma {
     documents?: DocumentUncheckedUpdateManyWithoutCreatorNestedInput
     media_albums?: MediaAlbumUncheckedUpdateManyWithoutCreatorNestedInput
     staff_members?: StaffMemberUncheckedUpdateManyWithoutCreatorNestedInput
+    newspapers?: NewspaperUncheckedUpdateManyWithoutCreatorNestedInput
+    class_schedules?: ClassScheduleUncheckedUpdateManyWithoutCreatorNestedInput
+  }
+
+  export type UserCreateWithoutClass_schedulesInput = {
+    id?: string
+    phone_number: string
+    email?: string | null
+    full_name: string
+    hashed_password: string
+    hashed_refresh_token?: string | null
+    refresh_token_jti?: string | null
+    role?: $Enums.UserRole
+    is_login?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+    announcements?: AnnouncementCreateNestedManyWithoutCreatorInput
+    news?: NewsCreateNestedManyWithoutCreatorInput
+    events?: EventCreateNestedManyWithoutCreatorInput
+    documents?: DocumentCreateNestedManyWithoutCreatorInput
+    media_albums?: MediaAlbumCreateNestedManyWithoutCreatorInput
+    staff_members?: StaffMemberCreateNestedManyWithoutCreatorInput
+    clubs?: ClubCreateNestedManyWithoutCreatorInput
+    newspapers?: NewspaperCreateNestedManyWithoutCreatorInput
+  }
+
+  export type UserUncheckedCreateWithoutClass_schedulesInput = {
+    id?: string
+    phone_number: string
+    email?: string | null
+    full_name: string
+    hashed_password: string
+    hashed_refresh_token?: string | null
+    refresh_token_jti?: string | null
+    role?: $Enums.UserRole
+    is_login?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+    announcements?: AnnouncementUncheckedCreateNestedManyWithoutCreatorInput
+    news?: NewsUncheckedCreateNestedManyWithoutCreatorInput
+    events?: EventUncheckedCreateNestedManyWithoutCreatorInput
+    documents?: DocumentUncheckedCreateNestedManyWithoutCreatorInput
+    media_albums?: MediaAlbumUncheckedCreateNestedManyWithoutCreatorInput
+    staff_members?: StaffMemberUncheckedCreateNestedManyWithoutCreatorInput
+    clubs?: ClubUncheckedCreateNestedManyWithoutCreatorInput
+    newspapers?: NewspaperUncheckedCreateNestedManyWithoutCreatorInput
+  }
+
+  export type UserCreateOrConnectWithoutClass_schedulesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutClass_schedulesInput, UserUncheckedCreateWithoutClass_schedulesInput>
+  }
+
+  export type UserUpsertWithoutClass_schedulesInput = {
+    update: XOR<UserUpdateWithoutClass_schedulesInput, UserUncheckedUpdateWithoutClass_schedulesInput>
+    create: XOR<UserCreateWithoutClass_schedulesInput, UserUncheckedCreateWithoutClass_schedulesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutClass_schedulesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutClass_schedulesInput, UserUncheckedUpdateWithoutClass_schedulesInput>
+  }
+
+  export type UserUpdateWithoutClass_schedulesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone_number?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    full_name?: StringFieldUpdateOperationsInput | string
+    hashed_password?: StringFieldUpdateOperationsInput | string
+    hashed_refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    refresh_token_jti?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    is_login?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    announcements?: AnnouncementUpdateManyWithoutCreatorNestedInput
+    news?: NewsUpdateManyWithoutCreatorNestedInput
+    events?: EventUpdateManyWithoutCreatorNestedInput
+    documents?: DocumentUpdateManyWithoutCreatorNestedInput
+    media_albums?: MediaAlbumUpdateManyWithoutCreatorNestedInput
+    staff_members?: StaffMemberUpdateManyWithoutCreatorNestedInput
+    clubs?: ClubUpdateManyWithoutCreatorNestedInput
+    newspapers?: NewspaperUpdateManyWithoutCreatorNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutClass_schedulesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    phone_number?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    full_name?: StringFieldUpdateOperationsInput | string
+    hashed_password?: StringFieldUpdateOperationsInput | string
+    hashed_refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    refresh_token_jti?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    is_login?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    announcements?: AnnouncementUncheckedUpdateManyWithoutCreatorNestedInput
+    news?: NewsUncheckedUpdateManyWithoutCreatorNestedInput
+    events?: EventUncheckedUpdateManyWithoutCreatorNestedInput
+    documents?: DocumentUncheckedUpdateManyWithoutCreatorNestedInput
+    media_albums?: MediaAlbumUncheckedUpdateManyWithoutCreatorNestedInput
+    staff_members?: StaffMemberUncheckedUpdateManyWithoutCreatorNestedInput
+    clubs?: ClubUncheckedUpdateManyWithoutCreatorNestedInput
     newspapers?: NewspaperUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
@@ -38169,6 +35570,7 @@ export namespace Prisma {
     staff_members?: StaffMemberCreateNestedManyWithoutCreatorInput
     clubs?: ClubCreateNestedManyWithoutCreatorInput
     newspapers?: NewspaperCreateNestedManyWithoutCreatorInput
+    class_schedules?: ClassScheduleCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateWithoutNewsInput = {
@@ -38190,6 +35592,7 @@ export namespace Prisma {
     staff_members?: StaffMemberUncheckedCreateNestedManyWithoutCreatorInput
     clubs?: ClubUncheckedCreateNestedManyWithoutCreatorInput
     newspapers?: NewspaperUncheckedCreateNestedManyWithoutCreatorInput
+    class_schedules?: ClassScheduleUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserCreateOrConnectWithoutNewsInput = {
@@ -38227,6 +35630,7 @@ export namespace Prisma {
     staff_members?: StaffMemberUpdateManyWithoutCreatorNestedInput
     clubs?: ClubUpdateManyWithoutCreatorNestedInput
     newspapers?: NewspaperUpdateManyWithoutCreatorNestedInput
+    class_schedules?: ClassScheduleUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNewsInput = {
@@ -38248,6 +35652,7 @@ export namespace Prisma {
     staff_members?: StaffMemberUncheckedUpdateManyWithoutCreatorNestedInput
     clubs?: ClubUncheckedUpdateManyWithoutCreatorNestedInput
     newspapers?: NewspaperUncheckedUpdateManyWithoutCreatorNestedInput
+    class_schedules?: ClassScheduleUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserCreateWithoutEventsInput = {
@@ -38269,6 +35674,7 @@ export namespace Prisma {
     staff_members?: StaffMemberCreateNestedManyWithoutCreatorInput
     clubs?: ClubCreateNestedManyWithoutCreatorInput
     newspapers?: NewspaperCreateNestedManyWithoutCreatorInput
+    class_schedules?: ClassScheduleCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateWithoutEventsInput = {
@@ -38290,6 +35696,7 @@ export namespace Prisma {
     staff_members?: StaffMemberUncheckedCreateNestedManyWithoutCreatorInput
     clubs?: ClubUncheckedCreateNestedManyWithoutCreatorInput
     newspapers?: NewspaperUncheckedCreateNestedManyWithoutCreatorInput
+    class_schedules?: ClassScheduleUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserCreateOrConnectWithoutEventsInput = {
@@ -38327,6 +35734,7 @@ export namespace Prisma {
     staff_members?: StaffMemberUpdateManyWithoutCreatorNestedInput
     clubs?: ClubUpdateManyWithoutCreatorNestedInput
     newspapers?: NewspaperUpdateManyWithoutCreatorNestedInput
+    class_schedules?: ClassScheduleUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEventsInput = {
@@ -38348,6 +35756,7 @@ export namespace Prisma {
     staff_members?: StaffMemberUncheckedUpdateManyWithoutCreatorNestedInput
     clubs?: ClubUncheckedUpdateManyWithoutCreatorNestedInput
     newspapers?: NewspaperUncheckedUpdateManyWithoutCreatorNestedInput
+    class_schedules?: ClassScheduleUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserCreateWithoutAnnouncementsInput = {
@@ -38369,6 +35778,7 @@ export namespace Prisma {
     staff_members?: StaffMemberCreateNestedManyWithoutCreatorInput
     clubs?: ClubCreateNestedManyWithoutCreatorInput
     newspapers?: NewspaperCreateNestedManyWithoutCreatorInput
+    class_schedules?: ClassScheduleCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateWithoutAnnouncementsInput = {
@@ -38390,6 +35800,7 @@ export namespace Prisma {
     staff_members?: StaffMemberUncheckedCreateNestedManyWithoutCreatorInput
     clubs?: ClubUncheckedCreateNestedManyWithoutCreatorInput
     newspapers?: NewspaperUncheckedCreateNestedManyWithoutCreatorInput
+    class_schedules?: ClassScheduleUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserCreateOrConnectWithoutAnnouncementsInput = {
@@ -38427,6 +35838,7 @@ export namespace Prisma {
     staff_members?: StaffMemberUpdateManyWithoutCreatorNestedInput
     clubs?: ClubUpdateManyWithoutCreatorNestedInput
     newspapers?: NewspaperUpdateManyWithoutCreatorNestedInput
+    class_schedules?: ClassScheduleUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAnnouncementsInput = {
@@ -38448,6 +35860,7 @@ export namespace Prisma {
     staff_members?: StaffMemberUncheckedUpdateManyWithoutCreatorNestedInput
     clubs?: ClubUncheckedUpdateManyWithoutCreatorNestedInput
     newspapers?: NewspaperUncheckedUpdateManyWithoutCreatorNestedInput
+    class_schedules?: ClassScheduleUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserCreateWithoutDocumentsInput = {
@@ -38469,6 +35882,7 @@ export namespace Prisma {
     staff_members?: StaffMemberCreateNestedManyWithoutCreatorInput
     clubs?: ClubCreateNestedManyWithoutCreatorInput
     newspapers?: NewspaperCreateNestedManyWithoutCreatorInput
+    class_schedules?: ClassScheduleCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateWithoutDocumentsInput = {
@@ -38490,6 +35904,7 @@ export namespace Prisma {
     staff_members?: StaffMemberUncheckedCreateNestedManyWithoutCreatorInput
     clubs?: ClubUncheckedCreateNestedManyWithoutCreatorInput
     newspapers?: NewspaperUncheckedCreateNestedManyWithoutCreatorInput
+    class_schedules?: ClassScheduleUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserCreateOrConnectWithoutDocumentsInput = {
@@ -38527,6 +35942,7 @@ export namespace Prisma {
     staff_members?: StaffMemberUpdateManyWithoutCreatorNestedInput
     clubs?: ClubUpdateManyWithoutCreatorNestedInput
     newspapers?: NewspaperUpdateManyWithoutCreatorNestedInput
+    class_schedules?: ClassScheduleUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDocumentsInput = {
@@ -38548,6 +35964,7 @@ export namespace Prisma {
     staff_members?: StaffMemberUncheckedUpdateManyWithoutCreatorNestedInput
     clubs?: ClubUncheckedUpdateManyWithoutCreatorNestedInput
     newspapers?: NewspaperUncheckedUpdateManyWithoutCreatorNestedInput
+    class_schedules?: ClassScheduleUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserCreateWithoutMedia_albumsInput = {
@@ -38569,6 +35986,7 @@ export namespace Prisma {
     staff_members?: StaffMemberCreateNestedManyWithoutCreatorInput
     clubs?: ClubCreateNestedManyWithoutCreatorInput
     newspapers?: NewspaperCreateNestedManyWithoutCreatorInput
+    class_schedules?: ClassScheduleCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateWithoutMedia_albumsInput = {
@@ -38590,6 +36008,7 @@ export namespace Prisma {
     staff_members?: StaffMemberUncheckedCreateNestedManyWithoutCreatorInput
     clubs?: ClubUncheckedCreateNestedManyWithoutCreatorInput
     newspapers?: NewspaperUncheckedCreateNestedManyWithoutCreatorInput
+    class_schedules?: ClassScheduleUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserCreateOrConnectWithoutMedia_albumsInput = {
@@ -38657,6 +36076,7 @@ export namespace Prisma {
     staff_members?: StaffMemberUpdateManyWithoutCreatorNestedInput
     clubs?: ClubUpdateManyWithoutCreatorNestedInput
     newspapers?: NewspaperUpdateManyWithoutCreatorNestedInput
+    class_schedules?: ClassScheduleUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMedia_albumsInput = {
@@ -38678,6 +36098,7 @@ export namespace Prisma {
     staff_members?: StaffMemberUncheckedUpdateManyWithoutCreatorNestedInput
     clubs?: ClubUncheckedUpdateManyWithoutCreatorNestedInput
     newspapers?: NewspaperUncheckedUpdateManyWithoutCreatorNestedInput
+    class_schedules?: ClassScheduleUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type MediaItemUpsertWithWhereUniqueWithoutAlbumInput = {
@@ -38797,6 +36218,7 @@ export namespace Prisma {
     media_albums?: MediaAlbumCreateNestedManyWithoutCreatorInput
     staff_members?: StaffMemberCreateNestedManyWithoutCreatorInput
     clubs?: ClubCreateNestedManyWithoutCreatorInput
+    class_schedules?: ClassScheduleCreateNestedManyWithoutCreatorInput
   }
 
   export type UserUncheckedCreateWithoutNewspapersInput = {
@@ -38818,6 +36240,7 @@ export namespace Prisma {
     media_albums?: MediaAlbumUncheckedCreateNestedManyWithoutCreatorInput
     staff_members?: StaffMemberUncheckedCreateNestedManyWithoutCreatorInput
     clubs?: ClubUncheckedCreateNestedManyWithoutCreatorInput
+    class_schedules?: ClassScheduleUncheckedCreateNestedManyWithoutCreatorInput
   }
 
   export type UserCreateOrConnectWithoutNewspapersInput = {
@@ -38855,6 +36278,7 @@ export namespace Prisma {
     media_albums?: MediaAlbumUpdateManyWithoutCreatorNestedInput
     staff_members?: StaffMemberUpdateManyWithoutCreatorNestedInput
     clubs?: ClubUpdateManyWithoutCreatorNestedInput
+    class_schedules?: ClassScheduleUpdateManyWithoutCreatorNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNewspapersInput = {
@@ -38876,6 +36300,7 @@ export namespace Prisma {
     media_albums?: MediaAlbumUncheckedUpdateManyWithoutCreatorNestedInput
     staff_members?: StaffMemberUncheckedUpdateManyWithoutCreatorNestedInput
     clubs?: ClubUncheckedUpdateManyWithoutCreatorNestedInput
+    class_schedules?: ClassScheduleUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type AnnouncementCreateManyCreatorInput = {
@@ -39013,6 +36438,18 @@ export namespace Prisma {
     file_url: string
     file_size?: number | null
     published_at?: Date | string
+    is_public?: boolean
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type ClassScheduleCreateManyCreatorInput = {
+    id?: string
+    grade: string
+    start_date?: Date | string | null
+    end_date?: Date | string | null
+    is_active?: boolean
+    schedule?: NullableJsonNullValueInput | InputJsonValue
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -39404,6 +36841,7 @@ export namespace Prisma {
     file_url?: StringFieldUpdateOperationsInput | string
     file_size?: NullableIntFieldUpdateOperationsInput | number | null
     published_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_public?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -39418,6 +36856,7 @@ export namespace Prisma {
     file_url?: StringFieldUpdateOperationsInput | string
     file_size?: NullableIntFieldUpdateOperationsInput | number | null
     published_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_public?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -39432,6 +36871,40 @@ export namespace Prisma {
     file_url?: StringFieldUpdateOperationsInput | string
     file_size?: NullableIntFieldUpdateOperationsInput | number | null
     published_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    is_public?: BoolFieldUpdateOperationsInput | boolean
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ClassScheduleUpdateWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    grade?: StringFieldUpdateOperationsInput | string
+    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    end_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    schedule?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ClassScheduleUncheckedUpdateWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    grade?: StringFieldUpdateOperationsInput | string
+    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    end_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    schedule?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ClassScheduleUncheckedUpdateManyWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    grade?: StringFieldUpdateOperationsInput | string
+    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    end_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    schedule?: NullableJsonNullValueInput | InputJsonValue
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }

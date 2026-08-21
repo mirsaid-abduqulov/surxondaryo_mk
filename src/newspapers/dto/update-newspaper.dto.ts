@@ -1,27 +1,29 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
-import { IsInt, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsBoolean, IsInt, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 import { Transform, Type } from 'class-transformer';
+import { trimmedOrUndefined } from 'src/common/transformers/string-transformer';
+import { booleanOrUndefined } from 'src/common/transformers/boolean-transformer';
 
 export class UpdateNewspaperDto {
   @ApiPropertyOptional()
   @IsString()
   @IsNotEmpty()
   @IsOptional()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(trimmedOrUndefined)
   title_latin?: string;
 
   @ApiPropertyOptional()
   @IsString()
   @IsNotEmpty()
   @IsOptional()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(trimmedOrUndefined)
   title_cyril?: string;
 
   @ApiPropertyOptional()
   @IsString()
   @IsNotEmpty()
   @IsOptional()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(trimmedOrUndefined)
   title_ru?: string;
 
   @ApiPropertyOptional()
@@ -45,4 +47,10 @@ export class UpdateNewspaperDto {
   })
   @IsOptional()
   file?: Express.Multer.File;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsBoolean()
+  @Transform(booleanOrUndefined)
+  is_public?: boolean;
 }
