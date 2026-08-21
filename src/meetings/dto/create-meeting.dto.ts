@@ -1,42 +1,44 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsDateString, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 import { Transform } from 'class-transformer';
+import { trimmedOrUndefined } from 'src/common/transformers/string-transformer';
+import { dateOrUndefined } from 'src/common/transformers/date-trimmed-transformer';
 
 export class CreateMeetingDto {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(trimmedOrUndefined)
   title_latin: string;
 
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(trimmedOrUndefined)
   title_cyril: string;
 
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(trimmedOrUndefined)
   title_ru: string;
 
   @ApiPropertyOptional()
   @IsString()
   @IsOptional()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(trimmedOrUndefined)
   description_latin?: string;
 
   @ApiPropertyOptional()
   @IsString()
   @IsOptional()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(trimmedOrUndefined)
   description_cyril?: string;
 
   @ApiPropertyOptional()
   @IsString()
   @IsOptional()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(trimmedOrUndefined)
   description_ru?: string;
 
   @ApiPropertyOptional({ description: "Sinf (bo'sh bo'lsa - umumiy uchrashuv)" })
@@ -44,13 +46,14 @@ export class CreateMeetingDto {
   @IsOptional()
   grade?: string;
 
-  @ApiProperty({ description: 'Uchrashuv sanasi (YYYY-MM-DD yoki ISO)', example: '2026-09-01T10:00:00' })
+  @ApiProperty()
   @IsDateString()
+  @Transform(dateOrUndefined)
   meeting_date: string;
 
   @ApiPropertyOptional({ description: 'Joyi' })
   @IsString()
   @IsOptional()
-  @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
+  @Transform(trimmedOrUndefined)
   location?: string;
 }

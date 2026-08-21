@@ -4,12 +4,17 @@ import { CreateMeetingDto } from './dto/create-meeting.dto';
 import { UpdateMeetingDto } from './dto/update-meeting.dto';
 import { buildPaginationParams, buildPaginatedResponse } from '../common/helpers/pagination.helper';
 import { BaseQueryDto } from '../common/dto/base-query.dto';
+import { normalizeName } from 'src/common/helpers/normalize-name.helper';
 
 @Injectable()
 export class MeetingsService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(dto: CreateMeetingDto) {
+    if(dto.title_latin)dto.title_latin = normalizeName(dto.title_latin);
+    if(dto.title_cyril)dto.title_cyril = normalizeName(dto.title_cyril);
+    if(dto.title_ru)dto.title_ru = normalizeName(dto.title_ru);
+
     return this.prisma.parentTeacherMeeting.create({
       data: {
         title_latin: dto.title_latin,
@@ -59,6 +64,10 @@ export class MeetingsService {
 
   async update(id: string, dto: UpdateMeetingDto) {
     await this.findOne(id);
+    if(dto.title_latin)dto.title_latin = normalizeName(dto.title_latin);
+    if(dto.title_cyril)dto.title_cyril = normalizeName(dto.title_cyril);
+    if(dto.title_ru)dto.title_ru = normalizeName(dto.title_ru);
+
     const data: any = { ...dto };
     if (dto.meeting_date) data.meeting_date = new Date(dto.meeting_date);
     return this.prisma.parentTeacherMeeting.update({ where: { id }, data });
